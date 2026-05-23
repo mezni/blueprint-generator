@@ -208,6 +208,21 @@ SELECT id AS "id: StationId" FROM inserted;
 
 `$4 = lng`, `$5 = lat` — the `[lng, lat]` order is enforced by the parameter binding in the repository.
 
+## 9a. Canonical SQL: Admin Create Chargers (alongside station)
+
+When `AdminStationCreate.chargers` is non-empty, the repository inserts each charger in a batch after the station row:
+
+```sql
+INSERT INTO station_domain.chargers
+    (station_id, connector, power_kw, is_active)
+VALUES
+    ($1, $2, $3, $4);
+```
+
+`$1 = station_id` (from the RETURNING id of the station insert), `$2 = connector` (validated by service layer against CHECK constraint values), `$3 = power_kw`, `$4 = is_active` (default `TRUE`).
+
+Multiple chargers are inserted in a single `sqlx::query!` call within the same transaction as the station insert.
+
 ## 10. Canonical SQL: Admin Update / Soft Delete
 
 Patch is partial; the repository builds the `SET` clause from non-null DTO fields. Soft delete:
