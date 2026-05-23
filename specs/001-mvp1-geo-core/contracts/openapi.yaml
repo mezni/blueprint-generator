@@ -1,0 +1,418 @@
+openapi: 3.1.0
+info:
+  title: BorneMap API
+  version: 0.1.0
+  description: |
+    BorneMap MVP 1 — Geo Core (read-only map + admin station CRUD).
+
+    Authoritative runtime source: Rust backend (`utoipa`). This file is the design-time
+    pre-image used to scaffold contract tests. CI runs `oasdiff` against the
+    runtime-generated `openapi.json` to detect drift.
+  contact:
+    name: BorneMap Platform
+servers:
+  - url: http://localhost:8000
+    description: Local development
+  - url: https://staging.bornemap.example
+    description: Staging
+paths:
+  /api/v1/auth/mock-login:
+    post:
+      operationId: authMockLogin
+      tags: [auth]
+      summary: Issue a mock JWT (MVP 1 only)
+      description: |
+        Issues a mock JWT with the canonical claim shape. Admin-role tokens are only
+        issued when the supplied `username` is in the server's `MOCK_ADMIN_USERNAMES`
+        allowlist. See FR-004 and FR-019.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/MockLoginRequest' }
+      responses:
+        '200':
+          description: JWT issued
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MockLoginResponse' }
+        '400':
+          description: Invalid role (e.g. driver in MVP 1) or malformed body
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problem' }
+        '403':
+          description: Username not on admin allowlist
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problem' }
+
+  /api/v1/stations:
+    get:
+      operationId: stationsListByViewport
+      tags: [stations]
+      summary: List stations inside a viewport bounding box
+      description: |
+        Returns lightweight marker summaries inside the quantized bounding box.
+        The server quantizes the bbox to 4 decimal places (R2) and returns the
+        quantized bbox in the response envelope. Hard `LIMIT 5000` per FR-001.
+      parameters:
+        - in: query
+          name: bbox
+          required: true
+          description: |
+            Comma-separated bounding box `west,south,east,north` in WGS84 decimal degrees.
+            Order is enforced. Crossing the antimeridian returns 400.
+          schema:
+            type: string
+            example: "10.0000,33.0000,11.0000,34.0000"
+      responses:
+        '200':
+          description: Marker summaries inside the viewport
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/StationListResponse' }
+        '400':
+          description: Invalid bbox (malformed, west > east, antimeridian, etc.)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problem' }
+
+  /api/v1/stations/{id}:
+    get:
+      operationId: stationsGetById
+      tags: [stations]
+      summary: Full station detail
+      parameters:
+        - $ref: '#/components/parameters/StationIdPath'
+      responses:
+        '200':
+          description: Station detail
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/StationDetail' }
+        '404':
+          description: Not found (or soft-deleted)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problem' }
+
+  /api/v1/admin/stations:
+    get:
+      operationId: adminStationsList
+      tags: [admin]
+      summary: Admin paginated list of stations
+      security: [{ bearerAuth: [admin] }]
+      parameters:
+        - in: query
+          name: limit
+          schema: { type: integer, minimum: 1, maximum: 200, default: 50 }
+        - in: query
+          name: cursor
+          schema: { type: string, nullable: true }
+        - in: query
+          name: include_deleted
+          schema: { type: boolean, default: false }
+        - in: query
+          name: include_test
+          schema: { type: boolean, default: true }
+      responses:
+        '200':
+          description: Paginated station rows
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AdminStationListResponse' }
+        '401':
+          description: Missing or expired token
+          content:
+            application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } }
+        '403':
+          description: Driver-role token presented to admin endpoint
+          content:
+            application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } }
+    post:
+      operationId: adminStationsCreate
+      tags: [admin]
+      summary: Create a station
+      security: [{ bearerAuth: [admin] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/AdminStationCreate' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/StationDetail' }
+        '401': { description: Missing/expired token, content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } } } }
+        '403': { description: Wrong role,            content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } } } }
+        '422':
+          description: Validation failed (e.g., bad opening_hours_osm, bad connector, bad lng/lat)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problem' }
+
+  /api/v1/admin/stations/{id}:
+    patch:
+      operationId: adminStationsPatch
+      tags: [admin]
+      summary: Partial update
+      security: [{ bearerAuth: [admin] }]
+      parameters:
+        - $ref: '#/components/parameters/StationIdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/AdminStationPatch' }
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/StationDetail' }
+        '401': { description: Missing/expired token, content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } } } }
+        '403': { description: Wrong role,            content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } } } }
+        '404': { description: Not found,             content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } } } }
+        '422': { description: Validation failed,     content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } } } }
+    delete:
+      operationId: adminStationsSoftDelete
+      tags: [admin]
+      summary: Soft-delete a station
+      security: [{ bearerAuth: [admin] }]
+      parameters:
+        - $ref: '#/components/parameters/StationIdPath'
+      responses:
+        '204': { description: Deleted }
+        '401': { description: Missing/expired token, content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } } } }
+        '403': { description: Wrong role,            content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } } } }
+        '404': { description: Not found,             content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } } } }
+
+  /health/live:
+    get:
+      operationId: healthLive
+      tags: [health]
+      summary: Liveness probe
+      responses:
+        '200': { description: Alive }
+
+  /health/ready:
+    get:
+      operationId: healthReady
+      tags: [health]
+      summary: Readiness probe (DB check)
+      responses:
+        '200': { description: Ready }
+        '503': { description: Not ready }
+
+  /metrics:
+    get:
+      operationId: metrics
+      tags: [observability]
+      summary: Prometheus exposition
+      responses:
+        '200':
+          description: Metrics text
+          content:
+            text/plain: { schema: { type: string } }
+
+components:
+  parameters:
+    StationIdPath:
+      in: path
+      name: id
+      required: true
+      schema: { type: string, format: uuid }
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Coord:
+      type: array
+      description: "[lng, lat] in WGS84 decimal degrees. ORDER IS lng, lat."
+      items: { type: number }
+      minItems: 2
+      maxItems: 2
+      example: [10.6123, 36.4012]
+
+    Bbox:
+      type: object
+      required: [west, south, east, north]
+      properties:
+        west:  { type: number, minimum: -180, maximum: 180 }
+        south: { type: number, minimum: -90,  maximum: 90 }
+        east:  { type: number, minimum: -180, maximum: 180 }
+        north: { type: number, minimum: -90,  maximum: 90 }
+
+    ConnectorType:
+      type: string
+      description: Closed enum constrained by Postgres CHECK (FR-018).
+      enum: [Type2, CCS, CHAdeMO, Type2_Tethered]
+
+    Charger:
+      type: object
+      required: [id, connector, power_kw, is_active]
+      properties:
+        id:        { type: string, format: uuid }
+        connector: { $ref: '#/components/schemas/ConnectorType' }
+        power_kw:  { type: number, exclusiveMinimum: 0, maximum: 600 }
+        is_active: { type: boolean }
+
+    Company:
+      type: object
+      required: [id, name]
+      properties:
+        id:   { type: string, format: uuid }
+        name: { type: string, minLength: 1, maxLength: 200 }
+
+    StationMarker:
+      type: object
+      description: Lightweight summary returned by the viewport endpoint (R5 — lazy hydration).
+      required: [id, name, coord, is_active, under_maintenance]
+      properties:
+        id:                { type: string, format: uuid }
+        name:              { type: string, minLength: 1, maxLength: 200 }
+        coord:             { $ref: '#/components/schemas/Coord' }
+        is_active:         { type: boolean }
+        under_maintenance: { type: boolean }
+
+    StationDetail:
+      type: object
+      required:
+        - id
+        - company
+        - name
+        - address
+        - coord
+        - is_active
+        - under_maintenance
+        - chargers
+      properties:
+        id:                { type: string, format: uuid }
+        company:           { $ref: '#/components/schemas/Company' }
+        name:              { type: string, minLength: 1, maxLength: 200 }
+        address:           { type: string, minLength: 1, maxLength: 500 }
+        coord:             { $ref: '#/components/schemas/Coord' }
+        is_active:         { type: boolean }
+        under_maintenance: { type: boolean }
+        opening_hours_osm:
+          type: string
+          nullable: true
+          maxLength: 500
+          description: OSM `opening_hours` spec string. `null` means unknown. (FR-017)
+        chargers:
+          type: array
+          items: { $ref: '#/components/schemas/Charger' }
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+
+    StationListResponse:
+      type: object
+      required: [viewport, markers]
+      properties:
+        viewport: { $ref: '#/components/schemas/Bbox' }
+        markers:
+          type: array
+          items: { $ref: '#/components/schemas/StationMarker' }
+        truncated:
+          type: boolean
+          description: True when the result was capped at LIMIT 5000.
+
+    AdminStationListResponse:
+      type: object
+      required: [items, next_cursor]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/StationDetail' }
+        next_cursor:
+          type: string
+          nullable: true
+
+    AdminStationCreate:
+      type: object
+      required: [company_id, name, address, coord]
+      properties:
+        company_id:        { type: string, format: uuid }
+        name:              { type: string, minLength: 1, maxLength: 200 }
+        address:           { type: string, minLength: 1, maxLength: 500 }
+        coord:             { $ref: '#/components/schemas/Coord' }
+        is_active:         { type: boolean, default: true }
+        under_maintenance: { type: boolean, default: false }
+        opening_hours_osm:
+          type: string
+          nullable: true
+          maxLength: 500
+        chargers:
+          type: array
+          description: Optional initial chargers.
+          items:
+            type: object
+            required: [connector, power_kw]
+            properties:
+              connector: { $ref: '#/components/schemas/ConnectorType' }
+              power_kw:  { type: number, exclusiveMinimum: 0, maximum: 600 }
+              is_active: { type: boolean, default: true }
+
+    AdminStationPatch:
+      type: object
+      description: All fields optional; null is not a valid value (omit instead).
+      properties:
+        name:              { type: string, minLength: 1, maxLength: 200 }
+        address:           { type: string, minLength: 1, maxLength: 500 }
+        coord:             { $ref: '#/components/schemas/Coord' }
+        is_active:         { type: boolean }
+        under_maintenance: { type: boolean }
+        opening_hours_osm:
+          type: string
+          nullable: true
+          maxLength: 500
+
+    MockLoginRequest:
+      type: object
+      required: [username, role]
+      properties:
+        username: { type: string, minLength: 1, maxLength: 100 }
+        role:
+          type: string
+          enum: [admin]
+          description: |
+            MVP 1 only accepts `admin`. `driver` is rejected with HTTP 400.
+
+    MockLoginResponse:
+      type: object
+      required: [access_token, token_type, expires_in]
+      properties:
+        access_token: { type: string, description: HS256-signed JWT. Canonical claim shape. }
+        token_type:   { type: string, enum: [Bearer] }
+        expires_in:   { type: integer, description: Seconds until expiry. }
+
+    Problem:
+      type: object
+      description: RFC 7807 problem detail.
+      required: [type, title, status]
+      properties:
+        type:     { type: string, format: uri, default: "about:blank" }
+        title:    { type: string }
+        status:   { type: integer, minimum: 100, maximum: 599 }
+        detail:   { type: string }
+        instance: { type: string }
+        code:
+          type: string
+          description: BorneMap-specific machine-readable error code (e.g., "bbox_invalid", "opening_hours_invalid").
+        errors:
+          type: array
+          description: Field-level validation errors when applicable.
+          items:
+            type: object
+            required: [field, code]
+            properties:
+              field: { type: string }
+              code:  { type: string }
+              hint:  { type: string }
