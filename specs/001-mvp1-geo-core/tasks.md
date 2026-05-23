@@ -103,16 +103,16 @@ Per `plan.md` Project Structure:
 
 ### Backend: Integration Test Harness
 
-- [ ] T036 Create `bornemap/backend/services/station-service/tests/common/mod.rs` with Testcontainers harness: `setup_test_db()` → spins up `postgis/postgis:16-3.4`, applies migrations via `sqlx migrate run`, inserts 50 lightweight fixture stations directly via SQL (separate from the 500-row production seed); returns `SqlxPool`; `teardown_test_db()` drops the container
+- [x] T036 Create `bornemap/backend/services/station-service/tests/common/mod.rs` with Testcontainers harness: `setup_test_db()` → spins up `postgis/postgis:16-3.4`, applies migrations via `sqlx migrate run`, inserts 50 lightweight fixture stations directly via SQL (separate from the 500-row production seed); returns `SqlxPool`; `teardown_test_db()` drops the container
 
 ### Frontend: Shared Packages
 
-- [ ] T037 Create `bornemap/frontend/packages/api-client/package.json` with `name: "@bornemap/api-client"`, scripts for `openapi-typescript-codegen`; add placeholder `openapi.json` snapshot (empty initially)
-- [ ] T038 Create `bornemap/frontend/packages/geo-models/package.json` with `name: "@bornemap/geo-models"`, deps: `zod`; tsconfig with `strict: true`
-- [ ] T039 [P] Create `bornemap/frontend/packages/geo-models/src/coordinate.ts` with `CoordinateModel = readonly [number, number]` type alias and Zod schema `coordinateSchema = z.tuple([z.number(), z.number()])`
-- [ ] T040 [P] Create `bornemap/frontend/packages/geo-models/src/viewport.ts` with `MapViewportModel { west, south, east, north }`, `quantizeBounds(viewport) => MapViewportModel` rounding to 4 decimals (round-half-away-from-zero), `insideViewport(coord, viewport) => boolean`
-- [ ] T041 [P] Create `bornemap/frontend/packages/geo-models/src/marker.ts` with `StationMarkerModel { id, name, coord: CoordinateModel, isActive, underMaintenance }`, `pinColor(marker) => string` returning `activeGreen` when `isActive && !underMaintenance`, else `inactiveRed`
-- [ ] T042 Create `bornemap/frontend/packages/geo-models/src/index.ts` re-exporting all types; add `vitest` unit tests for `quantizeBounds`, `insideViewport`, `pinColor` in `src/__tests__/`
+- [x] T037 Create `bornemap/frontend/packages/api-client/package.json` with `name: "@bornemap/api-client"`, scripts for `openapi-typescript-codegen`; add placeholder `openapi.json` snapshot (empty initially)
+- [x] T038 Create `bornemap/frontend/packages/geo-models/package.json` with `name: "@bornemap/geo-models"`, deps: `zod`; tsconfig with `strict: true`
+- [x] T039 [P] Create `bornemap/frontend/packages/geo-models/src/coordinate.ts` with `CoordinateModel = readonly [number, number]` type alias and Zod schema `coordinateSchema = z.tuple([z.number(), z.number()])`
+- [x] T040 [P] Create `bornemap/frontend/packages/geo-models/src/viewport.ts` with `MapViewportModel { west, south, east, north }`, `quantizeBounds(viewport) => MapViewportModel` rounding to 4 decimals (round-half-away-from-zero), `insideViewport(coord, viewport) => boolean`
+- [x] T041 [P] Create `bornemap/frontend/packages/geo-models/src/marker.ts` with `StationMarkerModel { id, name, coord: CoordinateModel, isActive, underMaintenance }`, `pinColor(marker) => string` returning `activeGreen` when `isActive && !underMaintenance`, else `inactiveRed`
+- [x] T042 Create `bornemap/frontend/packages/geo-models/src/index.ts` re-exporting all types; add `vitest` unit tests for `quantizeBounds`, `insideViewport`, `pinColor` in `src/__tests__/`
 
 ### Backend: sqlx Offline Metadata
 
@@ -139,42 +139,42 @@ Per `plan.md` Project Structure:
 
 ### Backend: Integration Tests for US1
 
-- [ ] T050 [US1] Create `bornemap/backend/services/station-service/tests/stations_public_read.rs` with integration tests using Testcontainers harness: (1) viewport query returns seeded stations, (2) empty viewport returns `markers: []` not 404, (3) bbox with >4 decimals gets quantized in response, (4) west > east returns 400, (5) full detail returns company + chargers, (6) soft-deleted station excluded from viewport, (7) `LIMIT 5000` truncation sets `truncated: true`, (8) `GET /api/v1/stations/{soft-deleted-id}` returns 404 (FR-015); also add contract tests asserting response JSON shapes match `utoipa`-generated OpenAPI schemas for `StationListResponse` and `StationDetail`
+- [x] T050 [US1] Create `bornemap/backend/services/station-service/tests/stations_public_read.rs` with integration tests using Testcontainers harness: (1) viewport query returns seeded stations, (2) empty viewport returns `markers: []` not 404, (3) bbox with >4 decimals gets quantized in response, (4) west > east returns 400, (5) full detail returns company + chargers, (6) soft-deleted station excluded from viewport, (7) `LIMIT 5000` truncation sets `truncated: true`, (8) `GET /api/v1/stations/{soft-deleted-id}` returns 404 (FR-015); also add contract tests asserting response JSON shapes match `utoipa`-generated OpenAPI schemas for `StationListResponse` and `StationDetail`
 
 ### Backend: OpenAPI Snapshot
 
-- [ ] T052 [US1] Run `cargo run -p openapi-spec --release > bornemap/frontend/packages/api-client/openapi.json` to generate the runtime OpenAPI snapshot; commit the file
+- [x] T052 [US1] Run `cargo run -p openapi-spec --release > bornemap/frontend/packages/api-client/openapi.json` to generate the runtime OpenAPI snapshot; commit the file
 
 ### Frontend: Generate API Client
 
-- [ ] T053 [US1] Run `openapi-typescript-codegen` against `openapi.json` to generate `bornemap/frontend/packages/api-client/src/` with typed client classes; verify generated types include `StationMarker`, `StationDetail`, `ConnectorType`, `BboxQuery`, `MockLoginRequest`, `MockLoginResponse`, `Problem`
+- [x] T053 [US1] Run `openapi-typescript-codegen` against `openapi.json` to generate `bornemap/frontend/packages/api-client/src/` with typed client classes; verify generated types include `StationMarker`, `StationDetail`, `ConnectorType`, `BboxQuery`, `MockLoginRequest`, `MockLoginResponse`, `Problem`
 
 ### Frontend: Web Admin Portal — Map View for US1
 
-- [ ] T054 [US1] Create `bornemap/frontend/admin-portal/package.json` with deps: `react` 18, `react-dom` 18, `vite` 5, `@tanstack/react-query` 5, `leaflet` 1.9, `react-leaflet` 4, `react-leaflet-cluster` 2, `tailwindcss` 3, `shadcn/ui`, `react-hook-form` 7, `zod` 3, `react-router-dom` 6, `@bornemap/api-client`, `@bornemap/geo-models`
-- [ ] T055 [P] [US1] Create `bornemap/frontend/admin-portal/vite.config.ts` with proxy `/api` → `http://localhost:8000`; `bornemap/frontend/admin-portal/tailwind.config.ts`; `bornemap/frontend/admin-portal/tsconfig.json` with `strict: true`; add `browserslist` config in `package.json` targeting last 2 stable versions of Chrome, Firefox, Safari, Edge (FR-020)
-- [ ] T056 [P] [US1] Create `bornemap/frontend/admin-portal/index.html` with `<div id="root">`; `bornemap/frontend/admin-portal/src/main.tsx` mounting React app with `QueryClientProvider` and `BrowserRouter`
-- [ ] T057 [P] [US1] Create `bornemap/frontend/admin-portal/src/app/App.tsx` with router: `/login`, `/map`, `/admin/stations`, `/admin/stations/new`, `/admin/stations/:id/edit`; `bornemap/frontend/admin-portal/src/app/router.tsx`; `bornemap/frontend/admin-portal/src/app/queryClient.ts` with staleTime 60s, `networkMode: 'offlineFirst'` to support cached viewport when offline (US1-Acceptance-4)
-- [ ] T058 [P] [US1] Create `bornemap/frontend/admin-portal/src/lib/apiClient.ts` re-exporting configured `@bornemap/api-client` instance with base URL from `VITE_API_BASE_URL`
-- [ ] T059 [P] [US1] Create `bornemap/frontend/admin-portal/src/styles/map-theme.constants.ts` with `BorneMapMapStyles` object: `pins.activeGreen = '#22c55e'`, `pins.inactiveRed = '#ef4444'`, cluster radius 40px, cluster min markers 15 (R7)
-- [ ] T060 [US1] Create `bornemap/frontend/admin-portal/src/features/map/useViewportStations.ts` hook: (1) 300ms debounce on viewport change (R1), (2) calls `apiClient.stationsListByViewport({bbox})`, (3) React Query cache key `['stations', quantizedBbox]` (R6), (4) staleTime 60s, (5) clips off-viewport markers before render (R3)
-- [ ] T061 [US1] Create `bornemap/frontend/admin-portal/src/features/map/MapView.tsx` with `react-leaflet` map centered on Tunisia `[36.8, 10.2]` zoom 7; `react-leaflet-cluster` at R7 thresholds; `Marker` components using `pinColor()` from geo-models; `useViewportStations` on `moveend`/`zoomend`; skeleton markers while data loads; offline/cached state when network unavailable (edge case: US1-Acceptance-4)
-- [ ] T062 [US1] Create `bornemap/frontend/admin-portal/src/features/map/StationDetailPanel.tsx` slide-in panel showing station name, address, company, charger count, opening hours (parsed by `opening_hours.js` library per FR-017), `is_active`/`under_maintenance` badges; display "Hours unknown" when `opening_hours_osm` is null
-- [ ] T063 [US1] Create `bornemap/frontend/admin-portal/src/features/map/NavigateButton.tsx` that opens `https://www.google.com/maps/dir/?api=1&destination={lat},{lng}` via `window.location.assign()` (FR-016, R-012)
+- [x] T054 [US1] Create `bornemap/frontend/admin-portal/package.json` with deps: `react` 18, `react-dom` 18, `vite` 5, `@tanstack/react-query` 5, `leaflet` 1.9, `react-leaflet` 4, `react-leaflet-cluster` 2, `tailwindcss` 3, `shadcn/ui`, `react-hook-form` 7, `zod` 3, `react-router-dom` 6, `@bornemap/api-client`, `@bornemap/geo-models`
+- [x] T055 [P] [US1] Create `bornemap/frontend/admin-portal/vite.config.ts` with proxy `/api` → `http://localhost:8000`; `bornemap/frontend/admin-portal/tailwind.config.ts`; `bornemap/frontend/admin-portal/tsconfig.json` with `strict: true`; add `browserslist` config in `package.json` targeting last 2 stable versions of Chrome, Firefox, Safari, Edge (FR-020)
+- [x] T056 [P] [US1] Create `bornemap/frontend/admin-portal/index.html` with `<div id="root">`; `bornemap/frontend/admin-portal/src/main.tsx` mounting React app with `QueryClientProvider` and `BrowserRouter`
+- [x] T057 [P] [US1] Create `bornemap/frontend/admin-portal/src/app/App.tsx` with router: `/login`, `/map`, `/admin/stations`, `/admin/stations/new`, `/admin/stations/:id/edit`; `bornemap/frontend/admin-portal/src/app/router.tsx`; `bornemap/frontend/admin-portal/src/app/queryClient.ts` with staleTime 60s, `networkMode: 'offlineFirst'` to support cached viewport when offline (US1-Acceptance-4)
+- [x] T058 [P] [US1] Create `bornemap/frontend/admin-portal/src/lib/apiClient.ts` re-exporting configured `@bornemap/api-client` instance with base URL from `VITE_API_BASE_URL`
+- [x] T059 [P] [US1] Create `bornemap/frontend/admin-portal/src/styles/map-theme.constants.ts` with `BorneMapMapStyles` object: `pins.activeGreen = '#22c55e'`, `pins.inactiveRed = '#ef4444'`, cluster radius 40px, cluster min markers 15 (R7)
+- [x] T060 [US1] Create `bornemap/frontend/admin-portal/src/features/map/useViewportStations.ts` hook: (1) 300ms debounce on viewport change (R1), (2) calls `apiClient.stationsListByViewport({bbox})`, (3) React Query cache key `['stations', quantizedBbox]` (R6), (4) staleTime 60s, (5) clips off-viewport markers before render (R3)
+- [x] T061 [US1] Create `bornemap/frontend/admin-portal/src/features/map/MapView.tsx` with `react-leaflet` map centered on Tunisia `[36.8, 10.2]` zoom 7; `react-leaflet-cluster` at R7 thresholds; `Marker` components using `pinColor()` from geo-models; `useViewportStations` on `moveend`/`zoomend`; skeleton markers while data loads; offline/cached state when network unavailable (edge case: US1-Acceptance-4)
+- [x] T062 [US1] Create `bornemap/frontend/admin-portal/src/features/map/StationDetailPanel.tsx` slide-in panel showing station name, address, company, charger count, opening hours (parsed by `opening_hours.js` library per FR-017), `is_active`/`under_maintenance` badges; display "Hours unknown" when `opening_hours_osm` is null
+- [x] T063 [US1] Create `bornemap/frontend/admin-portal/src/features/map/NavigateButton.tsx` that opens `https://www.google.com/maps/dir/?api=1&destination={lat},{lng}` via `window.location.assign()` (FR-016, R-012)
 
 ### Frontend: Mobile App — Map View for US1
 
-- [ ] T064 [US1] Create `bornemap/frontend/mobile-app/package.json` with deps: `expo` SDK 50, `react-native` 0.73, `react-native-maps` 1.10, `@tanstack/react-query` 5, `@gorhom/bottom-sheet` 4, `@bornemap/api-client`, `@bornemap/geo-models`
-- [ ] T065 [P] [US1] Create `bornemap/frontend/mobile-app/app.config.ts` with Expo config; `bornemap/frontend/mobile-app/tsconfig.json` with `strict: true`
-- [ ] T066 [P] [US1] Create `bornemap/frontend/mobile-app/src/App.tsx` with `QueryClientProvider`, `NavigationContainer`, stack navigator with `MapScreen` and `OsUpdateRequiredScreen`
-- [ ] T067 [US1] Create `bornemap/frontend/mobile-app/src/hooks/useOsFloorCheck.ts` that reads `Platform.Version` and returns `isSupported: boolean` based on Android ≥ 10 / iOS ≥ 15 (FR-020)
-- [ ] T068 [US1] Create `bornemap/frontend/mobile-app/src/screens/OsUpdateRequiredScreen.tsx` — non-dismissible fullscreen "Update your OS to use BorneMap" screen; exits if OS below floor (FR-020)
-- [ ] T069 [US1] Create `bornemap/frontend/mobile-app/src/hooks/useViewportStations.ts` — same logic as web version but using `react-native-maps` `onRegionChangeComplete`; 300ms debounce; cache key `['stations', quantizedBbox]`
-- [ ] T070 [US1] Create `bornemap/frontend/mobile-app/src/styles/map-theme.constants.ts` mirroring web `BorneMapMapStyles`
-- [ ] T071 [US1] Create `bornemap/frontend/mobile-app/src/components/ClusteredMarkers.tsx` rendering `Marker` components with `tracksViewChanges={false}` (R4), `pinColor` from `pinColor()`, clustering via `react-native-maps` `Cluster` component (built-in) with `radius` prop set to trigger at R7 thresholds (>15 markers within 40px equivalent)
-- [ ] T072 [US1] Create `bornemap/frontend/mobile-app/src/screens/MapScreen.tsx` with `react-native-maps` `MapView` centered on Tunisia, `ClusteredMarkers`, `useViewportStations`, bottom sheet trigger on marker press; skeleton markers while data loads; offline/cached state when network unavailable (edge case: US1-Acceptance-4)
-- [ ] T073 [US1] Create `bornemap/frontend/mobile-app/src/screens/StationDetailSheet.tsx` with `@gorhom/bottom-sheet` showing station name, address, chargers, opening hours, "Navigate" button
-- [ ] T074 [US1] Create `bornemap/frontend/mobile-app/src/lib/deepLink.ts` with `buildNavigateUrl(coord: CoordinateModel) => string` returning `https://www.google.com/maps/dir/?api=1&destination={lat},{lng}`; navigate via `Linking.openURL()` (FR-016)
+- [x] T064 [US1] Create `bornemap/frontend/mobile-app/package.json` with deps: `expo` SDK 50, `react-native` 0.73, `react-native-maps` 1.10, `@tanstack/react-query` 5, `@gorhom/bottom-sheet` 4, `@bornemap/api-client`, `@bornemap/geo-models`
+- [x] T065 [P] [US1] Create `bornemap/frontend/mobile-app/app.config.ts` with Expo config; `bornemap/frontend/mobile-app/tsconfig.json` with `strict: true`
+- [x] T066 [P] [US1] Create `bornemap/frontend/mobile-app/src/App.tsx` with `QueryClientProvider`, `NavigationContainer`, stack navigator with `MapScreen` and `OsUpdateRequiredScreen`
+- [x] T067 [US1] Create `bornemap/frontend/mobile-app/src/hooks/useOsFloorCheck.ts` that reads `Platform.Version` and returns `isSupported: boolean` based on Android ≥ 10 / iOS ≥ 15 (FR-020)
+- [x] T068 [US1] Create `bornemap/frontend/mobile-app/src/screens/OsUpdateRequiredScreen.tsx` — non-dismissible fullscreen "Update your OS to use BorneMap" screen; exits if OS below floor (FR-020)
+- [x] T069 [US1] Create `bornemap/frontend/mobile-app/src/hooks/useViewportStations.ts` — same logic as web version but using `react-native-maps` `onRegionChangeComplete`; 300ms debounce; cache key `['stations', quantizedBbox]`
+- [x] T070 [US1] Create `bornemap/frontend/mobile-app/src/styles/map-theme.constants.ts` mirroring web `BorneMapMapStyles`
+- [x] T071 [US1] Create `bornemap/frontend/mobile-app/src/components/ClusteredMarkers.tsx` rendering `Marker` components with `tracksViewChanges={false}` (R4), `pinColor` from `pinColor()`, clustering via `react-native-maps` `Cluster` component (built-in) with `radius` prop set to trigger at R7 thresholds (>15 markers within 40px equivalent)
+- [x] T072 [US1] Create `bornemap/frontend/mobile-app/src/screens/MapScreen.tsx` with `react-native-maps` `MapView` centered on Tunisia, `ClusteredMarkers`, `useViewportStations`, bottom sheet trigger on marker press; skeleton markers while data loads; offline/cached state when network unavailable (edge case: US1-Acceptance-4)
+- [x] T073 [US1] Create `bornemap/frontend/mobile-app/src/screens/StationDetailSheet.tsx` with `@gorhom/bottom-sheet` showing station name, address, chargers, opening hours, "Navigate" button
+- [x] T074 [US1] Create `bornemap/frontend/mobile-app/src/lib/deepLink.ts` with `buildNavigateUrl(coord: CoordinateModel) => string` returning `https://www.google.com/maps/dir/?api=1&destination={lat},{lng}`; navigate via `Linking.openURL()` (FR-016)
 
 **Checkpoint**: User Story 1 fully functional — driver can open map, see pins, tap for detail, navigate. Testable independently on web + mobile.
 
@@ -199,7 +199,7 @@ Per `plan.md` Project Structure:
 
 ### Backend: Integration Tests for US2
 
-- [ ] T081 [P] [US2] Create `bornemap/backend/services/station-service/tests/stations_admin_crud.rs` with integration tests: (1) admin create station returns 201 + detail, (2) create with bad connector returns 422, (3) create with bad opening_hours returns 422 with parse error, (4) admin patch toggles `under_maintenance`, (5) admin soft delete returns 204 and station disappears from public viewport, (6) admin list with `include_deleted=true` shows soft-deleted station, (7) non-admin token → 403, (8) expired token → 401, (9) driver role mock-login → 400, (10) concurrent patch to same station — last-write-wins on `updated_at` (edge case)
+- [x] T081 [P] [US2] Create `bornemap/backend/services/station-service/tests/stations_admin_crud.rs` with integration tests: (1) admin create station returns 201 + detail, (2) create with bad connector returns 422, (3) create with bad opening_hours returns 422 with parse error, (4) admin patch toggles `under_maintenance`, (5) admin soft delete returns 204 and station disappears from public viewport, (6) admin list with `include_deleted=true` shows soft-deleted station, (7) non-admin token → 403, (8) expired token → 401, (9) driver role mock-login → 400, (10) concurrent patch to same station — last-write-wins on `updated_at` (edge case)
 
 ### Backend: Auth Integration Tests
 
@@ -207,22 +207,22 @@ Per `plan.md` Project Structure:
 
 ### Frontend: Admin Portal — Auth + CRUD Pages for US2
 
-- [ ] T083 [US2] Create `bornemap/frontend/admin-portal/src/features/auth/authStore.ts` — persists JWT in `localStorage`, provides `login(username)`, `logout()`, `isAuthenticated`, `token` getter; decodes JWT to check `exp`
-- [ ] T084 [US2] Create `bornemap/frontend/admin-portal/src/features/auth/LoginPage.tsx` — form with username input; calls `POST /api/v1/auth/mock-login` with `{username, role: "admin"}`; stores token via `authStore`; redirects to `/admin/stations`; shows 403 error inline
-- [ ] T085 [US2] Create `bornemap/frontend/admin-portal/src/features/stations/stationFormSchema.ts` — Zod schema mirroring FR-017/018: `company_id` UUID, `name` 1-200 chars, `address` 1-500 chars, `coord` tuple `[lng, lat]` with range validation, `opening_hours_osm` optional string ≤500 chars, `chargers` array with `connector` enum literal and `power_kw` >0 ≤600
-- [ ] T086 [US2] Create `bornemap/frontend/admin-portal/src/features/stations/StationsTablePage.tsx` — paginated table fetching `GET /api/v1/admin/stations` with cursor; columns: name, address, company, is_active, under_maintenance, actions (edit/delete); client-side search filtering within the currently loaded page only (known limitation — server-side `?q=` search deferred to MVP 2 per Constitution Principle II); "Add Station" button
-- [ ] T087 [US2] Create `bornemap/frontend/admin-portal/src/features/stations/StationEditPage.tsx` — form using `react-hook-form` + `stationFormSchema`; on submit calls `PATCH /api/v1/admin/stations/{id}`; success toast + navigate back to table; shows validation errors from 422 RFC-7807 response
-- [ ] T088 [US2] Add "New Station" page at `/admin/stations/new` in router — same form as edit but calls `POST /api/v1/admin/stations`; redirects to table on 201
+- [x] T083 [US2] Create `bornemap/frontend/admin-portal/src/features/auth/authStore.ts` — persists JWT in `localStorage`, provides `login(username)`, `logout()`, `isAuthenticated`, `token` getter; decodes JWT to check `exp`
+- [x] T084 [US2] Create `bornemap/frontend/admin-portal/src/features/auth/LoginPage.tsx` — form with username input; calls `POST /api/v1/auth/mock-login` with `{username, role: "admin"}`; stores token via `authStore`; redirects to `/admin/stations`; shows 403 error inline
+- [x] T085 [US2] Create `bornemap/frontend/admin-portal/src/features/stations/stationFormSchema.ts` — Zod schema mirroring FR-017/018: `company_id` UUID, `name` 1-200 chars, `address` 1-500 chars, `coord` tuple `[lng, lat]` with range validation, `opening_hours_osm` optional string ≤500 chars, `chargers` array with `connector` enum literal and `power_kw` >0 ≤600
+- [x] T086 [US2] Create `bornemap/frontend/admin-portal/src/features/stations/StationsTablePage.tsx` — paginated table fetching `GET /api/v1/admin/stations` with cursor; columns: name, address, company, is_active, under_maintenance, actions (edit/delete); client-side search filtering within the currently loaded page only (known limitation — server-side `?q=` search deferred to MVP 2 per Constitution Principle II); "Add Station" button
+- [x] T087 [US2] Create `bornemap/frontend/admin-portal/src/features/stations/StationEditPage.tsx` — form using `react-hook-form` + `stationFormSchema`; on submit calls `PATCH /api/v1/admin/stations/{id}`; success toast + navigate back to table; shows validation errors from 422 RFC-7807 response
+- [x] T088 [US2] Add "New Station" page at `/admin/stations/new` in router — same form as edit but calls `POST /api/v1/admin/stations`; redirects to table on 201
 
 ### Frontend: E2E Tests for US1 + US2
 
-- [ ] T089 [US2] Create `bornemap/frontend/admin-portal/playwright.config.ts` targeting `http://localhost:5173`
-- [ ] T090 [P] [US1] Create `bornemap/frontend/admin-portal/e2e/driver-discovers-charger.spec.ts` — Playwright test: open map → pan to Tunis → verify pins render → click pin → verify detail panel → click Navigate → verify Google Maps URL
-- [ ] T091 [P] [US2] Create `bornemap/frontend/admin-portal/e2e/admin-creates-station.spec.ts` — Playwright test: login as admin → navigate to stations → create station with valid data → verify station appears in table → toggle maintenance → verify pin color flips → soft delete → verify station gone from table
+- [x] T089 [US2] Create `bornemap/frontend/admin-portal/playwright.config.ts` targeting `http://localhost:5173`
+- [x] T090 [P] [US1] Create `bornemap/frontend/admin-portal/e2e/driver-discovers-charger.spec.ts` — Playwright test: open map → pan to Tunis → verify pins render → click pin → verify detail panel → click Navigate → verify Google Maps URL
+- [x] T091 [P] [US2] Create `bornemap/frontend/admin-portal/e2e/admin-creates-station.spec.ts` — Playwright test: login as admin → navigate to stations → create station with valid data → verify station appears in table → toggle maintenance → verify pin color flips → soft delete → verify station gone from table
 
 ### Frontend: Mobile E2E Skeleton for US1
 
-- [ ] T092 [US2] Create `bornemap/frontend/mobile-app/e2e/driver-discovers-charger.e2e.ts` — Detox skeleton config (runs only in staging/nightly CI job)
+- [x] T092 [US2] Create `bornemap/frontend/mobile-app/e2e/driver-discovers-charger.e2e.ts` — Detox skeleton config (runs only in staging/nightly CI job)
 
 **Checkpoint**: User Stories 1 AND 2 both work independently. Admin CRUD is functional and gated by auth. Public map reflects admin changes.
 
@@ -232,11 +232,11 @@ Per `plan.md` Project Structure:
 
 **Purpose**: CI, documentation, final validation, performance baseline.
 
-- [ ] T093 [P] Create `bornemap/.github/workflows/ci.yml` per research.md R-014: `cargo fmt --check`, `cargo clippy --workspace --all-targets -- -D warnings`, `SQLX_OFFLINE=true cargo build --workspace --release`, `cargo test --workspace` (Testcontainers), `pnpm -r install --frozen-lockfile`, `pnpm -r lint && pnpm -r typecheck && pnpm -r test`, OpenAPI drift gate
+- [x] T093 [P] Create `bornemap/.github/workflows/ci.yml` per research.md R-014: `cargo fmt --check`, `cargo clippy --workspace --all-targets -- -D warnings`, `SQLX_OFFLINE=true cargo build --workspace --release`, `cargo test --workspace` (Testcontainers), `pnpm -r install --frozen-lockfile`, `pnpm -r lint && pnpm -r typecheck && pnpm -r test`, OpenAPI drift gate
 - [ ] T093a [P] Create `bornemap/backend/Dockerfile` — multi-stage build: `rust:1.78` builder, `gcr.io/distroless/cc` runtime, image ≤ 50 MB per constitution; tag format `v[MAJOR].[MINOR].[PATCH]-[GIT_SHA]`
-- [ ] T094 [P] Create `bornemap/.github/workflows/openapi-diff.yml` per R-014: manual trigger, runs `oasdiff` against `main` baseline, reports breaking changes
-- [ ] T095 [P] Create `bornemap/frontend/admin-portal/src/styles/globals.css` with Tailwind base imports + BorneMap brand tokens (colors, spacing)
-- [ ] T096 Regenerate `bornemap/frontend/packages/api-client/` from final `openapi.json` snapshot; verify `ConnectorType` constants exported; verify no hand-rolled HTTP types in `frontend/` (SC-007)
+- [x] T094 [P] Create `bornemap/.github/workflows/openapi-diff.yml` per R-014: manual trigger, runs `oasdiff` against `main` baseline, reports breaking changes
+- [x] T095 [P] Create `bornemap/frontend/admin-portal/src/styles/globals.css` with Tailwind base imports + BorneMap brand tokens (colors, spacing)
+- [x] T096 Regenerate `bornemap/frontend/packages/api-client/` from final `openapi.json` snapshot; verify `ConnectorType` constants exported; verify no hand-rolled HTTP types in `frontend/` (SC-007)
 - [ ] T097 Run `cargo sqlx prepare --workspace` to re-verify `bornemap/backend/.sqlx/` offline metadata is current after all code changes; verify `SQLX_OFFLINE=true cargo build --workspace` succeeds (SC-009 / Principle VI)
 - [ ] T098 Create `bornemap/backend/services/station-service/tests/health.rs` — integration test: `/health/live` returns 200, `/health/ready` returns 200 when DB is up, `/health/ready` returns 503 when DB is unreachable
 - [ ] T099 Verify GiST index exists on `station_domain.stations.location` by running introspection query `\d+ station_domain.stations` in CI (SC-008 / Principle I)
