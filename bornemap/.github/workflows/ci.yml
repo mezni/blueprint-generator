@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: bornemap/backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            bornemap/backend/target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('bornemap/backend/Cargo.lock') }}
+      - name: Format check
+        run: cargo fmt --check
+      - name: Clippy
+        run: cargo clippy --workspace --all-targets -- -D warnings
+      - name: Build (SQLX offline)
+        env:
+          SQLX_OFFLINE: "true"
+        run: cargo build --workspace --release
+      - name: Test
+        run: cargo test --workspace
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: bornemap/frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: bornemap/frontend/pnpm-lock.yaml
+      - name: Install
+        run: pnpm -r install --frozen-lockfile
+      - name: Lint
+        run: pnpm -r lint
+      - name: Typecheck
+        run: pnpm -r typecheck
+      - name: Test
+        run: pnpm -r test
+
+  openapi-drift:
+    runs-on: ubuntu-latest
+    needs: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Generate openapi.json
+        run: cd bornemap/backend && cargo run -p openapi-spec --release > /tmp/openapi.runtime.json
+      - name: Diff against snapshot
+        run: diff /tmp/openapi.runtime.json bornemap/frontend/packages/api-client/openapi.json
