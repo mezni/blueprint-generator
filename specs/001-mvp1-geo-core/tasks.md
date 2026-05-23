@@ -48,58 +48,58 @@ Per `plan.md` Project Structure:
 
 ### Database Migrations
 
-- [ ] T007 Create migration `bornemap/backend/services/station-service/migrations/20260523_0001_init_companies.sql` per data-model.md §3.1: schema `station_domain`, table `companies` with PK, `name` CHECK, `is_test`, audit fields, `deleted_at`
-- [ ] T008 Create migration `bornemap/backend/services/station-service/migrations/20260523_0002_init_stations.sql` per data-model.md §3.2: table `stations` with FK to `companies`, `GEOGRAPHY(Point, 4326)` location, GiST index `stations_location_gix`, `stations_company_idx`, `stations_active_partial_idx`, `opening_hours_osm` TEXT, `is_test`, audit fields, `deleted_at`
-- [ ] T009 Create migration `bornemap/backend/services/station-service/migrations/20260523_0003_init_chargers.sql` per data-model.md §3.3: table `chargers` with FK to `stations` ON DELETE CASCADE, `connector` CHECK constraint for `Type2`, `CCS`, `CHAdeMO`, `Type2_Tethered`, `power_kw NUMERIC(6,2)` CHECK, `is_test`, audit fields, `deleted_at`, index `chargers_station_idx`
-- [ ] T010 Create migration `bornemap/backend/services/station-service/migrations/20260523_0004_seed_synthetic.sql` per data-model.md §11 + research.md R-015: insert 1 demo company + 500 stations from `infrastructure/seed/stations.csv` + 1–4 chargers each, all `is_test=TRUE`, deterministic UUID v5
-- [ ] T011 Create `bornemap/infrastructure/seed/stations.csv` with 500 rows covering Tunisia's bounding box, columns: `id,company_id,name,address,lng,lat,is_active,under_maintenance,opening_hours_osm`
+- [x] T007 Create migration `bornemap/backend/services/station-service/migrations/20260523_0001_init_companies.sql` per data-model.md §3.1: schema `station_domain`, table `companies` with PK, `name` CHECK, `is_test`, audit fields, `deleted_at`
+- [x] T008 Create migration `bornemap/backend/services/station-service/migrations/20260523_0002_init_stations.sql` per data-model.md §3.2: table `stations` with FK to `companies`, `GEOGRAPHY(Point, 4326)` location, GiST index `stations_location_gix`, `stations_company_idx`, `stations_active_partial_idx`, `opening_hours_osm` TEXT, `is_test`, audit fields, `deleted_at`
+- [x] T009 Create migration `bornemap/backend/services/station-service/migrations/20260523_0003_init_chargers.sql` per data-model.md §3.3: table `chargers` with FK to `stations` ON DELETE CASCADE, `connector` CHECK constraint for `Type2`, `CCS`, `CHAdeMO`, `Type2_Tethered`, `power_kw NUMERIC(6,2)` CHECK, `is_test`, audit fields, `deleted_at`, index `chargers_station_idx`
+- [x] T010 Create migration `bornemap/backend/services/station-service/migrations/20260523_0004_seed_synthetic.sql` per data-model.md §11 + research.md R-015: insert 1 demo company + 500 stations from `infrastructure/seed/stations.csv` + 1–4 chargers each, all `is_test=TRUE`, deterministic UUID v5
+- [x] T011 Create `bornemap/infrastructure/seed/stations.csv` with 500 rows covering Tunisia's bounding box, columns: `id,company_id,name,address,lng,lat,is_active,under_maintenance,opening_hours_osm`
 
 ### Backend: common-utils Crate
 
-- [ ] T012 Create `bornemap/backend/libs/common-utils/Cargo.toml` with deps: `serde`, `serde_json`, `uuid`, `chrono`, `thiserror`; NO `actix-web` dependency (domain library must be HTTP-framework-agnostic per Constitution Principle IV)
-- [ ] T013 [P] Create `bornemap/backend/libs/common-utils/src/ids.rs` with newtype wrappers `StationId(UUID)`, `CompanyId(UUID)`, `ChargerId(UUID)`, `UserId(UUID)` — all implement `Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, FromSql, ToSql, ToSchema`
-- [ ] T014 [P] Create `bornemap/backend/libs/common-utils/src/error.rs` with `DomainError` enum (Validation, NotFound, Unauthorized, Forbidden, Conflict, Internal), `impl Display` via `thiserror`, `impl From<sqlx::Error>`; the `actix_web::ResponseError` impl lives in `station-service` (see T019a) to keep `common-utils` framework-agnostic
-- [ ] T015 [P] Create `bornemap/backend/libs/common-utils/src/time.rs` with helper `now_utc() -> chrono::Utc::now()` and `to_rfc3339()`
-- [ ] T016 Create `bornemap/backend/libs/common-utils/src/lib.rs` re-exporting `ids`, `error`, `time`; crate-level lint attribute `#![deny(clippy::unwrap_used, clippy::expect_used, clippy::panic)]`
+- [x] T012 Create `bornemap/backend/libs/common-utils/Cargo.toml` with deps: `serde`, `serde_json`, `uuid`, `chrono`, `thiserror`; NO `actix-web` dependency (domain library must be HTTP-framework-agnostic per Constitution Principle IV)
+- [x] T013 [P] Create `bornemap/backend/libs/common-utils/src/ids.rs` with newtype wrappers `StationId(UUID)`, `CompanyId(UUID)`, `ChargerId(UUID)`, `UserId(UUID)` — all implement `Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, FromSql, ToSql, ToSchema`
+- [x] T014 [P] Create `bornemap/backend/libs/common-utils/src/error.rs` with `DomainError` enum (Validation, NotFound, Unauthorized, Forbidden, Conflict, Internal), `impl Display` via `thiserror`, `impl From<sqlx::Error>`; the `actix_web::ResponseError` impl lives in `station-service` (see T019a) to keep `common-utils` framework-agnostic
+- [x] T015 [P] Create `bornemap/backend/libs/common-utils/src/time.rs` with helper `now_utc() -> chrono::Utc::now()` and `to_rfc3339()`
+- [x] T016 Create `bornemap/backend/libs/common-utils/src/lib.rs` re-exporting `ids`, `error`, `time`; crate-level lint attribute `#![deny(clippy::unwrap_used, clippy::expect_used, clippy::panic)]`
 
 ### Backend: station-service Main + Config
 
-- [ ] T017 Create `bornemap/backend/services/station-service/Cargo.toml` with deps: `actix-web` 4, `sqlx` 0.7 (postgres, runtime-tokio-rustls, macros, uuid, chrono, json), `utoipa` 4 + `utoipa-swagger-ui`, `serde`/`serde_json`, `thiserror`, `tracing` + `tracing-subscriber` (json), `prometheus`, `jsonwebtoken` 9, `uuid`, `chrono`, `tokio` 1, `opening_hours` crate, `common-utils` path dep
-- [ ] T018 Create `bornemap/backend/services/station-service/src/config.rs` reading `MOCK_ADMIN_USERNAMES` (comma-separated, trimmed, fail-closed on empty), `MOCK_JWT_SECRET`, `BIND_ADDR`, `DATABASE_URL`, `BORNEMAP_HIDE_TEST_ROWS` (default `true` in prod, `false` in dev/staging — controls whether public reads filter `is_test=TRUE` rows per data-model.md §6) from env; `AppConfig::from_env() -> Result<Self, DomainError>`
-- [ ] T018a Create `bornemap/backend/services/station-service/src/lib.rs` that exports the OpenApi registry (`utoipa::OpenApi`), handler configuration, DTOs, and service traits — required so that `openapi-spec` bin (T034/T035) can import the handler registry without depending on the binary crate
-- [ ] T019 Create `bornemap/backend/services/station-service/src/main.rs` with Actix Web server bind, `/health/live` + `/health/ready` + `/metrics` endpoints, `tracing` init with JSON subscriber, `SqlxPool` from `DATABASE_URL`, mount `auth/` and `station/` modules, `utoipa::OpenApi` mount at `/swagger-ui`
-- [ ] T019a Create `bornemap/backend/services/station-service/src/error_adapter.rs` with `impl actix_web::ResponseError for DomainError` emitting RFC-7807 `application/problem+json` — this is the HTTP adapter that translates domain errors into HTTP responses, keeping `common-utils` framework-agnostic
+- [x] T017 Create `bornemap/backend/services/station-service/Cargo.toml` with deps: `actix-web` 4, `sqlx` 0.7 (postgres, runtime-tokio-rustls, macros, uuid, chrono, json), `utoipa` 4 + `utoipa-swagger-ui`, `serde`/`serde_json`, `thiserror`, `tracing` + `tracing-subscriber` (json), `prometheus`, `jsonwebtoken` 9, `uuid`, `chrono`, `tokio` 1, `opening_hours` crate, `common-utils` path dep
+- [x] T018 Create `bornemap/backend/services/station-service/src/config.rs` reading `MOCK_ADMIN_USERNAMES` (comma-separated, trimmed, fail-closed on empty), `MOCK_JWT_SECRET`, `BIND_ADDR`, `DATABASE_URL`, `BORNEMAP_HIDE_TEST_ROWS` (default `true` in prod, `false` in dev/staging — controls whether public reads filter `is_test=TRUE` rows per data-model.md §6) from env; `AppConfig::from_env() -> Result<Self, DomainError>`
+- [x] T018a Create `bornemap/backend/services/station-service/src/lib.rs` that exports the OpenApi registry (`utoipa::OpenApi`), handler configuration, DTOs, and service traits — required so that `openapi-spec` bin (T034/T035) can import the handler registry without depending on the binary crate
+- [x] T019 Create `bornemap/backend/services/station-service/src/main.rs` with Actix Web server bind, `/health/live` + `/health/ready` + `/metrics` endpoints, `tracing` init with JSON subscriber, `SqlxPool` from `DATABASE_URL`, mount `auth/` and `station/` modules, `utoipa::OpenApi` mount at `/swagger-ui`
+- [x] T019a Create `bornemap/backend/services/station-service/src/error_adapter.rs` with `impl actix_web::ResponseError for DomainError` emitting RFC-7807 `application/problem+json` — this is the HTTP adapter that translates domain errors into HTTP responses, keeping `common-utils` framework-agnostic
 
 ### Backend: Auth Module (US3 — Elevated to Foundational)
 
-- [ ] T020 Create `bornemap/backend/services/station-service/src/auth/mod.rs` re-exporting `handlers`, `service`, `claims`, `middleware`
-- [ ] T021 Create `bornemap/backend/services/station-service/src/auth/claims.rs` with `TokenClaims` struct: `sub: Uuid`, `preferred_username: String`, `realm_access: RealmAccess { roles: Vec<String> }`, `iat: i64`, `exp: i64`; implement `Serialize`/`Deserialize`; constant `ADMIN_ROLE: &str = "admin"`
-- [ ] T022 Create `bornemap/backend/services/station-service/src/auth/service.rs` with `MockAuthService::login(username, role, allowlist, secret) -> Result<(TokenClaims, String), DomainError>`; validates allowlist membership for admin role; rejects driver role with 400; encodes HS256 JWT with 1h expiry; returns `MockLoginResponse`
-- [ ] T023 Create `bornemap/backend/services/station-service/src/auth/handlers.rs` with `POST /api/v1/auth/mock-login` handler; extracts `MockLoginRequest` JSON; calls `MockAuthService::login`; returns 200 + `MockLoginResponse` or 400/403 + RFC-7807; annotated with `utoipa::path`
-- [ ] T024 Create `bornemap/backend/services/station-service/src/auth/middleware.rs` with Actix middleware extracting Bearer token, decoding JWT, validating `exp`, attaching `TokenClaims` to request extensions; returns 401 + RFC-7807 on invalid/expired token
-- [ ] T025 Create `bornemap/backend/services/station-service/src/auth/models.rs` with `MockLoginRequest { username, role }`, `MockLoginResponse { access_token, token_type, expires_in }` — all annotated `utoipa::ToSchema`
+- [x] T020 Create `bornemap/backend/services/station-service/src/auth/mod.rs` re-exporting `handlers`, `service`, `claims`, `middleware`
+- [x] T021 Create `bornemap/backend/services/station-service/src/auth/claims.rs` with `TokenClaims` struct: `sub: Uuid`, `preferred_username: String`, `realm_access: RealmAccess { roles: Vec<String> }`, `iat: i64`, `exp: i64`; implement `Serialize`/`Deserialize`; constant `ADMIN_ROLE: &str = "admin"`
+- [x] T022 Create `bornemap/backend/services/station-service/src/auth/service.rs` with `MockAuthService::login(username, role, allowlist, secret) -> Result<(TokenClaims, String), DomainError>`; validates allowlist membership for admin role; rejects driver role with 400; encodes HS256 JWT with 1h expiry; returns `MockLoginResponse`
+- [x] T023 Create `bornemap/backend/services/station-service/src/auth/handlers.rs` with `POST /api/v1/auth/mock-login` handler; extracts `MockLoginRequest` JSON; calls `MockAuthService::login`; returns 200 + `MockLoginResponse` or 400/403 + RFC-7807; annotated with `utoipa::path`
+- [x] T024 Create `bornemap/backend/services/station-service/src/auth/middleware.rs` with Actix middleware extracting Bearer token, decoding JWT, validating `exp`, attaching `TokenClaims` to request extensions; returns 401 + RFC-7807 on invalid/expired token
+- [x] T025 Create `bornemap/backend/services/station-service/src/auth/models.rs` with `MockLoginRequest { username, role }`, `MockLoginResponse { access_token, token_type, expires_in }` — all annotated `utoipa::ToSchema`
 
 ### Backend: Station Module — Models + Filters (shared across US1 and US2)
 
-- [ ] T026 Create `bornemap/backend/services/station-service/src/station/mod.rs` re-exporting `handlers`, `service`, `repository`, `models`, `filters`
-- [ ] T027 Create `bornemap/backend/services/station-service/src/station/models.rs` with DTOs per data-model.md §12: `StationMarker`, `StationDetail`, `Charger`, `Company`, `BboxQuery`, `StationListResponse { viewport, markers, truncated }`, `AdminStationCreate`, `AdminStationPatch`, `AdminStationListResponse { items, next_cursor }`; all `#[derive(utoipa::ToSchema)]`; `coord` field is `[f64; 2]` ordered `[lng, lat]`
-- [ ] T028 Create `bornemap/backend/services/station-service/src/station/filters.rs` with `parse_bbox(query: &str) -> Result<BboxQuery, DomainError>` (validates west≤east, -180≤lng≤180, -90≤lat≤90) and `quantize_bbox(bbox: &mut BboxQuery)` rounding each bound to 4 decimals (round-half-away-from-zero per R-002)
+- [x] T026 Create `bornemap/backend/services/station-service/src/station/mod.rs` re-exporting `handlers`, `service`, `repository`, `models`, `filters`
+- [x] T027 Create `bornemap/backend/services/station-service/src/station/models.rs` with DTOs per data-model.md §12: `StationMarker`, `StationDetail`, `Charger`, `Company`, `BboxQuery`, `StationListResponse { viewport, markers, truncated }`, `AdminStationCreate`, `AdminStationPatch`, `AdminStationListResponse { items, next_cursor }`; all `#[derive(utoipa::ToSchema)]`; `coord` field is `[f64; 2]` ordered `[lng, lat]`
+- [x] T028 Create `bornemap/backend/services/station-service/src/station/filters.rs` with `parse_bbox(query: &str) -> Result<BboxQuery, DomainError>` (validates west≤east, -180≤lng≤180, -90≤lat≤90) and `quantize_bbox(bbox: &mut BboxQuery)` rounding each bound to 4 decimals (round-half-away-from-zero per R-002)
 
 ### Backend: Companies Read-Only Support
 
-- [ ] T029 Create `bornemap/backend/services/station-service/src/companies/mod.rs` re-exporting `repository`
-- [ ] T030 Create `bornemap/backend/services/station-service/src/companies/repository.rs` with `CompanyRepository::get_by_id(pool, id) -> Result<Company, DomainError>` using `sqlx::query_as!`
+- [x] T029 Create `bornemap/backend/services/station-service/src/companies/mod.rs` re-exporting `repository`
+- [x] T030 Create `bornemap/backend/services/station-service/src/companies/repository.rs` with `CompanyRepository::get_by_id(pool, id) -> Result<Company, DomainError>` using `sqlx::query_as!`
 
 ### Backend: Observability
 
-- [ ] T031 [P] Create `bornemap/backend/services/station-service/src/observability/mod.rs` re-exporting `logging`, `metrics`
-- [ ] T032 [P] Create `bornemap/backend/services/station-service/src/observability/logging.rs` with `init_tracing()` setting `tracing_subscriber::fmt().json().with_target(false).finish()` and `TraceIdMiddleware` — an Actix middleware that generates a UUID v4 `trace_id` per request, inserts it into the `tracing::Span`, and sets `X-Trace-Id` response header (FR-013)
-- [ ] T033 [P] Create `bornemap/backend/services/station-service/src/observability/metrics.rs` with `REQUEST_COUNTER` and `REQUEST_DURATION_HISTOGRAM` Prometheus metrics; middleware that increments on each request
+- [x] T031 [P] Create `bornemap/backend/services/station-service/src/observability/mod.rs` re-exporting `logging`, `metrics`
+- [x] T032 [P] Create `bornemap/backend/services/station-service/src/observability/logging.rs` with `init_tracing()` setting `tracing_subscriber::fmt().json().with_target(false).finish()` and `TraceIdMiddleware` — an Actix middleware that generates a UUID v4 `trace_id` per request, inserts it into the `tracing::Span`, and sets `X-Trace-Id` response header (FR-013)
+- [x] T033 [P] Create `bornemap/backend/services/station-service/src/observability/metrics.rs` with `REQUEST_COUNTER` and `REQUEST_DURATION_HISTOGRAM` Prometheus metrics; middleware that increments on each request
 
 ### Backend: OpenAPI Spec Binary
 
-- [ ] T034 Create `bornemap/backend/libs/openapi-spec/Cargo.toml` depending on `station-service` (as lib) and `utoipa`
-- [ ] T035 Create `bornemap/backend/libs/openapi-spec/src/main.rs` that builds `utoipa::OpenApi` from the station-service handler registry and prints the JSON to stdout
+- [x] T034 Create `bornemap/backend/libs/openapi-spec/Cargo.toml` depending on `station-service` (as lib) and `utoipa`
+- [x] T035 Create `bornemap/backend/libs/openapi-spec/src/main.rs` that builds `utoipa::OpenApi` from the station-service handler registry and prints the JSON to stdout
 
 ### Backend: Integration Test Harness
 
@@ -130,12 +130,12 @@ Per `plan.md` Project Structure:
 
 ### Backend: Station Repository + Service + Handlers for US1
 
-- [ ] T044 [US1] Create `bornemap/backend/services/station-service/src/station/repository.rs` with `StationRepository::list_by_viewport(pool, bbox: &BboxQuery) -> Result<Vec<StationMarker>, DomainError>` using canonical SQL from data-model.md §7 (`ST_DWithin` + `LIMIT 5000` + `WHERE deleted_at IS NULL`). Decision: `name` is included in the viewport marker DTO (R5 exception) because pin tooltips require it for usability; the overhead is negligible (≤200 chars per marker)
-- [ ] T045 [US1] Add `StationRepository::get_by_id(pool, id: StationId) -> Result<StationDetail, DomainError>` to `repository.rs` using canonical SQL from data-model.md §8 (stations JOIN companies) + charger sub-query from §8
-- [ ] T046 [US1] Create `bornemap/backend/services/station-service/src/station/service.rs` with `StationService::list_by_viewport(bbox: &BboxQuery) -> Result<StationListResponse, DomainError>` that calls `parse_bbox` → `quantize_bbox` → `repository::list_by_viewport` → wraps in `StationListResponse { viewport, markers, truncated }`
-- [ ] T047 [US1] Add `StationService::get_by_id(id: StationId) -> Result<StationDetail, DomainError>` to `service.rs`
-- [ ] T048 [US1] Create `bornemap/backend/services/station-service/src/station/handlers.rs` with `GET /api/v1/stations?bbox=...` handler extracting `bbox` query param, calling `StationService::list_by_viewport`, returning 200 + `StationListResponse` or 400 + RFC-7807; annotated with `utoipa::path`
-- [ ] T049 [US1] Add `GET /api/v1/stations/{id}` handler to `handlers.rs` calling `StationService::get_by_id`, returning 200 + `StationDetail` or 404 + RFC-7807; annotated with `utoipa::path`
+- [x] T044 [US1] Create `bornemap/backend/services/station-service/src/station/repository.rs` with `StationRepository::list_by_viewport(pool, bbox: &BboxQuery) -> Result<Vec<StationMarker>, DomainError>` using canonical SQL from data-model.md §7 (`ST_DWithin` + `LIMIT 5000` + `WHERE deleted_at IS NULL`). Decision: `name` is included in the viewport marker DTO (R5 exception) because pin tooltips require it for usability; the overhead is negligible (≤200 chars per marker)
+- [x] T045 [US1] Add `StationRepository::get_by_id(pool, id: StationId) -> Result<StationDetail, DomainError>` to `repository.rs` using canonical SQL from data-model.md §8 (stations JOIN companies) + charger sub-query from §8
+- [x] T046 [US1] Create `bornemap/backend/services/station-service/src/station/service.rs` with `StationService::list_by_viewport(bbox: &BboxQuery) -> Result<StationListResponse, DomainError>` that calls `parse_bbox` → `quantize_bbox` → `repository::list_by_viewport` → wraps in `StationListResponse { viewport, markers, truncated }`
+- [x] T047 [US1] Add `StationService::get_by_id(id: StationId) -> Result<StationDetail, DomainError>` to `service.rs`
+- [x] T048 [US1] Create `bornemap/backend/services/station-service/src/station/handlers.rs` with `GET /api/v1/stations?bbox=...` handler extracting `bbox` query param, calling `StationService::list_by_viewport`, returning 200 + `StationListResponse` or 400 + RFC-7807; annotated with `utoipa::path`
+- [x] T049 [US1] Add `GET /api/v1/stations/{id}` handler to `handlers.rs` calling `StationService::get_by_id`, returning 200 + `StationDetail` or 404 + RFC-7807; annotated with `utoipa::path`
 
 ### Backend: Integration Tests for US1
 
@@ -188,14 +188,14 @@ Per `plan.md` Project Structure:
 
 ### Backend: Station Repository + Service + Handlers for US2
 
-- [ ] T075 [US2] Add `StationRepository::admin_list(pool, limit, cursor, include_deleted, include_test) -> Result<(Vec<StationDetail>, Option<String>), DomainError>` to `repository.rs` — paginated with cursor-based pagination, optional `include_deleted`/`include_test` filters
-- [ ] T076 [US2] Add `StationRepository::admin_create(pool, input: AdminStationCreate) -> Result<StationId, DomainError>` to `repository.rs` using canonical SQL from data-model.md §9 (`ST_MakePoint(lng, lat)::geography`); also insert initial chargers if provided
-- [ ] T077 [US2] Add `StationRepository::admin_patch(pool, id: StationId, input: AdminStationPatch) -> Result<bool, DomainError>` to `repository.rs` — partial update building SET clause from non-null DTO fields (see design note below on constitution-compliant dynamic SQL). All validation MUST already be performed by the service layer before reaching this method
+- [x] T075 [US2] Add `StationRepository::admin_list(pool, limit, cursor, include_deleted, include_test) -> Result<(Vec<StationDetail>, Option<String>), DomainError>` to `repository.rs` — paginated with cursor-based pagination, optional `include_deleted`/`include_test` filters
+- [x] T076 [US2] Add `StationRepository::admin_create(pool, input: AdminStationCreate) -> Result<StationId, DomainError>` to `repository.rs` using canonical SQL from data-model.md §9 (`ST_MakePoint(lng, lat)::geography`); also insert initial chargers if provided
+- [x] T077 [US2] Add `StationRepository::admin_patch(pool, id: StationId, input: AdminStationPatch) -> Result<bool, DomainError>` to `repository.rs` — partial update building SET clause from non-null DTO fields (see design note below on constitution-compliant dynamic SQL). All validation MUST already be performed by the service layer before reaching this method
 
 **Design Note — Constitution-compliant partial-update SQL (T077)**: Principle VI bans "dynamically concatenated SQL strings." The approach for `admin_patch`: define a single `sqlx::query!` that sets ALL updatable columns, binding `NULL` for fields the caller did not change (the service layer resolves "unchanged" by reading current values first via `get_by_id`). This avoids dynamic SQL while keeping the query compile-time verified. Alternative: use `sqlx::query_as!` with a runtime-built query string if the read-then-write overhead is unacceptable — this requires a documented Complexity Tracking entry in `plan.md` justifying the deviation.
-- [ ] T078 [US2] Add `StationRepository::admin_soft_delete(pool, id: StationId) -> Result<bool, DomainError>` to `repository.rs` using canonical SQL from data-model.md §10 (`SET deleted_at = NOW()`)
-- [ ] T079 [US2] Add `StationService::admin_list(...)`, `StationService::admin_create(...)`, `StationService::admin_patch(...)`, `StationService::admin_soft_delete(...)` to `service.rs` — each validates input, calls repository, returns result; `admin_create` and `admin_patch` validate `opening_hours_osm` with `opening_hours` crate (rejecting with 422 + RFC-7807 citing parse error); validates `connector` enum; validates `coord` range [-180,180]/[-90,90]. Per Constitution Principle II, ALL validation lives here — the repository receives only pre-validated data
-- [ ] T080 [US2] Add admin handlers to `handlers.rs`: `GET /api/v1/admin/stations` (paginated list with `include_deleted`/`include_test`), `POST /api/v1/admin/stations` (201 on success, 422 on validation), `PATCH /api/v1/admin/stations/{id}` (200 on success, 404/422), `DELETE /api/v1/admin/stations/{id}` (204 on success, 404); all require admin Bearer token via auth middleware; all annotated `utoipa::path`
+- [x] T078 [US2] Add `StationRepository::admin_soft_delete(pool, id: StationId) -> Result<bool, DomainError>` to `repository.rs` using canonical SQL from data-model.md §10 (`SET deleted_at = NOW()`)
+- [x] T079 [US2] Add `StationService::admin_list(...)`, `StationService::admin_create(...)`, `StationService::admin_patch(...)`, `StationService::admin_soft_delete(...)` to `service.rs` — each validates input, calls repository, returns result; `admin_create` and `admin_patch` validate `opening_hours_osm` with `opening_hours` crate (rejecting with 422 + RFC-7807 citing parse error); validates `connector` enum; validates `coord` range [-180,180]/[-90,90]. Per Constitution Principle II, ALL validation lives here — the repository receives only pre-validated data
+- [x] T080 [US2] Add admin handlers to `handlers.rs`: `GET /api/v1/admin/stations` (paginated list with `include_deleted`/`include_test`), `POST /api/v1/admin/stations` (201 on success, 422 on validation), `PATCH /api/v1/admin/stations/{id}` (200 on success, 404/422), `DELETE /api/v1/admin/stations/{id}` (204 on success, 404); all require admin Bearer token via auth middleware; all annotated `utoipa::path`
 
 ### Backend: Integration Tests for US2
 
