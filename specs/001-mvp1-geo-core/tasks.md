@@ -31,12 +31,12 @@ Per `plan.md` Project Structure:
 
 **Purpose**: Project initialization — Cargo workspace, pnpm workspace, Docker Compose, env files.
 
-- [ ] T001 Create top-level repo directory `bornemap/` with root `README.md` and `.gitignore` (Rust `target/`, Node `node_modules/`, `.env`, `.sqlx/`)
-- [ ] T002 [P] Initialize Cargo workspace in `bornemap/backend/Cargo.toml` with members `libs/common-utils`, `libs/openapi-spec`, `services/station-service`; add `rust-toolchain.toml` pinning 1.78+
-- [ ] T003 [P] Initialize pnpm workspace in `bornemap/frontend/pnpm-workspace.yaml` with packages `packages/*`, `admin-portal`, `mobile-app`; add root `package.json` with scripts `lint`, `typecheck`, `test`
-- [ ] T004 [P] Create `bornemap/infrastructure/docker-compose.local.yml` running `postgis/postgis:16-3.4` on port 5432 with credentials `bornemap/bornemap`, database `bornemap_dev`
-- [ ] T005 [P] Create `bornemap/infrastructure/env/backend.env.example` with `MOCK_ADMIN_USERNAMES=alice,bob`, `MOCK_JWT_SECRET=dev-secret-change-me`, `BIND_ADDR=0.0.0.0:8000`, `DATABASE_URL=postgres://bornemap:bornemap@localhost:5432/bornemap_dev`, `BORNEMAP_HIDE_TEST_ROWS=false`
-- [ ] T006 [P] Create `bornemap/infrastructure/env/frontend.env.example` with `VITE_API_BASE_URL=http://localhost:8000`
+- [x] T001 Create top-level repo directory `bornemap/` with root `README.md` and `.gitignore` (Rust `target/`, Node `node_modules/`, `.env`, `.sqlx/`)
+- [x] T002 [P] Initialize Cargo workspace in `bornemap/backend/Cargo.toml` with members `libs/common-utils`, `libs/openapi-spec`, `services/station-service`; add `rust-toolchain.toml` pinning 1.78+
+- [x] T003 [P] Initialize pnpm workspace in `bornemap/frontend/pnpm-workspace.yaml` with packages `packages/*`, `admin-portal`, `mobile-app`; add root `package.json` with scripts `lint`, `typecheck`, `test`
+- [x] T004 [P] Create `bornemap/infrastructure/docker-compose.local.yml` running `postgis/postgis:16-3.4` on port 5432 with credentials `bornemap/bornemap`, database `bornemap_dev`
+- [x] T005 [P] Create `bornemap/infrastructure/env/backend.env.example` with `MOCK_ADMIN_USERNAMES=alice,bob`, `MOCK_JWT_SECRET=dev-secret-change-me`, `BIND_ADDR=0.0.0.0:8000`, `DATABASE_URL=postgres://bornemap:bornemap@localhost:5432/bornemap_dev`, `BORNEMAP_HIDE_TEST_ROWS=false`
+- [x] T006 [P] Create `bornemap/infrastructure/env/frontend.env.example` with `VITE_API_BASE_URL=http://localhost:8000`
 
 ---
 

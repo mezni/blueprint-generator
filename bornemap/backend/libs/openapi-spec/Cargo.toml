@@ -1,0 +1,13 @@
+[package]
+name = "openapi-spec"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "openapi-spec"
+path = "src/main.rs"
+
+[dependencies]
+station-service = { path = "../../services/station-service" }
+utoipa = "4"
+serde_json = "1"

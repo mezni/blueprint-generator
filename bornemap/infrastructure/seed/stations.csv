@@ -1,0 +1,501 @@
+id,company_id,name,address,lng,lat,is_active,under_maintenance,opening_hours_osm
+74189b0e-ac0d-5cd1-9aed-00f333c23884,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station,"Avenue Habib Bourguiba, Tunis",10.0565,36.6815,FALSE,TRUE,24/7
+64837421-9636-5b74-9266-1ed59334665b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station,"Boulevard Haffouz, Sousse",10.5169,35.7004,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+00f52290-cef1-598c-ac42-352ed9199d9e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station,"Rue de la Republique, Sfax",10.6453,34.6156,TRUE,FALSE,Mo-Sa 07:00-22:00
+99f8be15-9c7a-5364-b317-9cebfbb28557,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station,"Avenue Habib Bouguiba, Bizerte",9.7638,37.1494,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+7a78755c-e337-5a85-95ba-9da3b257a446,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station,"Rue de Tripoli, Gabes",9.9922,33.7565,TRUE,FALSE,
+0b78c0cb-408c-5362-af3b-ef606ad9dcce,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station,"Rue Ibn Khaldoun, Ariana",10.0904,36.7375,TRUE,FALSE,24/7
+91832eb3-3f7e-55ec-a4a5-7d165e2a836d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station,"Avenue de la Republique, Gafsa",8.6892,34.3000,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+796d72f7-04d8-5581-ba1b-edd3fd69d4ac,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station,"Boulevard de l'Environnement, Monastir",10.7361,35.6393,FALSE,FALSE,Mo-Sa 07:00-22:00
+3654510e-4176-51b3-8012-75cc883ffb07,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station,"Rue des Freres Bouadla, Ben Arous",10.1380,36.6283,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+a8939f1d-c00a-5c09-a27c-e23ab18f4eb9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station,"Avenue Ibn Sina, Kairouan",10.0163,35.5531,TRUE,FALSE,
+d6813aaa-55c0-583a-a73d-ebab06f09056,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station,"Rue du 2 Mars, Nabeul",10.6616,36.3311,TRUE,FALSE,24/7
+530d41e2-25fd-5781-8662-4b120eb4ea1e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station,"Bordj El Kebir, Mahdia",10.9922,35.3797,TRUE,TRUE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+2f201a8a-b5da-539d-977c-91e6961746aa,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station,"Avenue de la Liberte, Medenine",10.4403,33.2290,TRUE,FALSE,Mo-Sa 07:00-22:00
+e9bc0e0e-3821-5e18-9bb5-d2e613e01436,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station,"Rue de l'Independance, Kasserine",8.7737,35.0471,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+4504f895-6c30-5633-8fd6-81fa69d9e65b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station,"Avenue Farhat Hached, Jendouba",8.7252,36.3763,FALSE,FALSE,
+46cd592f-ad28-58d2-9a1d-5fd6dd998692,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 16,"Avenue Habib Bourguiba, Tunis, Unit 16",10.1315,36.6815,TRUE,FALSE,24/7
+8bb87752-0e4f-5dd3-92cb-a9107725bb9b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 17,"Boulevard Haffouz, Sousse, Unit 17",10.5919,35.7004,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+dbe8120a-b85a-5c8f-86e4-17e8d5a4319d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 18,"Rue de la Republique, Sfax, Unit 18",10.7203,34.6156,TRUE,FALSE,Mo-Sa 07:00-22:00
+65d1af3b-9199-5542-949d-5eab5d8a5765,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 19,"Avenue Habib Bouguiba, Bizerte, Unit 19",9.8388,37.1494,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+876ebf8d-fa38-5001-a40b-8e3afabeaf6a,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 20,"Rue de Tripoli, Gabes, Unit 20",10.0672,33.7565,TRUE,FALSE,
+9b3c10a7-1813-5cdc-9e2b-ac52d82dc673,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 21,"Rue Ibn Khaldoun, Ariana, Unit 21",10.1654,36.7375,TRUE,FALSE,24/7
+38a15f9b-fd69-5f26-9542-53c4bd177bbe,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 22,"Avenue de la Republique, Gafsa, Unit 22",8.7642,34.3000,FALSE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+eda11053-fc06-5b48-a4f0-f927cf8e74c8,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 23,"Boulevard de l'Environnement, Monastir, Unit 23",10.8111,35.6393,TRUE,TRUE,Mo-Sa 07:00-22:00
+e594c06e-7e65-527f-9446-aa4b75660c35,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 24,"Rue des Freres Bouadla, Ben Arous, Unit 24",10.2130,36.6283,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+23d144a6-9e8b-5816-8290-2cb5ee5ba71a,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 25,"Avenue Ibn Sina, Kairouan, Unit 25",10.0913,35.5531,TRUE,FALSE,
+17e52b17-9cb3-55d2-9037-417a5aa05c28,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 26,"Rue du 2 Mars, Nabeul, Unit 26",10.7366,36.3311,TRUE,FALSE,24/7
+4af75668-bfa7-5582-9ab0-ce4d648ecd87,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 27,"Bordj El Kebir, Mahdia, Unit 27",11.0672,35.3797,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+092ea444-d036-5b02-a291-c0c8ae3b1a8b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 28,"Avenue de la Liberte, Medenine, Unit 28",10.5153,33.2290,TRUE,FALSE,Mo-Sa 07:00-22:00
+7bd6f81d-0d55-5884-b7de-17f698d70b74,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 29,"Rue de l'Independance, Kasserine, Unit 29",8.8487,35.0471,FALSE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+ee677c9a-04e0-52ee-bdf1-2283305233ae,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 30,"Avenue Farhat Hached, Jendouba, Unit 30",8.8002,36.3763,TRUE,FALSE,
+30a3f5e6-292d-5c97-a035-8f7433a7ed40,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 31,"Avenue Habib Bourguiba, Tunis, Unit 31",10.2065,36.6815,TRUE,FALSE,24/7
+de79773b-8d2b-53e3-a520-6942745eec5f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 32,"Boulevard Haffouz, Sousse, Unit 32",10.6669,35.7004,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+2f3a1c15-cb2b-5dff-832d-59b0f342d63b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 33,"Rue de la Republique, Sfax, Unit 33",10.7953,34.6156,TRUE,FALSE,Mo-Sa 07:00-22:00
+ebca7abd-491a-5adf-9999-4e3bf63724f5,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 34,"Avenue Habib Bouguiba, Bizerte, Unit 34",9.9138,37.1494,TRUE,TRUE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+dfdd8b7d-34ff-5e60-957f-07ffb309a326,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 35,"Rue de Tripoli, Gabes, Unit 35",10.1422,33.7565,TRUE,FALSE,
+6cc4f9e1-6606-594a-9bdb-e212d645c148,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 36,"Rue Ibn Khaldoun, Ariana, Unit 36",10.2404,36.7375,FALSE,FALSE,24/7
+42e90ed6-2c23-5480-85df-69559100cf50,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 37,"Avenue de la Republique, Gafsa, Unit 37",8.8392,34.3000,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+464e79c9-aa6c-5eaf-a3c2-ab61271679db,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 38,"Boulevard de l'Environnement, Monastir, Unit 38",10.8861,35.6393,TRUE,FALSE,Mo-Sa 07:00-22:00
+8fdeb2a6-1b8f-5818-bb5f-f4d6458bd80e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 39,"Rue des Freres Bouadla, Ben Arous, Unit 39",10.2880,36.6283,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+80567b75-af64-54de-ae5e-218265efd81a,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 40,"Avenue Ibn Sina, Kairouan, Unit 40",10.1663,35.5531,TRUE,FALSE,
+f3b43a49-959c-5f9e-ba27-5243760591ae,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 41,"Rue du 2 Mars, Nabeul, Unit 41",10.8116,36.3311,TRUE,FALSE,24/7
+ae495d4d-5392-57db-b01e-cfd5291f7ffe,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 42,"Bordj El Kebir, Mahdia, Unit 42",11.1422,35.3797,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+9ce71824-3ed4-5103-8d95-06f621ece5b4,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 43,"Avenue de la Liberte, Medenine, Unit 43",10.5903,33.2290,FALSE,FALSE,Mo-Sa 07:00-22:00
+07115ed8-7993-5712-be13-2637be3f38ed,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 44,"Rue de l'Independance, Kasserine, Unit 44",8.9237,35.0471,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+59339d65-fa4e-5479-93c3-21892e8386a7,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 45,"Avenue Farhat Hached, Jendouba, Unit 45",8.8752,36.3763,TRUE,TRUE,
+9a7ddf70-2f07-54e7-8b3c-7d8c05b3b027,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 46,"Avenue Habib Bourguiba, Tunis, Unit 46",10.2815,36.6815,TRUE,FALSE,24/7
+ee193271-b606-54d7-94a8-1f7f4425d933,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 47,"Boulevard Haffouz, Sousse, Unit 47",10.7419,35.7004,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+8999f8b7-718c-562a-a3b3-f2f04bc57871,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 48,"Rue de la Republique, Sfax, Unit 48",10.8703,34.6156,TRUE,FALSE,Mo-Sa 07:00-22:00
+87287594-3193-5990-bd3d-0e9eaf3961ef,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 49,"Avenue Habib Bouguiba, Bizerte, Unit 49",9.9888,37.1494,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+6d9c5e38-45b1-5cf9-bc8c-cf392e783cc7,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 50,"Rue de Tripoli, Gabes, Unit 50",10.2172,33.7565,FALSE,FALSE,
+56ada281-fb58-5141-bf83-10623f08579c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 51,"Rue Ibn Khaldoun, Ariana, Unit 51",10.0654,36.7425,TRUE,FALSE,24/7
+0a61e878-1f6a-5c66-8f25-3e49c5e4b1cd,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 52,"Avenue de la Republique, Gafsa, Unit 52",8.6642,34.3050,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+5bfb4fb5-32e7-50ac-8fc8-52fdb09545ed,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 53,"Boulevard de l'Environnement, Monastir, Unit 53",10.7111,35.6443,TRUE,FALSE,Mo-Sa 07:00-22:00
+631f2d57-ce5e-5c6a-9425-c148394efb69,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 54,"Rue des Freres Bouadla, Ben Arous, Unit 54",10.1130,36.6333,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+ba03730d-c94d-50f0-a43f-1fddf2be2e9e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 55,"Avenue Ibn Sina, Kairouan, Unit 55",9.9913,35.5581,TRUE,FALSE,
+4156b992-b580-5212-af9a-1a043c57823d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 56,"Rue du 2 Mars, Nabeul, Unit 56",10.6366,36.3361,TRUE,TRUE,24/7
+a664d623-6d55-5e58-b6ef-97afd7e74c3e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 57,"Bordj El Kebir, Mahdia, Unit 57",10.9672,35.3847,FALSE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+2c3c7adf-3ebf-5e50-9709-705b0ed78d35,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 58,"Avenue de la Liberte, Medenine, Unit 58",10.4153,33.2340,TRUE,FALSE,Mo-Sa 07:00-22:00
+a4558ea7-a8fb-53a7-8e72-e7dfc32e2a79,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 59,"Rue de l'Independance, Kasserine, Unit 59",8.7487,35.0521,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+5a0f6d00-80ec-5fda-8aaf-c5dc7b9fdff8,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 60,"Avenue Farhat Hached, Jendouba, Unit 60",8.7002,36.3813,TRUE,FALSE,
+c928872d-e8a9-5cf4-acc1-02d5bc2bc0d3,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 61,"Avenue Habib Bourguiba, Tunis, Unit 61",10.1065,36.6865,TRUE,FALSE,24/7
+e48c880b-4b6f-5994-8edd-cd73d00ab1cf,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 62,"Boulevard Haffouz, Sousse, Unit 62",10.5669,35.7054,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+604a660e-48a5-5a02-b73f-2ab9634deb0b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 63,"Rue de la Republique, Sfax, Unit 63",10.6953,34.6206,TRUE,FALSE,Mo-Sa 07:00-22:00
+b325e31b-f586-5cfe-b724-2009c0ccdb10,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 64,"Avenue Habib Bouguiba, Bizerte, Unit 64",9.8138,37.1544,FALSE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+ac8c1140-e571-5e13-a693-ca9f165f654c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 65,"Rue de Tripoli, Gabes, Unit 65",10.0422,33.7615,TRUE,FALSE,
+951deaab-ae5f-5c17-a2c7-98ebb68cdd1b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 66,"Rue Ibn Khaldoun, Ariana, Unit 66",10.1404,36.7425,TRUE,FALSE,24/7
+bde68229-8567-5f0a-8fa3-bb142ba333d5,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 67,"Avenue de la Republique, Gafsa, Unit 67",8.7392,34.3050,TRUE,TRUE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+482ab481-2701-539a-a40a-2a8cf6958c21,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 68,"Boulevard de l'Environnement, Monastir, Unit 68",10.7861,35.6443,TRUE,FALSE,Mo-Sa 07:00-22:00
+cdfb80ca-1a6c-5079-bf88-67f4a02717d9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 69,"Rue des Freres Bouadla, Ben Arous, Unit 69",10.1880,36.6333,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+84aedc12-77fd-55d7-afba-47a31c34c0c1,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 70,"Avenue Ibn Sina, Kairouan, Unit 70",10.0663,35.5581,TRUE,FALSE,
+789ed1af-2d13-5c4a-a8a1-e56cf78e14e9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 71,"Rue du 2 Mars, Nabeul, Unit 71",10.7116,36.3361,FALSE,FALSE,24/7
+1a8ee1bb-79f1-5a43-9a06-3624a1956428,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 72,"Bordj El Kebir, Mahdia, Unit 72",11.0422,35.3847,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+59ee15da-95e2-5333-bc2b-54ef36e8ec06,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 73,"Avenue de la Liberte, Medenine, Unit 73",10.4903,33.2340,TRUE,FALSE,Mo-Sa 07:00-22:00
+94f82115-2b63-5961-b127-f34dfcda59f2,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 74,"Rue de l'Independance, Kasserine, Unit 74",8.8237,35.0521,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+e4b34f32-2a90-5638-91e0-ac894571119e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 75,"Avenue Farhat Hached, Jendouba, Unit 75",8.7752,36.3813,TRUE,FALSE,
+57a126d6-b464-5f0a-b4e5-79ce8fa36d6a,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 76,"Avenue Habib Bourguiba, Tunis, Unit 76",10.1815,36.6865,TRUE,FALSE,24/7
+e8961742-d592-5a9e-ab54-5ebfce79a87f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 77,"Boulevard Haffouz, Sousse, Unit 77",10.6419,35.7054,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+d6433a1c-fd4d-5f4e-bd05-8fcf619bc41c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 78,"Rue de la Republique, Sfax, Unit 78",10.7703,34.6206,FALSE,TRUE,Mo-Sa 07:00-22:00
+1157c3af-2bb1-5853-8618-5d0f703eb4fc,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 79,"Avenue Habib Bouguiba, Bizerte, Unit 79",9.8888,37.1544,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+e3eb8e0f-ba08-5c6f-9138-439d409eaaa2,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 80,"Rue de Tripoli, Gabes, Unit 80",10.1172,33.7615,TRUE,FALSE,
+c08faa20-faad-5188-b99a-768125859e3d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 81,"Rue Ibn Khaldoun, Ariana, Unit 81",10.2154,36.7425,TRUE,FALSE,24/7
+2ef19309-a1fc-5012-a128-ca7ed6c87382,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 82,"Avenue de la Republique, Gafsa, Unit 82",8.8142,34.3050,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+482ef864-4ff5-52c7-b48a-65597e0a5899,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 83,"Boulevard de l'Environnement, Monastir, Unit 83",10.8611,35.6443,TRUE,FALSE,Mo-Sa 07:00-22:00
+fff77155-6970-592b-a414-48a6039ef8b4,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 84,"Rue des Freres Bouadla, Ben Arous, Unit 84",10.2630,36.6333,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+e8fd3822-fcd6-5415-87fb-5027d57b5648,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 85,"Avenue Ibn Sina, Kairouan, Unit 85",10.1413,35.5581,FALSE,FALSE,
+11f37a0f-067a-5935-9502-f60f5cae42fa,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 86,"Rue du 2 Mars, Nabeul, Unit 86",10.7866,36.3361,TRUE,FALSE,24/7
+78e66737-243c-5bd3-9b13-82c0792f497b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 87,"Bordj El Kebir, Mahdia, Unit 87",11.1172,35.3847,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+8c95414a-900b-5e25-913c-8e5215c0604f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 88,"Avenue de la Liberte, Medenine, Unit 88",10.5653,33.2340,TRUE,FALSE,Mo-Sa 07:00-22:00
+5bca5730-5452-5f83-af90-36d10e9536af,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 89,"Rue de l'Independance, Kasserine, Unit 89",8.8987,35.0521,TRUE,TRUE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+bff86a3d-e352-5e07-85fa-290f793cd6ca,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 90,"Avenue Farhat Hached, Jendouba, Unit 90",8.8502,36.3813,TRUE,FALSE,
+9921beba-425f-5d4b-b7d8-31866bbc1aab,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 91,"Avenue Habib Bourguiba, Tunis, Unit 91",10.2565,36.6865,TRUE,FALSE,24/7
+65d256be-c06b-5b54-a80f-b882689c8d0d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 92,"Boulevard Haffouz, Sousse, Unit 92",10.7169,35.7054,FALSE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+b4ee5cac-2c4d-5598-8460-d8dbf0d5d247,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 93,"Rue de la Republique, Sfax, Unit 93",10.8453,34.6206,TRUE,FALSE,Mo-Sa 07:00-22:00
+1eeb0aa5-86db-5113-a56f-6b5edd77eca7,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 94,"Avenue Habib Bouguiba, Bizerte, Unit 94",9.9638,37.1544,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+201c4b76-a8eb-5d2e-8024-d40909cbdfbb,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 95,"Rue de Tripoli, Gabes, Unit 95",10.1922,33.7615,TRUE,FALSE,
+c88a224c-bffa-574a-92ac-e538d5daafcc,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 96,"Rue Ibn Khaldoun, Ariana, Unit 96",10.2904,36.7425,TRUE,FALSE,24/7
+3e59c793-0055-5982-9d00-d39426bb6a8f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 97,"Avenue de la Republique, Gafsa, Unit 97",8.8892,34.3050,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+14f422ed-c2af-5621-a3b8-25ce39b588b5,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 98,"Boulevard de l'Environnement, Monastir, Unit 98",10.9361,35.6443,TRUE,FALSE,Mo-Sa 07:00-22:00
+8243ba08-93ea-5483-b400-8892540b01d5,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 99,"Rue des Freres Bouadla, Ben Arous, Unit 99",10.3380,36.6333,FALSE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+ba172a91-3a87-5280-a65b-6a958f8031a8,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 100,"Avenue Ibn Sina, Kairouan, Unit 100",10.2163,35.5581,TRUE,TRUE,
+c7096461-633b-5620-a565-4d087245b4e7,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 101,"Rue du 2 Mars, Nabeul, Unit 101",10.6116,36.3411,TRUE,FALSE,24/7
+157ff8ef-ab4b-5318-94cb-bdd591dc674a,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 102,"Bordj El Kebir, Mahdia, Unit 102",10.9422,35.3897,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+e2f00d88-4826-5074-8842-0831e1699fb5,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 103,"Avenue de la Liberte, Medenine, Unit 103",10.3903,33.2390,TRUE,FALSE,Mo-Sa 07:00-22:00
+e8ea6fd0-573a-5d17-841f-ce977c1d9d24,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 104,"Rue de l'Independance, Kasserine, Unit 104",8.7237,35.0571,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+d3a925a7-540e-56da-a883-393e722af6e2,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 105,"Avenue Farhat Hached, Jendouba, Unit 105",8.6752,36.3863,TRUE,FALSE,
+1b693dde-2164-534d-a640-ea43c0ee6c1e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 106,"Avenue Habib Bourguiba, Tunis, Unit 106",10.0815,36.6915,FALSE,FALSE,24/7
+08965a76-8e94-564d-8f82-e96ba646eba9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 107,"Boulevard Haffouz, Sousse, Unit 107",10.5419,35.7104,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+69010b39-e2e1-5017-8351-5f718583ade6,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 108,"Rue de la Republique, Sfax, Unit 108",10.6703,34.6256,TRUE,FALSE,Mo-Sa 07:00-22:00
+a928d0b5-46db-51e0-87f0-04d8b504df96,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 109,"Avenue Habib Bouguiba, Bizerte, Unit 109",9.7888,37.1594,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+608d9046-25e0-5693-819c-a1027ae37c0a,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 110,"Rue de Tripoli, Gabes, Unit 110",10.0172,33.7665,TRUE,FALSE,
+6d8174a2-2483-502f-b1e5-33aa65fdd6ff,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 111,"Rue Ibn Khaldoun, Ariana, Unit 111",10.1154,36.7475,TRUE,TRUE,24/7
+8b825fa0-2b12-55ea-85d3-dd6919c06a65,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 112,"Avenue de la Republique, Gafsa, Unit 112",8.7142,34.3100,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+b92ecf36-9a64-5e1d-8d44-ca45c4646014,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 113,"Boulevard de l'Environnement, Monastir, Unit 113",10.7611,35.6493,FALSE,FALSE,Mo-Sa 07:00-22:00
+63274446-98dc-55d0-a11c-9e8b96696d52,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 114,"Rue des Freres Bouadla, Ben Arous, Unit 114",10.1630,36.6383,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+2cb79882-ddb7-5127-a954-11db0a505035,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 115,"Avenue Ibn Sina, Kairouan, Unit 115",10.0413,35.5631,TRUE,FALSE,
+61792216-54e8-531b-b655-6afeefe6da8b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 116,"Rue du 2 Mars, Nabeul, Unit 116",10.6866,36.3411,TRUE,FALSE,24/7
+610c6d17-19c1-59e8-8616-71aa6db8f0c2,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 117,"Bordj El Kebir, Mahdia, Unit 117",11.0172,35.3897,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+70cc7fc0-d664-5a42-9390-89124d401c02,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 118,"Avenue de la Liberte, Medenine, Unit 118",10.4653,33.2390,TRUE,FALSE,Mo-Sa 07:00-22:00
+ee10d093-d526-5965-b7aa-e567f3833627,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 119,"Rue de l'Independance, Kasserine, Unit 119",8.7987,35.0571,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+a9a481e4-0dc9-5957-ac29-b048b02f411b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 120,"Avenue Farhat Hached, Jendouba, Unit 120",8.7502,36.3863,FALSE,FALSE,
+7bb93c4c-a674-51fa-adcf-a841a82b950e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 121,"Avenue Habib Bourguiba, Tunis, Unit 121",10.1565,36.6915,TRUE,FALSE,24/7
+e375ca91-41e6-53a8-977c-78d6a7b8662c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 122,"Boulevard Haffouz, Sousse, Unit 122",10.6169,35.7104,TRUE,TRUE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+0120a104-9cde-5f9e-9390-385684fbacd3,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 123,"Rue de la Republique, Sfax, Unit 123",10.7453,34.6256,TRUE,FALSE,Mo-Sa 07:00-22:00
+a88a2604-3ff0-5743-b939-ff6f6ab0d6cf,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 124,"Avenue Habib Bouguiba, Bizerte, Unit 124",9.8638,37.1594,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+eef60ff1-17e6-5fde-a0e8-e27c9ab387ea,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 125,"Rue de Tripoli, Gabes, Unit 125",10.0922,33.7665,TRUE,FALSE,
+2bcd2434-2373-54b7-a189-00d171656648,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 126,"Rue Ibn Khaldoun, Ariana, Unit 126",10.1904,36.7475,TRUE,FALSE,24/7
+68231aa6-e2aa-5766-a273-d6c0eaf60b79,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 127,"Avenue de la Republique, Gafsa, Unit 127",8.7892,34.3100,FALSE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+28bc66b5-e100-5361-a783-90c84fde05c3,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 128,"Boulevard de l'Environnement, Monastir, Unit 128",10.8361,35.6493,TRUE,FALSE,Mo-Sa 07:00-22:00
+89fcaae6-61c7-5c04-9644-5f37e5f25ab9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 129,"Rue des Freres Bouadla, Ben Arous, Unit 129",10.2380,36.6383,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+c40838d4-ae5c-5cf2-a087-4036615d6e8d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 130,"Avenue Ibn Sina, Kairouan, Unit 130",10.1163,35.5631,TRUE,FALSE,
+8b16d4c1-d6aa-54cc-a5e4-4a04dfd5f38c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 131,"Rue du 2 Mars, Nabeul, Unit 131",10.7616,36.3411,TRUE,FALSE,24/7
+9c58c6e1-fd25-51c1-a1ee-5f2d54902e06,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 132,"Bordj El Kebir, Mahdia, Unit 132",11.0922,35.3897,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+3ecc75d0-d040-5390-ae29-6b9c493d2fa6,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 133,"Avenue de la Liberte, Medenine, Unit 133",10.5403,33.2390,TRUE,TRUE,Mo-Sa 07:00-22:00
+2f4fe0b7-6390-5652-98a9-f11e20604438,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 134,"Rue de l'Independance, Kasserine, Unit 134",8.8737,35.0571,FALSE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+4f4239ce-cb92-5e1d-8532-98c48cfcf6b8,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 135,"Avenue Farhat Hached, Jendouba, Unit 135",8.8252,36.3863,TRUE,FALSE,
+b593ff1c-4ae3-53db-8d1a-bc30e05ce065,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 136,"Avenue Habib Bourguiba, Tunis, Unit 136",10.2315,36.6915,TRUE,FALSE,24/7
+2f27312b-94c3-53b9-8e34-349c25203cb0,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 137,"Boulevard Haffouz, Sousse, Unit 137",10.6919,35.7104,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+81990ff8-3603-52b5-b224-6f3bc78a0619,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 138,"Rue de la Republique, Sfax, Unit 138",10.8203,34.6256,TRUE,FALSE,Mo-Sa 07:00-22:00
+ac513787-b68e-5d8b-9cdc-1a89200a62e5,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 139,"Avenue Habib Bouguiba, Bizerte, Unit 139",9.9388,37.1594,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+f22e5bd7-7123-532b-8c34-13b62604e2e2,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 140,"Rue de Tripoli, Gabes, Unit 140",10.1672,33.7665,TRUE,FALSE,
+58045265-6630-58a8-af72-93f4556bb993,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 141,"Rue Ibn Khaldoun, Ariana, Unit 141",10.2654,36.7475,FALSE,FALSE,24/7
+14e9dd9f-341f-5f2c-bfb3-d55809c72c29,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 142,"Avenue de la Republique, Gafsa, Unit 142",8.8642,34.3100,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+a9b2d2ee-48aa-55c5-9ad0-4af2ae55b06c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 143,"Boulevard de l'Environnement, Monastir, Unit 143",10.9111,35.6493,TRUE,FALSE,Mo-Sa 07:00-22:00
+384198af-db3b-57a6-b26a-005a226c9a14,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 144,"Rue des Freres Bouadla, Ben Arous, Unit 144",10.3130,36.6383,TRUE,TRUE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+6d568c0e-709f-5c85-8786-ea0a65ee6a37,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 145,"Avenue Ibn Sina, Kairouan, Unit 145",10.1913,35.5631,TRUE,FALSE,
+6534d8cb-3b97-5b1a-94eb-e7bebf3bd251,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 146,"Rue du 2 Mars, Nabeul, Unit 146",10.8366,36.3411,TRUE,FALSE,24/7
+cdc85119-1544-54dc-a0f8-0c83ce1ff8b2,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 147,"Bordj El Kebir, Mahdia, Unit 147",11.1672,35.3897,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+e56b50e1-5178-5e07-94ee-3508ffa4e864,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 148,"Avenue de la Liberte, Medenine, Unit 148",10.6153,33.2390,FALSE,FALSE,Mo-Sa 07:00-22:00
+1d1f946f-c5f6-58cb-808f-50b213976e86,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 149,"Rue de l'Independance, Kasserine, Unit 149",8.9487,35.0571,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+051f3aa3-b7a2-5a4c-8856-17a528342a73,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 150,"Avenue Farhat Hached, Jendouba, Unit 150",8.9002,36.3863,TRUE,FALSE,
+3829a66f-29c3-51b9-966b-39d20ec69141,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 151,"Avenue Habib Bourguiba, Tunis, Unit 151",10.0565,36.6965,TRUE,FALSE,24/7
+8c0bcfe7-8020-5952-b2cd-b9f6a57bf91b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 152,"Boulevard Haffouz, Sousse, Unit 152",10.5169,35.7154,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+2a57eb29-c3f1-5d83-886b-30707181b88f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 153,"Rue de la Republique, Sfax, Unit 153",10.6453,34.6306,TRUE,FALSE,Mo-Sa 07:00-22:00
+2a4f87c6-0114-5265-a423-eef7bfeeb8f1,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 154,"Avenue Habib Bouguiba, Bizerte, Unit 154",9.7638,37.1644,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+e1d75684-49f3-54ec-8bbc-e76953103616,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 155,"Rue de Tripoli, Gabes, Unit 155",9.9922,33.7715,FALSE,TRUE,
+43a76cc9-99bf-5e07-9262-d9fca380f936,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 156,"Rue Ibn Khaldoun, Ariana, Unit 156",10.0904,36.7525,TRUE,FALSE,24/7
+485afb1a-8d37-5821-99d5-ba5a869b8b48,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 157,"Avenue de la Republique, Gafsa, Unit 157",8.6892,34.3150,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+f31423bc-4088-5286-b529-8924e97cffa2,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 158,"Boulevard de l'Environnement, Monastir, Unit 158",10.7361,35.6543,TRUE,FALSE,Mo-Sa 07:00-22:00
+0d257c51-1728-5e0e-92a5-917f12382bb9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 159,"Rue des Freres Bouadla, Ben Arous, Unit 159",10.1380,36.6433,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+468a9701-6186-5c6a-bb51-dcced0baee90,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 160,"Avenue Ibn Sina, Kairouan, Unit 160",10.0163,35.5681,TRUE,FALSE,
+016281a5-d276-54cc-ac04-83a73273dfff,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 161,"Rue du 2 Mars, Nabeul, Unit 161",10.6616,36.3461,TRUE,FALSE,24/7
+027c99b2-442d-554a-baa3-e3d388d95d1b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 162,"Bordj El Kebir, Mahdia, Unit 162",10.9922,35.3947,FALSE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+ea97cbc6-2b25-5142-ba64-be411e125fe3,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 163,"Avenue de la Liberte, Medenine, Unit 163",10.4403,33.2440,TRUE,FALSE,Mo-Sa 07:00-22:00
+0b8ddb1f-b28f-5b82-8453-59e1713592b0,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 164,"Rue de l'Independance, Kasserine, Unit 164",8.7737,35.0621,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+1835de90-ae68-525d-ada9-a430999ce5b4,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 165,"Avenue Farhat Hached, Jendouba, Unit 165",8.7252,36.3913,TRUE,FALSE,
+a2e060c6-9ae2-5064-b54f-87da981f714e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 166,"Avenue Habib Bourguiba, Tunis, Unit 166",10.1315,36.6965,TRUE,TRUE,24/7
+27482595-b3ab-551f-b9e9-5597533fb33b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 167,"Boulevard Haffouz, Sousse, Unit 167",10.5919,35.7154,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+1caff02a-ee97-5152-a551-fb505de1b3b6,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 168,"Rue de la Republique, Sfax, Unit 168",10.7203,34.6306,TRUE,FALSE,Mo-Sa 07:00-22:00
+8b953bf2-ca19-5ea3-8cc5-54615cffcdae,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 169,"Avenue Habib Bouguiba, Bizerte, Unit 169",9.8388,37.1644,FALSE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+732f2163-4426-50fa-881d-3c2951927ebc,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 170,"Rue de Tripoli, Gabes, Unit 170",10.0672,33.7715,TRUE,FALSE,
+1804def9-222f-531c-b1c4-b4c178f7f405,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 171,"Rue Ibn Khaldoun, Ariana, Unit 171",10.1654,36.7525,TRUE,FALSE,24/7
+7287c5e1-5d9a-5d4e-9ec3-e04b8f0f183e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 172,"Avenue de la Republique, Gafsa, Unit 172",8.7642,34.3150,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+910cd8b6-15b2-5ce9-8496-83647aace4c6,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 173,"Boulevard de l'Environnement, Monastir, Unit 173",10.8111,35.6543,TRUE,FALSE,Mo-Sa 07:00-22:00
+5c1c6fcc-e052-5c67-b0bc-819725ad41f7,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 174,"Rue des Freres Bouadla, Ben Arous, Unit 174",10.2130,36.6433,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+2ae2ec39-99f3-5235-8c87-444d31b6db57,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 175,"Avenue Ibn Sina, Kairouan, Unit 175",10.0913,35.5681,TRUE,FALSE,
+7f21065e-113b-5e50-af43-dfedec2c9abd,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 176,"Rue du 2 Mars, Nabeul, Unit 176",10.7366,36.3461,FALSE,FALSE,24/7
+4451f008-22b6-5a74-9bf7-9b5206f18c94,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 177,"Bordj El Kebir, Mahdia, Unit 177",11.0672,35.3947,TRUE,TRUE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+238b4497-e7c6-52bd-b770-c62c58036710,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 178,"Avenue de la Liberte, Medenine, Unit 178",10.5153,33.2440,TRUE,FALSE,Mo-Sa 07:00-22:00
+bcfae84b-c2cf-5577-8960-0d63ca530e44,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 179,"Rue de l'Independance, Kasserine, Unit 179",8.8487,35.0621,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+f6b9736f-aae9-5a55-98e0-cbfaa75592ee,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 180,"Avenue Farhat Hached, Jendouba, Unit 180",8.8002,36.3913,TRUE,FALSE,
+fb66701b-1efc-5869-b7b2-0f2231d1979a,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 181,"Avenue Habib Bourguiba, Tunis, Unit 181",10.2065,36.6965,TRUE,FALSE,24/7
+492de390-a044-517e-a215-5d85a9df1b7a,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 182,"Boulevard Haffouz, Sousse, Unit 182",10.6669,35.7154,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+f89bb034-fbde-5db4-bbce-206ab16a98f3,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 183,"Rue de la Republique, Sfax, Unit 183",10.7953,34.6306,FALSE,FALSE,Mo-Sa 07:00-22:00
+eed60edb-ccaa-50e9-93a7-783fa4954ec1,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 184,"Avenue Habib Bouguiba, Bizerte, Unit 184",9.9138,37.1644,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+0a937d31-54f4-51d8-a998-4b3c6051aac7,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 185,"Rue de Tripoli, Gabes, Unit 185",10.1422,33.7715,TRUE,FALSE,
+cfadc51c-70d2-5ce8-9039-f325cb9a766b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 186,"Rue Ibn Khaldoun, Ariana, Unit 186",10.2404,36.7525,TRUE,FALSE,24/7
+6ef9d2b1-0638-5d79-86db-ecb7f4a3a82a,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 187,"Avenue de la Republique, Gafsa, Unit 187",8.8392,34.3150,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+691da32b-16e0-52d7-9bcf-9fee82846a5b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 188,"Boulevard de l'Environnement, Monastir, Unit 188",10.8861,35.6543,TRUE,TRUE,Mo-Sa 07:00-22:00
+88c0936b-d1ef-5a90-b060-9144d8e00a9b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 189,"Rue des Freres Bouadla, Ben Arous, Unit 189",10.2880,36.6433,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+6a05360c-b705-573f-85af-3a53af8c66d7,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 190,"Avenue Ibn Sina, Kairouan, Unit 190",10.1663,35.5681,FALSE,FALSE,
+c9be99fb-807f-534c-974c-43b1bb2ec5c3,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 191,"Rue du 2 Mars, Nabeul, Unit 191",10.8116,36.3461,TRUE,FALSE,24/7
+1f7d096f-1137-5699-b2f0-ed8f01bd13af,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 192,"Bordj El Kebir, Mahdia, Unit 192",11.1422,35.3947,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+2277bf81-2cbd-575c-aaea-dd486879a1f8,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 193,"Avenue de la Liberte, Medenine, Unit 193",10.5903,33.2440,TRUE,FALSE,Mo-Sa 07:00-22:00
+9d1f4e81-f005-5c34-8d63-cc1aa4c094cb,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 194,"Rue de l'Independance, Kasserine, Unit 194",8.9237,35.0621,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+4fceaeac-1e38-52dd-a631-86c44836bfa3,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 195,"Avenue Farhat Hached, Jendouba, Unit 195",8.8752,36.3913,TRUE,FALSE,
+50db25b2-7686-5416-9c67-5c62051d7d56,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 196,"Avenue Habib Bourguiba, Tunis, Unit 196",10.2815,36.6965,TRUE,FALSE,24/7
+df8e5e5f-5437-51be-bec2-e19b24db1313,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 197,"Boulevard Haffouz, Sousse, Unit 197",10.7419,35.7154,FALSE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+1262fde4-e153-5fa3-8837-44f4fd9a03ee,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 198,"Rue de la Republique, Sfax, Unit 198",10.8703,34.6306,TRUE,FALSE,Mo-Sa 07:00-22:00
+c92f905e-8e1f-5d9e-8594-3c8fd91345df,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 199,"Avenue Habib Bouguiba, Bizerte, Unit 199",9.9888,37.1644,TRUE,TRUE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+a0425743-22f4-51f8-a76e-000970f0acf3,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 200,"Rue de Tripoli, Gabes, Unit 200",10.2172,33.7715,TRUE,FALSE,
+14345f99-581e-50a1-8640-bf544860b69b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 201,"Rue Ibn Khaldoun, Ariana, Unit 201",10.0654,36.7575,TRUE,FALSE,24/7
+f555e1c4-a548-5dcb-b2b4-f637f4195a03,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 202,"Avenue de la Republique, Gafsa, Unit 202",8.6642,34.3200,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+5baf8ed6-a4e1-5f31-8a1a-9f4f7fe95e1c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 203,"Boulevard de l'Environnement, Monastir, Unit 203",10.7111,35.6593,TRUE,FALSE,Mo-Sa 07:00-22:00
+647891bf-8f87-59d4-b8d6-a2f4fff90959,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 204,"Rue des Freres Bouadla, Ben Arous, Unit 204",10.1130,36.6483,FALSE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+953001d3-ffd8-5bdf-9098-8140d9f09263,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 205,"Avenue Ibn Sina, Kairouan, Unit 205",9.9913,35.5731,TRUE,FALSE,
+3b66db95-2ef2-598c-b73f-25b6d9212855,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 206,"Rue du 2 Mars, Nabeul, Unit 206",10.6366,36.3511,TRUE,FALSE,24/7
+9eedce7f-e7af-52f8-98a8-249a8edcfe9e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 207,"Bordj El Kebir, Mahdia, Unit 207",10.9672,35.3997,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+45fc9251-c4f7-5587-a8f5-3759cbb85bdd,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 208,"Avenue de la Liberte, Medenine, Unit 208",10.4153,33.2490,TRUE,FALSE,Mo-Sa 07:00-22:00
+2fa82ad9-1705-5f55-9f6f-93e10c6b7009,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 209,"Rue de l'Independance, Kasserine, Unit 209",8.7487,35.0671,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+1bc046f0-0f02-5e12-abd7-fe80a4545e0d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 210,"Avenue Farhat Hached, Jendouba, Unit 210",8.7002,36.3963,TRUE,TRUE,
+d45db1a5-2785-573d-bbfe-cfd38e257740,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 211,"Avenue Habib Bourguiba, Tunis, Unit 211",10.1065,36.7015,FALSE,FALSE,24/7
+1b32262f-252a-5835-bb1b-8e56d512a814,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 212,"Boulevard Haffouz, Sousse, Unit 212",10.5669,35.7204,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+d58cad5c-e9db-50af-a35b-0f31db51c222,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 213,"Rue de la Republique, Sfax, Unit 213",10.6953,34.6356,TRUE,FALSE,Mo-Sa 07:00-22:00
+cb872608-7e7d-51dc-bf33-49f49234e91f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 214,"Avenue Habib Bouguiba, Bizerte, Unit 214",9.8138,37.1694,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+2c667533-60fd-5d03-b14a-8109e75f1c6c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 215,"Rue de Tripoli, Gabes, Unit 215",10.0422,33.7765,TRUE,FALSE,
+7ab611a7-6e50-5205-b2ac-21df576bc581,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 216,"Rue Ibn Khaldoun, Ariana, Unit 216",10.1404,36.7575,TRUE,FALSE,24/7
+0242ed32-6fa2-5adc-b5a9-bf071d03a7c0,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 217,"Avenue de la Republique, Gafsa, Unit 217",8.7392,34.3200,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+99c70dd2-1a95-5640-a1d8-37c1e9f15db1,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 218,"Boulevard de l'Environnement, Monastir, Unit 218",10.7861,35.6593,FALSE,FALSE,Mo-Sa 07:00-22:00
+1c2c4746-466f-52c7-8bd3-253a7f841233,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 219,"Rue des Freres Bouadla, Ben Arous, Unit 219",10.1880,36.6483,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+c8348ec3-aa0e-50bb-ab47-29da32540e7c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 220,"Avenue Ibn Sina, Kairouan, Unit 220",10.0663,35.5731,TRUE,FALSE,
+7d8f6f7e-5540-5ab9-9b01-7873845d3ccf,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 221,"Rue du 2 Mars, Nabeul, Unit 221",10.7116,36.3511,TRUE,TRUE,24/7
+cdb340f8-deb8-513e-8761-8d9989c377ec,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 222,"Bordj El Kebir, Mahdia, Unit 222",11.0422,35.3997,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+41c14ec8-252c-5a9f-93a4-ae3f634c804d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 223,"Avenue de la Liberte, Medenine, Unit 223",10.4903,33.2490,TRUE,FALSE,Mo-Sa 07:00-22:00
+fb4c5288-cced-5cc1-8a63-d37d898e23b6,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 224,"Rue de l'Independance, Kasserine, Unit 224",8.8237,35.0671,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+d34fa49c-e193-5fe3-aedf-9f1c4cb00759,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 225,"Avenue Farhat Hached, Jendouba, Unit 225",8.7752,36.3963,FALSE,FALSE,
+5ee01ac9-0b6b-5bcc-8cf7-aa6dfce37cc6,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 226,"Avenue Habib Bourguiba, Tunis, Unit 226",10.1815,36.7015,TRUE,FALSE,24/7
+75c4a501-2a31-54f8-a95e-ee223655f732,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 227,"Boulevard Haffouz, Sousse, Unit 227",10.6419,35.7204,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+044e68ef-2703-59ad-a38e-b6c42c93a9ba,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 228,"Rue de la Republique, Sfax, Unit 228",10.7703,34.6356,TRUE,FALSE,Mo-Sa 07:00-22:00
+17bd7ca1-978d-5dc8-8df8-0ee8fad4c17d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 229,"Avenue Habib Bouguiba, Bizerte, Unit 229",9.8888,37.1694,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+5afadbc8-1a78-577b-b43f-ab51e7acb2a4,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 230,"Rue de Tripoli, Gabes, Unit 230",10.1172,33.7765,TRUE,FALSE,
+ad070067-5e6b-5368-bc6c-1c6c807eaa1b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 231,"Rue Ibn Khaldoun, Ariana, Unit 231",10.2154,36.7575,TRUE,FALSE,24/7
+3dfaaba3-9a7c-5ecd-b2a6-9aeef97ae1c9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 232,"Avenue de la Republique, Gafsa, Unit 232",8.8142,34.3200,FALSE,TRUE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+4e3a939c-3a35-58f1-92e9-8cae1a243db4,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 233,"Boulevard de l'Environnement, Monastir, Unit 233",10.8611,35.6593,TRUE,FALSE,Mo-Sa 07:00-22:00
+d6b78707-5035-5aea-80b4-a198c9bfa361,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 234,"Rue des Freres Bouadla, Ben Arous, Unit 234",10.2630,36.6483,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+42e6412d-c54f-55a4-95cb-1459254506bb,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 235,"Avenue Ibn Sina, Kairouan, Unit 235",10.1413,35.5731,TRUE,FALSE,
+8c9103e2-6042-567d-8fd7-39437b6e6aac,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 236,"Rue du 2 Mars, Nabeul, Unit 236",10.7866,36.3511,TRUE,FALSE,24/7
+a912ead5-484f-5840-b4ab-03f3c80c06cc,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 237,"Bordj El Kebir, Mahdia, Unit 237",11.1172,35.3997,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+7047bb19-c73a-5281-955f-51f404bdd956,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 238,"Avenue de la Liberte, Medenine, Unit 238",10.5653,33.2490,TRUE,FALSE,Mo-Sa 07:00-22:00
+e284e79c-4fb2-5e42-926c-ff931ba02c16,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 239,"Rue de l'Independance, Kasserine, Unit 239",8.8987,35.0671,FALSE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+b0040f2f-bb7c-5c30-8076-a4c343438890,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 240,"Avenue Farhat Hached, Jendouba, Unit 240",8.8502,36.3963,TRUE,FALSE,
+ac975349-71f0-52e6-bf6a-ed1ac58ed802,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 241,"Avenue Habib Bourguiba, Tunis, Unit 241",10.2565,36.7015,TRUE,FALSE,24/7
+ce8c93e2-86f8-5132-a8a0-6d50d6444213,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 242,"Boulevard Haffouz, Sousse, Unit 242",10.7169,35.7204,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+8d480679-2b1a-5311-ba40-b0d222da3a4a,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 243,"Rue de la Republique, Sfax, Unit 243",10.8453,34.6356,TRUE,TRUE,Mo-Sa 07:00-22:00
+b81d71f1-218d-57dc-9533-9d3e9e865c14,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 244,"Avenue Habib Bouguiba, Bizerte, Unit 244",9.9638,37.1694,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+c0724cb8-59a9-5fc4-905f-d9cd126ce0e2,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 245,"Rue de Tripoli, Gabes, Unit 245",10.1922,33.7765,TRUE,FALSE,
+e6f739ce-a00e-5426-9dea-a154be2eabed,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 246,"Rue Ibn Khaldoun, Ariana, Unit 246",10.2904,36.7575,FALSE,FALSE,24/7
+52be7f6f-1a42-5966-8545-a0fbe53df954,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 247,"Avenue de la Republique, Gafsa, Unit 247",8.8892,34.3200,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+502ab2a9-5bb9-5e79-a30c-1419deee9656,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 248,"Boulevard de l'Environnement, Monastir, Unit 248",10.9361,35.6593,TRUE,FALSE,Mo-Sa 07:00-22:00
+2d40435f-9527-5473-bf54-78a93a0a9006,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 249,"Rue des Freres Bouadla, Ben Arous, Unit 249",10.3380,36.6483,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+f6c7658a-cb8f-5b90-838a-2a2f0d89140b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 250,"Avenue Ibn Sina, Kairouan, Unit 250",10.2163,35.5731,TRUE,FALSE,
+8370b3e9-49bb-513a-8e15-94f6d884ab78,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 251,"Rue du 2 Mars, Nabeul, Unit 251",10.6116,36.3561,TRUE,FALSE,24/7
+c78f8f36-6d72-5380-96fe-a74f2e2e41e9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 252,"Bordj El Kebir, Mahdia, Unit 252",10.9422,35.4047,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+1e691236-c25e-5857-8347-2c6f25e6c169,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 253,"Avenue de la Liberte, Medenine, Unit 253",10.3903,33.2540,FALSE,FALSE,Mo-Sa 07:00-22:00
+c30154fa-416a-5886-951e-a55dd8264f44,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 254,"Rue de l'Independance, Kasserine, Unit 254",8.7237,35.0721,TRUE,TRUE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+40177b1f-7152-50c5-80a1-07916f9b2be7,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 255,"Avenue Farhat Hached, Jendouba, Unit 255",8.6752,36.4013,TRUE,FALSE,
+a2f1fc10-e652-548f-ba2e-1f22b3d3de18,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 256,"Avenue Habib Bourguiba, Tunis, Unit 256",10.0815,36.7065,TRUE,FALSE,24/7
+15c60d04-9837-55ac-b9bb-94540fb834d2,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 257,"Boulevard Haffouz, Sousse, Unit 257",10.5419,35.7254,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+fc011798-48fe-5565-a56d-943606ab1350,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 258,"Rue de la Republique, Sfax, Unit 258",10.6703,34.6406,TRUE,FALSE,Mo-Sa 07:00-22:00
+518c1129-0af0-54db-8ee7-9562398c0909,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 259,"Avenue Habib Bouguiba, Bizerte, Unit 259",9.7888,37.1744,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+acafee07-778f-5be5-b379-f56b00eeedc9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 260,"Rue de Tripoli, Gabes, Unit 260",10.0172,33.7815,FALSE,FALSE,
+150a5fc5-0a0d-5aa0-99e6-9d490697fb99,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 261,"Rue Ibn Khaldoun, Ariana, Unit 261",10.1154,36.7625,TRUE,FALSE,24/7
+904a0d6e-954a-5c0e-b2d2-9ea70f5f18c9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 262,"Avenue de la Republique, Gafsa, Unit 262",8.7142,34.3250,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+4f0e62b8-cf85-54e4-9a99-ee3c7eaccde9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 263,"Boulevard de l'Environnement, Monastir, Unit 263",10.7611,35.6643,TRUE,FALSE,Mo-Sa 07:00-22:00
+8783aa5c-7acf-532a-a9b2-bcee784388ea,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 264,"Rue des Freres Bouadla, Ben Arous, Unit 264",10.1630,36.6533,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+d5a498bf-a9ff-5f7a-8ab6-174db477888a,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 265,"Avenue Ibn Sina, Kairouan, Unit 265",10.0413,35.5781,TRUE,TRUE,
+1e9bcb47-7be0-5f3c-93b4-f21ab1c1c6ef,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 266,"Rue du 2 Mars, Nabeul, Unit 266",10.6866,36.3561,TRUE,FALSE,24/7
+50ea523e-35b1-5835-9bf8-74f92998c0ea,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 267,"Bordj El Kebir, Mahdia, Unit 267",11.0172,35.4047,FALSE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+1f0928ca-4b85-59f9-8e8e-a0b4736e0da7,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 268,"Avenue de la Liberte, Medenine, Unit 268",10.4653,33.2540,TRUE,FALSE,Mo-Sa 07:00-22:00
+9254fb90-733c-55d9-8f93-ff15553f037d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 269,"Rue de l'Independance, Kasserine, Unit 269",8.7987,35.0721,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+4077b949-5524-58bb-b743-4cd2df2d2dcd,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 270,"Avenue Farhat Hached, Jendouba, Unit 270",8.7502,36.4013,TRUE,FALSE,
+6c9779ff-2620-51f0-b047-f7f5d74f10ba,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 271,"Avenue Habib Bourguiba, Tunis, Unit 271",10.1565,36.7065,TRUE,FALSE,24/7
+f0058c55-784c-5d20-b3bc-748f9b1c3220,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 272,"Boulevard Haffouz, Sousse, Unit 272",10.6169,35.7254,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+ca7b1b02-1395-5cba-82e2-def3f1627851,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 273,"Rue de la Republique, Sfax, Unit 273",10.7453,34.6406,TRUE,FALSE,Mo-Sa 07:00-22:00
+171348a6-a4fb-5a2c-9849-14343fb32e4f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 274,"Avenue Habib Bouguiba, Bizerte, Unit 274",9.8638,37.1744,FALSE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+c4749ac2-bee5-533c-b4c8-1001f0257af3,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 275,"Rue de Tripoli, Gabes, Unit 275",10.0922,33.7815,TRUE,FALSE,
+42ecbb31-6fcd-52e7-878e-2d9532591683,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 276,"Rue Ibn Khaldoun, Ariana, Unit 276",10.1904,36.7625,TRUE,TRUE,24/7
+8baa27ae-9ed5-51b7-8073-98112c79c121,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 277,"Avenue de la Republique, Gafsa, Unit 277",8.7892,34.3250,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+91e444af-ed79-5fdf-9dcc-725db1faa256,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 278,"Boulevard de l'Environnement, Monastir, Unit 278",10.8361,35.6643,TRUE,FALSE,Mo-Sa 07:00-22:00
+dd028bfa-dcb1-5da5-9f3d-c1460f5982a1,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 279,"Rue des Freres Bouadla, Ben Arous, Unit 279",10.2380,36.6533,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+e8091f45-a9ab-5bec-b060-e4c22579dbed,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 280,"Avenue Ibn Sina, Kairouan, Unit 280",10.1163,35.5781,TRUE,FALSE,
+aecfc941-e1f4-55a1-9c1f-fae95a223137,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 281,"Rue du 2 Mars, Nabeul, Unit 281",10.7616,36.3561,FALSE,FALSE,24/7
+76bb7c62-baa5-522c-9209-0606567bdee0,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 282,"Bordj El Kebir, Mahdia, Unit 282",11.0922,35.4047,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+ae942364-6f83-503b-ba1d-341a9c696816,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 283,"Avenue de la Liberte, Medenine, Unit 283",10.5403,33.2540,TRUE,FALSE,Mo-Sa 07:00-22:00
+fa83d86b-4b3e-5c5c-bbd0-0cb40b1d08fb,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 284,"Rue de l'Independance, Kasserine, Unit 284",8.8737,35.0721,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+1a651d64-35c8-5986-b082-f40242a961fd,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 285,"Avenue Farhat Hached, Jendouba, Unit 285",8.8252,36.4013,TRUE,FALSE,
+21658739-f869-538c-b1dd-ca095460a05f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 286,"Avenue Habib Bourguiba, Tunis, Unit 286",10.2315,36.7065,TRUE,FALSE,24/7
+58a9315a-a2e5-542a-8347-875350a1a37e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 287,"Boulevard Haffouz, Sousse, Unit 287",10.6919,35.7254,TRUE,TRUE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+7fe51305-96db-5df3-a2aa-d8f3622cab4f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 288,"Rue de la Republique, Sfax, Unit 288",10.8203,34.6406,FALSE,FALSE,Mo-Sa 07:00-22:00
+4d8671b6-0eb8-55b8-b204-1e859fb399b1,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 289,"Avenue Habib Bouguiba, Bizerte, Unit 289",9.9388,37.1744,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+fea8d0a3-192c-55f8-a27d-b52e19e053a9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 290,"Rue de Tripoli, Gabes, Unit 290",10.1672,33.7815,TRUE,FALSE,
+43e9defa-11d6-5be9-957f-c57a9d5ad0ea,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 291,"Rue Ibn Khaldoun, Ariana, Unit 291",10.2654,36.7625,TRUE,FALSE,24/7
+12625cd4-4dbf-569e-80ee-9e78b863e349,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 292,"Avenue de la Republique, Gafsa, Unit 292",8.8642,34.3250,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+93b08704-a2c6-5b07-8bd5-5c8e804a17f2,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 293,"Boulevard de l'Environnement, Monastir, Unit 293",10.9111,35.6643,TRUE,FALSE,Mo-Sa 07:00-22:00
+d00098b6-f40b-5c50-9d91-28522047c28d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 294,"Rue des Freres Bouadla, Ben Arous, Unit 294",10.3130,36.6533,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+b0543fe3-6858-5e21-8c2b-986da36c2f8a,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 295,"Avenue Ibn Sina, Kairouan, Unit 295",10.1913,35.5781,FALSE,FALSE,
+72e33121-14a8-509a-baa2-50995074b9bd,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 296,"Rue du 2 Mars, Nabeul, Unit 296",10.8366,36.3561,TRUE,FALSE,24/7
+3718afb7-bb84-557d-938f-3db3672c2a0d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 297,"Bordj El Kebir, Mahdia, Unit 297",11.1672,35.4047,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+ec24e828-ad31-550c-a9d4-b3216651f858,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 298,"Avenue de la Liberte, Medenine, Unit 298",10.6153,33.2540,TRUE,TRUE,Mo-Sa 07:00-22:00
+c5e44038-5871-5d84-92e5-be9cd6ba3fca,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 299,"Rue de l'Independance, Kasserine, Unit 299",8.9487,35.0721,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+fa5c05a2-8d65-547c-ae4c-4d9af7540f5f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 300,"Avenue Farhat Hached, Jendouba, Unit 300",8.9002,36.4013,TRUE,FALSE,
+cf193b99-c116-5984-b153-7a174920fc65,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 301,"Avenue Habib Bourguiba, Tunis, Unit 301",10.0565,36.7115,TRUE,FALSE,24/7
+4adb4b9a-88f3-5430-80df-73eb3d466590,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 302,"Boulevard Haffouz, Sousse, Unit 302",10.5169,35.7304,FALSE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+1e4d2c31-3351-541d-860e-4acd425d8e5c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 303,"Rue de la Republique, Sfax, Unit 303",10.6453,34.6456,TRUE,FALSE,Mo-Sa 07:00-22:00
+a9f78c9a-55b2-5c93-b94e-9bc00c0f64f9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 304,"Avenue Habib Bouguiba, Bizerte, Unit 304",9.7638,37.1794,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+44d13ec8-6a44-5ebd-8baa-2a1ce2b2ea6f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 305,"Rue de Tripoli, Gabes, Unit 305",9.9922,33.7865,TRUE,FALSE,
+457cb691-adf0-5f38-b8a9-d9683d9560f1,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 306,"Rue Ibn Khaldoun, Ariana, Unit 306",10.0904,36.7675,TRUE,FALSE,24/7
+81eb885f-f189-593e-84f4-9177e0057c02,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 307,"Avenue de la Republique, Gafsa, Unit 307",8.6892,34.3300,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+d6c6312d-637f-531d-8d44-0a56eedd3602,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 308,"Boulevard de l'Environnement, Monastir, Unit 308",10.7361,35.6693,TRUE,FALSE,Mo-Sa 07:00-22:00
+da7a87ca-b4fa-5ccd-975c-4e4577b1ca0d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 309,"Rue des Freres Bouadla, Ben Arous, Unit 309",10.1380,36.6583,FALSE,TRUE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+3373fc76-961d-521d-a370-cf8672cb9610,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 310,"Avenue Ibn Sina, Kairouan, Unit 310",10.0163,35.5831,TRUE,FALSE,
+55978c4c-10ce-58d3-8693-ea8a9fc306c0,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 311,"Rue du 2 Mars, Nabeul, Unit 311",10.6616,36.3611,TRUE,FALSE,24/7
+a75c6e91-5658-5a33-a718-c8dac6298631,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 312,"Bordj El Kebir, Mahdia, Unit 312",10.9922,35.4097,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+319ed626-d7b5-5a29-a43e-efa8446b7ad2,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 313,"Avenue de la Liberte, Medenine, Unit 313",10.4403,33.2590,TRUE,FALSE,Mo-Sa 07:00-22:00
+b615c767-4a8e-5268-9b52-7034098aac96,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 314,"Rue de l'Independance, Kasserine, Unit 314",8.7737,35.0771,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+f02aa86e-9d6d-5457-999d-fa30490f3601,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 315,"Avenue Farhat Hached, Jendouba, Unit 315",8.7252,36.4063,TRUE,FALSE,
+b63a66e4-a122-58a6-ae1c-566760fd7727,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 316,"Avenue Habib Bourguiba, Tunis, Unit 316",10.1315,36.7115,FALSE,FALSE,24/7
+0ebe7c94-6d78-51e3-b4c0-21c8184e420a,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 317,"Boulevard Haffouz, Sousse, Unit 317",10.5919,35.7304,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+312ea7e1-1e43-51e7-8962-a449bf9dd7d3,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 318,"Rue de la Republique, Sfax, Unit 318",10.7203,34.6456,TRUE,FALSE,Mo-Sa 07:00-22:00
+b50c3d72-730d-5127-819e-015fbff38bed,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 319,"Avenue Habib Bouguiba, Bizerte, Unit 319",9.8388,37.1794,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+afc96b52-324a-5399-9eb6-2b05450a0e68,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 320,"Rue de Tripoli, Gabes, Unit 320",10.0672,33.7865,TRUE,TRUE,
+8175b454-e76f-5421-bb73-29009bdbd5ca,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 321,"Rue Ibn Khaldoun, Ariana, Unit 321",10.1654,36.7675,TRUE,FALSE,24/7
+a48c2d17-b221-54c0-9a2c-798f28fb4a86,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 322,"Avenue de la Republique, Gafsa, Unit 322",8.7642,34.3300,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+7760b880-4552-527a-9d2e-cb56f9a6b120,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 323,"Boulevard de l'Environnement, Monastir, Unit 323",10.8111,35.6693,FALSE,FALSE,Mo-Sa 07:00-22:00
+c965cdf8-4cc1-5908-be43-d08d8bafe450,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 324,"Rue des Freres Bouadla, Ben Arous, Unit 324",10.2130,36.6583,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+f7c0b046-e43d-5294-b13b-ffdbba344483,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 325,"Avenue Ibn Sina, Kairouan, Unit 325",10.0913,35.5831,TRUE,FALSE,
+0f17cfa0-722a-5af0-abf7-05ef4c318be9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 326,"Rue du 2 Mars, Nabeul, Unit 326",10.7366,36.3611,TRUE,FALSE,24/7
+d57e97bb-2300-546b-8d2b-6498a9699700,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 327,"Bordj El Kebir, Mahdia, Unit 327",11.0672,35.4097,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+af2c4f3f-9dda-56cb-b28e-507511bb0fbd,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 328,"Avenue de la Liberte, Medenine, Unit 328",10.5153,33.2590,TRUE,FALSE,Mo-Sa 07:00-22:00
+5272b103-299e-5e6a-84f9-d6fc8ddc2f6b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 329,"Rue de l'Independance, Kasserine, Unit 329",8.8487,35.0771,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+f4a27001-004e-5875-a31c-01dfc935edd9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 330,"Avenue Farhat Hached, Jendouba, Unit 330",8.8002,36.4063,FALSE,FALSE,
+e421ae25-26ec-53f0-acae-9b33491fbcec,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 331,"Avenue Habib Bourguiba, Tunis, Unit 331",10.2065,36.7115,TRUE,TRUE,24/7
+2d4398cd-4715-5f16-b9f4-a2168c0da746,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 332,"Boulevard Haffouz, Sousse, Unit 332",10.6669,35.7304,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+60ecc472-9e61-5797-98af-481c9bc433cf,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 333,"Rue de la Republique, Sfax, Unit 333",10.7953,34.6456,TRUE,FALSE,Mo-Sa 07:00-22:00
+18f8490a-ad28-53f6-a726-0190ab2b3304,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 334,"Avenue Habib Bouguiba, Bizerte, Unit 334",9.9138,37.1794,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+724f750e-3b64-56c1-a19a-f47fa3db6100,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 335,"Rue de Tripoli, Gabes, Unit 335",10.1422,33.7865,TRUE,FALSE,
+9efa3c4a-dc10-595c-9434-58167d6c9a77,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 336,"Rue Ibn Khaldoun, Ariana, Unit 336",10.2404,36.7675,TRUE,FALSE,24/7
+8a6c0d27-bddb-5261-8d8d-ef129fb1660b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 337,"Avenue de la Republique, Gafsa, Unit 337",8.8392,34.3300,FALSE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+4b0cc760-65e2-5c1e-9db0-19ba69f8bbca,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 338,"Boulevard de l'Environnement, Monastir, Unit 338",10.8861,35.6693,TRUE,FALSE,Mo-Sa 07:00-22:00
+3160febb-e305-5905-9fde-57f3a638c869,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 339,"Rue des Freres Bouadla, Ben Arous, Unit 339",10.2880,36.6583,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+a7d8f13d-1ec3-5b19-b86d-693036739937,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 340,"Avenue Ibn Sina, Kairouan, Unit 340",10.1663,35.5831,TRUE,FALSE,
+557820db-e0d9-54c9-b3b9-9ba31cce4efc,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 341,"Rue du 2 Mars, Nabeul, Unit 341",10.8116,36.3611,TRUE,FALSE,24/7
+0a840278-bf4a-5c48-bbc8-9e6b62be6057,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 342,"Bordj El Kebir, Mahdia, Unit 342",11.1422,35.4097,TRUE,TRUE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+731b450a-13b6-56f6-ab4b-9fc9b8e3828f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 343,"Avenue de la Liberte, Medenine, Unit 343",10.5903,33.2590,TRUE,FALSE,Mo-Sa 07:00-22:00
+34700a67-d1fe-54f4-b7fc-2e966b5c73d5,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 344,"Rue de l'Independance, Kasserine, Unit 344",8.9237,35.0771,FALSE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+276889c0-e12b-5f06-9b27-377ddfa65a7f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 345,"Avenue Farhat Hached, Jendouba, Unit 345",8.8752,36.4063,TRUE,FALSE,
+85ef2cd4-c6ce-5a66-af1c-d78e325bef32,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 346,"Avenue Habib Bourguiba, Tunis, Unit 346",10.2815,36.7115,TRUE,FALSE,24/7
+e94b3153-ba18-5567-949e-c2178e34df86,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 347,"Boulevard Haffouz, Sousse, Unit 347",10.7419,35.7304,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+3bed96dd-d702-5544-bf71-2002d29e2f28,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 348,"Rue de la Republique, Sfax, Unit 348",10.8703,34.6456,TRUE,FALSE,Mo-Sa 07:00-22:00
+979978b8-f572-505b-8b7c-cc59e221f385,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 349,"Avenue Habib Bouguiba, Bizerte, Unit 349",9.9888,37.1794,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+6d9ef0c5-e9b5-5628-9d88-1f22a51d24a1,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 350,"Rue de Tripoli, Gabes, Unit 350",10.2172,33.7865,TRUE,FALSE,
+b9d961a1-a811-5a2c-8844-76e99e43705e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 351,"Rue Ibn Khaldoun, Ariana, Unit 351",10.0654,36.7725,FALSE,FALSE,24/7
+a539adec-1be0-543d-b051-7926a1a4ec82,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 352,"Avenue de la Republique, Gafsa, Unit 352",8.6642,34.3350,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+3a8428a6-7d97-588d-aa1a-202be652f922,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 353,"Boulevard de l'Environnement, Monastir, Unit 353",10.7111,35.6743,TRUE,TRUE,Mo-Sa 07:00-22:00
+85220918-be1f-5d31-a371-7b98fcaab5b6,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 354,"Rue des Freres Bouadla, Ben Arous, Unit 354",10.1130,36.6633,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+e5d08b8a-ab9c-58a1-a1ad-e44938a6cbc9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 355,"Avenue Ibn Sina, Kairouan, Unit 355",9.9913,35.5881,TRUE,FALSE,
+9a0697b9-2849-57e7-8524-b9b6fb400618,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 356,"Rue du 2 Mars, Nabeul, Unit 356",10.6366,36.3661,TRUE,FALSE,24/7
+48816ef3-f617-586c-8b68-97d13c7a5294,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 357,"Bordj El Kebir, Mahdia, Unit 357",10.9672,35.4147,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+e3138b0e-2dc1-519d-ab61-6ec15de9162f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 358,"Avenue de la Liberte, Medenine, Unit 358",10.4153,33.2640,FALSE,FALSE,Mo-Sa 07:00-22:00
+84071e1b-af33-554e-8fe0-bf1a6a69ef57,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 359,"Rue de l'Independance, Kasserine, Unit 359",8.7487,35.0821,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+2aad3724-1a8d-513a-b76e-ff0e50b00787,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 360,"Avenue Farhat Hached, Jendouba, Unit 360",8.7002,36.4113,TRUE,FALSE,
+1ab7c730-cf74-5816-b955-fd9fcc663470,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 361,"Avenue Habib Bourguiba, Tunis, Unit 361",10.1065,36.7165,TRUE,FALSE,24/7
+53332ea3-b4c7-50eb-a51b-a99cb9bb8363,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 362,"Boulevard Haffouz, Sousse, Unit 362",10.5669,35.7354,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+14e47e28-8b6e-50fd-a93a-3e64d010ee4d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 363,"Rue de la Republique, Sfax, Unit 363",10.6953,34.6506,TRUE,FALSE,Mo-Sa 07:00-22:00
+aa6db574-b962-50d8-956b-bbcd82aa8860,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 364,"Avenue Habib Bouguiba, Bizerte, Unit 364",9.8138,37.1844,TRUE,TRUE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+5a6d8b2a-4bf6-566f-8814-b0f4aa48dc33,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 365,"Rue de Tripoli, Gabes, Unit 365",10.0422,33.7915,FALSE,FALSE,
+8cb55908-3bfe-5081-86f6-8edaf287f06e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 366,"Rue Ibn Khaldoun, Ariana, Unit 366",10.1404,36.7725,TRUE,FALSE,24/7
+db6a52d9-b526-5aae-ac8b-b674a14dd0b6,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 367,"Avenue de la Republique, Gafsa, Unit 367",8.7392,34.3350,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+ef5ad8ec-dcd8-5467-bcb2-43ed908c2aeb,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 368,"Boulevard de l'Environnement, Monastir, Unit 368",10.7861,35.6743,TRUE,FALSE,Mo-Sa 07:00-22:00
+5e0304df-72d8-586e-99dd-bc14f49bed07,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 369,"Rue des Freres Bouadla, Ben Arous, Unit 369",10.1880,36.6633,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+844c5b3e-4039-52d3-8feb-ff5c68cf8f2c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 370,"Avenue Ibn Sina, Kairouan, Unit 370",10.0663,35.5881,TRUE,FALSE,
+1cdfb0ec-8a2e-5256-8d6e-3686d299a04b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 371,"Rue du 2 Mars, Nabeul, Unit 371",10.7116,36.3661,TRUE,FALSE,24/7
+4ca01724-d685-5df7-9143-0e43d9a73e2c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 372,"Bordj El Kebir, Mahdia, Unit 372",11.0422,35.4147,FALSE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+a452848d-83f8-52b5-a3b5-abbece5553ac,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 373,"Avenue de la Liberte, Medenine, Unit 373",10.4903,33.2640,TRUE,FALSE,Mo-Sa 07:00-22:00
+1950f3df-e80e-5395-b9c7-7606400cc8eb,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 374,"Rue de l'Independance, Kasserine, Unit 374",8.8237,35.0821,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+a1bf0570-eead-5ace-b35a-cd705f8cb50b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 375,"Avenue Farhat Hached, Jendouba, Unit 375",8.7752,36.4113,TRUE,TRUE,
+1f06f2d6-d5c5-576e-8e0d-4632d95b2820,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 376,"Avenue Habib Bourguiba, Tunis, Unit 376",10.1815,36.7165,TRUE,FALSE,24/7
+830942f5-3997-52e9-a792-8f3e0c60a150,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 377,"Boulevard Haffouz, Sousse, Unit 377",10.6419,35.7354,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+b074a487-13f4-5671-9e2f-41875d89d579,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 378,"Rue de la Republique, Sfax, Unit 378",10.7703,34.6506,TRUE,FALSE,Mo-Sa 07:00-22:00
+b6a2c688-4b99-5c4c-a1d3-4dc59262411f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 379,"Avenue Habib Bouguiba, Bizerte, Unit 379",9.8888,37.1844,FALSE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+71819c27-e11a-54d6-8390-d56423d8061e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 380,"Rue de Tripoli, Gabes, Unit 380",10.1172,33.7915,TRUE,FALSE,
+bf3de4e8-6195-57c0-aa01-185c038ff3f1,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 381,"Rue Ibn Khaldoun, Ariana, Unit 381",10.2154,36.7725,TRUE,FALSE,24/7
+07e127fd-98a2-5e5d-8e46-01b38e7fc62d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 382,"Avenue de la Republique, Gafsa, Unit 382",8.8142,34.3350,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+c46ba2bd-a725-59a7-b813-177f60cbec96,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 383,"Boulevard de l'Environnement, Monastir, Unit 383",10.8611,35.6743,TRUE,FALSE,Mo-Sa 07:00-22:00
+95791922-6893-510a-948d-7c5a65cf2a30,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 384,"Rue des Freres Bouadla, Ben Arous, Unit 384",10.2630,36.6633,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+f63754b6-401a-545b-a8d0-609f8564adfe,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 385,"Avenue Ibn Sina, Kairouan, Unit 385",10.1413,35.5881,TRUE,FALSE,
+bf083e13-1b23-5434-aa38-e1b71fd664d0,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 386,"Rue du 2 Mars, Nabeul, Unit 386",10.7866,36.3661,FALSE,TRUE,24/7
+10187eb0-340d-56c1-aba7-98b8c29a530d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 387,"Bordj El Kebir, Mahdia, Unit 387",11.1172,35.4147,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+f1adf7fc-afda-5b39-bec7-3a6978195b14,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 388,"Avenue de la Liberte, Medenine, Unit 388",10.5653,33.2640,TRUE,FALSE,Mo-Sa 07:00-22:00
+8ba37c6d-c80b-56ea-9bc2-11d00f00fa2c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 389,"Rue de l'Independance, Kasserine, Unit 389",8.8987,35.0821,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+cbbb15f1-991f-52f3-91f0-2f64acd89e4d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 390,"Avenue Farhat Hached, Jendouba, Unit 390",8.8502,36.4113,TRUE,FALSE,
+681e59f8-0809-5a37-af0f-c14e56641b24,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 391,"Avenue Habib Bourguiba, Tunis, Unit 391",10.2565,36.7165,TRUE,FALSE,24/7
+15a12783-28e9-552d-8687-fbcd18604a0a,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 392,"Boulevard Haffouz, Sousse, Unit 392",10.7169,35.7354,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+44f79603-685f-5891-a174-afe9d86359b8,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 393,"Rue de la Republique, Sfax, Unit 393",10.8453,34.6506,FALSE,FALSE,Mo-Sa 07:00-22:00
+2e5a0586-1b3a-5b34-bcdf-636fcc0efcbb,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 394,"Avenue Habib Bouguiba, Bizerte, Unit 394",9.9638,37.1844,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+5921ff2e-231c-5a68-bc08-38fea8a81b83,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 395,"Rue de Tripoli, Gabes, Unit 395",10.1922,33.7915,TRUE,FALSE,
+6af05df5-c11f-5874-b519-d39290bc17d4,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 396,"Rue Ibn Khaldoun, Ariana, Unit 396",10.2904,36.7725,TRUE,FALSE,24/7
+f34ddb6b-f9dd-5e8f-816c-b6433504aba4,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 397,"Avenue de la Republique, Gafsa, Unit 397",8.8892,34.3350,TRUE,TRUE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+1010d98d-7af6-5eea-b1e9-4650557907f9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 398,"Boulevard de l'Environnement, Monastir, Unit 398",10.9361,35.6743,TRUE,FALSE,Mo-Sa 07:00-22:00
+de47d375-b969-5755-91c0-5a4fd0fdccff,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 399,"Rue des Freres Bouadla, Ben Arous, Unit 399",10.3380,36.6633,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+04a83dc6-9b15-5e2f-bae9-975512d5f0e0,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 400,"Avenue Ibn Sina, Kairouan, Unit 400",10.2163,35.5881,FALSE,FALSE,
+6b9e94ae-e1fe-55bc-ae71-5eae2dff4461,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 401,"Rue du 2 Mars, Nabeul, Unit 401",10.6116,36.3711,TRUE,FALSE,24/7
+33178a98-b96e-5e6e-a354-fb438dd1ba57,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 402,"Bordj El Kebir, Mahdia, Unit 402",10.9422,35.4197,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+af409232-d6f1-53d0-8c32-60dc0aa977cf,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 403,"Avenue de la Liberte, Medenine, Unit 403",10.3903,33.2690,TRUE,FALSE,Mo-Sa 07:00-22:00
+dea9c046-2612-58bf-bccc-360a2da2afda,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 404,"Rue de l'Independance, Kasserine, Unit 404",8.7237,35.0871,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+a8d42509-24a5-5164-8417-34d5b1c3a4cd,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 405,"Avenue Farhat Hached, Jendouba, Unit 405",8.6752,36.4163,TRUE,FALSE,
+0da52869-5e9c-54f7-9b68-34ee366fbdb3,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 406,"Avenue Habib Bourguiba, Tunis, Unit 406",10.0815,36.7215,TRUE,FALSE,24/7
+a91b8c81-a8e0-5b4d-a4a5-4192ec54aa9c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 407,"Boulevard Haffouz, Sousse, Unit 407",10.5419,35.7404,FALSE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+2bb6aa1a-712a-50af-83d4-882a57e01dd1,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 408,"Rue de la Republique, Sfax, Unit 408",10.6703,34.6556,TRUE,TRUE,Mo-Sa 07:00-22:00
+c416abb5-0651-58d7-98bc-151ba7d59b6c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 409,"Avenue Habib Bouguiba, Bizerte, Unit 409",9.7888,37.1894,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+a96c55ca-5b68-59cc-82b2-d1cad5577396,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 410,"Rue de Tripoli, Gabes, Unit 410",10.0172,33.7965,TRUE,FALSE,
+4c7146c9-f6e4-56f2-a413-70d68c3b8009,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 411,"Rue Ibn Khaldoun, Ariana, Unit 411",10.1154,36.7775,TRUE,FALSE,24/7
+17667f6f-8e27-5d04-909a-e77d42f14013,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 412,"Avenue de la Republique, Gafsa, Unit 412",8.7142,34.3400,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+d2bcbabd-4e5a-50bb-bb6a-5d4d374a0a6d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 413,"Boulevard de l'Environnement, Monastir, Unit 413",10.7611,35.6793,TRUE,FALSE,Mo-Sa 07:00-22:00
+b1fb3712-71d3-5f7c-a718-a811fb4540a2,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 414,"Rue des Freres Bouadla, Ben Arous, Unit 414",10.1630,36.6683,FALSE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+d06a6f0e-1339-5350-b727-b9e6c91136a6,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 415,"Avenue Ibn Sina, Kairouan, Unit 415",10.0413,35.5931,TRUE,FALSE,
+6529faa9-e559-5ef7-9a66-f00dd83cb114,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 416,"Rue du 2 Mars, Nabeul, Unit 416",10.6866,36.3711,TRUE,FALSE,24/7
+4ba26139-0501-575c-abe6-dce14fda4131,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 417,"Bordj El Kebir, Mahdia, Unit 417",11.0172,35.4197,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+76060d71-84f1-535b-bb00-bc42adcb7698,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 418,"Avenue de la Liberte, Medenine, Unit 418",10.4653,33.2690,TRUE,FALSE,Mo-Sa 07:00-22:00
+71048fcf-fbc7-5f7d-9039-f958b02dbda0,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 419,"Rue de l'Independance, Kasserine, Unit 419",8.7987,35.0871,TRUE,TRUE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+796fbe7d-3ae7-55e4-8636-403ef833009b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 420,"Avenue Farhat Hached, Jendouba, Unit 420",8.7502,36.4163,TRUE,FALSE,
+5aebec84-98e8-5075-8b2c-122050e4d9fd,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 421,"Avenue Habib Bourguiba, Tunis, Unit 421",10.1565,36.7215,FALSE,FALSE,24/7
+949e53b1-43fb-5a34-8d13-774a84ee3a57,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 422,"Boulevard Haffouz, Sousse, Unit 422",10.6169,35.7404,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+876e1272-7642-55db-9716-81c6f48f66b8,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 423,"Rue de la Republique, Sfax, Unit 423",10.7453,34.6556,TRUE,FALSE,Mo-Sa 07:00-22:00
+597933e7-ae51-595c-87e5-932f406ba49f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 424,"Avenue Habib Bouguiba, Bizerte, Unit 424",9.8638,37.1894,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+f9f6f440-3d16-5c70-8d07-a2df3c1360c7,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 425,"Rue de Tripoli, Gabes, Unit 425",10.0922,33.7965,TRUE,FALSE,
+12752159-5424-5cbc-99f2-3bc1741a1970,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 426,"Rue Ibn Khaldoun, Ariana, Unit 426",10.1904,36.7775,TRUE,FALSE,24/7
+29098437-1804-5f4c-b5c2-72e3d04539af,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 427,"Avenue de la Republique, Gafsa, Unit 427",8.7892,34.3400,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+9a320abf-3eac-54b1-93c4-2d0fba8c768e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 428,"Boulevard de l'Environnement, Monastir, Unit 428",10.8361,35.6793,FALSE,FALSE,Mo-Sa 07:00-22:00
+3a7a0a1e-478a-59c1-b75c-bf93b19ee0a7,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 429,"Rue des Freres Bouadla, Ben Arous, Unit 429",10.2380,36.6683,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+b1fbe05f-156b-563c-a3d2-5bf2e953c288,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 430,"Avenue Ibn Sina, Kairouan, Unit 430",10.1163,35.5931,TRUE,TRUE,
+40bb68c9-3640-5c48-a238-73a16ec35543,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 431,"Rue du 2 Mars, Nabeul, Unit 431",10.7616,36.3711,TRUE,FALSE,24/7
+73e2b014-a343-5a29-aa5b-1991beba2afe,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 432,"Bordj El Kebir, Mahdia, Unit 432",11.0922,35.4197,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+f29aa963-d340-5ba1-9060-8afdeaa93627,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 433,"Avenue de la Liberte, Medenine, Unit 433",10.5403,33.2690,TRUE,FALSE,Mo-Sa 07:00-22:00
+dda475c2-a244-51a2-a3fc-a96c907b7829,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 434,"Rue de l'Independance, Kasserine, Unit 434",8.8737,35.0871,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+0d3d0dde-c0f5-5249-90da-f67c73b26807,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 435,"Avenue Farhat Hached, Jendouba, Unit 435",8.8252,36.4163,FALSE,FALSE,
+2129e84a-0fce-5fb5-a5f6-a96281326fa2,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 436,"Avenue Habib Bourguiba, Tunis, Unit 436",10.2315,36.7215,TRUE,FALSE,24/7
+c0414dc1-033b-5ac2-bf2c-9aca23b23def,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 437,"Boulevard Haffouz, Sousse, Unit 437",10.6919,35.7404,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+39b706fd-296b-5cba-ae81-93e9f4f28325,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 438,"Rue de la Republique, Sfax, Unit 438",10.8203,34.6556,TRUE,FALSE,Mo-Sa 07:00-22:00
+15c8a31a-2860-5633-a931-2392fe85a01f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 439,"Avenue Habib Bouguiba, Bizerte, Unit 439",9.9388,37.1894,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+7dd116a7-29e7-5167-bf07-c1ee4452e39d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 440,"Rue de Tripoli, Gabes, Unit 440",10.1672,33.7965,TRUE,FALSE,
+45314cc2-acc4-5870-ba91-53e4eaacdad5,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 441,"Rue Ibn Khaldoun, Ariana, Unit 441",10.2654,36.7775,TRUE,TRUE,24/7
+2bd63bc5-f550-57f5-81ba-5d273fb64172,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 442,"Avenue de la Republique, Gafsa, Unit 442",8.8642,34.3400,FALSE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+2f0b0654-37dc-5868-b611-90653cf2ad36,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 443,"Boulevard de l'Environnement, Monastir, Unit 443",10.9111,35.6793,TRUE,FALSE,Mo-Sa 07:00-22:00
+3f56b3d2-9651-5027-99f5-8fe4e4589b9c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 444,"Rue des Freres Bouadla, Ben Arous, Unit 444",10.3130,36.6683,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+d4a84cb4-a4bf-5a99-bd7c-97887529b020,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 445,"Avenue Ibn Sina, Kairouan, Unit 445",10.1913,35.5931,TRUE,FALSE,
+3d35c99a-5406-5c38-9c5b-21c8483ab724,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 446,"Rue du 2 Mars, Nabeul, Unit 446",10.8366,36.3711,TRUE,FALSE,24/7
+c994471d-e7a2-5709-be36-a1f8ba6c5650,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 447,"Bordj El Kebir, Mahdia, Unit 447",11.1672,35.4197,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+97fbebbb-a0da-5523-b318-4b81e586cc9e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 448,"Avenue de la Liberte, Medenine, Unit 448",10.6153,33.2690,TRUE,FALSE,Mo-Sa 07:00-22:00
+931882f4-e85e-5f76-87e7-905674dbec2a,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 449,"Rue de l'Independance, Kasserine, Unit 449",8.9487,35.0871,FALSE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+aefbaebb-abcc-5637-bc15-1c7c5a9e5e16,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 450,"Avenue Farhat Hached, Jendouba, Unit 450",8.9002,36.4163,TRUE,FALSE,
+f5bd8f63-cfc4-534d-b767-a489e695ab42,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 451,"Avenue Habib Bourguiba, Tunis, Unit 451",10.0565,36.7265,TRUE,FALSE,24/7
+ab05aa3a-6a3b-5a28-ad02-7c93f05ce184,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 452,"Boulevard Haffouz, Sousse, Unit 452",10.5169,35.7454,TRUE,TRUE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+bea5000a-c761-5c7f-8d15-e3cc6d93467e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 453,"Rue de la Republique, Sfax, Unit 453",10.6453,34.6606,TRUE,FALSE,Mo-Sa 07:00-22:00
+677f85c4-2d54-5834-8a21-0aa8e4977670,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 454,"Avenue Habib Bouguiba, Bizerte, Unit 454",9.7638,37.1944,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+f31f3994-6101-5a42-8abc-916d78cb57d1,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 455,"Rue de Tripoli, Gabes, Unit 455",9.9922,33.8015,TRUE,FALSE,
+dad9d151-8e45-594d-9125-8381d06ecc5f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 456,"Rue Ibn Khaldoun, Ariana, Unit 456",10.0904,36.7825,FALSE,FALSE,24/7
+e4c7bfc0-4fef-5b15-b410-8acad59ab48b,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 457,"Avenue de la Republique, Gafsa, Unit 457",8.6892,34.3450,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+ce2b1c04-ba6e-5caa-bd11-37a05696fd54,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 458,"Boulevard de l'Environnement, Monastir, Unit 458",10.7361,35.6843,TRUE,FALSE,Mo-Sa 07:00-22:00
+a7ec3711-bb4b-5c16-9859-6558a611bbb5,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 459,"Rue des Freres Bouadla, Ben Arous, Unit 459",10.1380,36.6733,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+348c220f-a796-58ae-b9dd-101bf9124cad,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 460,"Avenue Ibn Sina, Kairouan, Unit 460",10.0163,35.5981,TRUE,FALSE,
+82ab8a90-7786-5ba2-ad62-b39c54f1cfeb,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 461,"Rue du 2 Mars, Nabeul, Unit 461",10.6616,36.3761,TRUE,FALSE,24/7
+54ef4e24-f9d9-50cc-b64b-4a317de641a9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 462,"Bordj El Kebir, Mahdia, Unit 462",10.9922,35.4247,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+72f558f3-9fc0-5971-a9f5-8402a4ffc6e9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 463,"Avenue de la Liberte, Medenine, Unit 463",10.4403,33.2740,FALSE,TRUE,Mo-Sa 07:00-22:00
+2c9d4490-2d57-5395-a6ad-75a0ee58d6a4,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 464,"Rue de l'Independance, Kasserine, Unit 464",8.7737,35.0921,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+7c4504bd-bd86-5c75-8169-c3c4477181a1,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 465,"Avenue Farhat Hached, Jendouba, Unit 465",8.7252,36.4213,TRUE,FALSE,
+3b36b72b-90d9-53c0-bcb0-770516d1b901,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 466,"Avenue Habib Bourguiba, Tunis, Unit 466",10.1315,36.7265,TRUE,FALSE,24/7
+93e42a48-7ad8-5f20-b8a6-4b6f4ad1d01a,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 467,"Boulevard Haffouz, Sousse, Unit 467",10.5919,35.7454,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+7b27987a-aa9b-5ce7-8f17-f7ccc1500494,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 468,"Rue de la Republique, Sfax, Unit 468",10.7203,34.6606,TRUE,FALSE,Mo-Sa 07:00-22:00
+9d0bceea-9457-5add-96aa-4d95fa3d9980,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 469,"Avenue Habib Bouguiba, Bizerte, Unit 469",9.8388,37.1944,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+f3ee520e-95f0-5707-a33e-1cc3cd2f4ec5,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 470,"Rue de Tripoli, Gabes, Unit 470",10.0672,33.8015,FALSE,FALSE,
+55b31a41-c0df-5756-9c70-85dca85cac7a,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 471,"Rue Ibn Khaldoun, Ariana, Unit 471",10.1654,36.7825,TRUE,FALSE,24/7
+ed903eff-3f4a-521a-87c5-ae7ffd0ff39d,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 472,"Avenue de la Republique, Gafsa, Unit 472",8.7642,34.3450,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+ba2973e2-6f27-56f7-b095-1e863b9c9f94,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 473,"Boulevard de l'Environnement, Monastir, Unit 473",10.8111,35.6843,TRUE,FALSE,Mo-Sa 07:00-22:00
+421032ea-d0df-5d40-a8ee-4e1c4906b273,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 474,"Rue des Freres Bouadla, Ben Arous, Unit 474",10.2130,36.6733,TRUE,TRUE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+14530c77-9ef4-572d-a31f-858e44936faa,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 475,"Avenue Ibn Sina, Kairouan, Unit 475",10.0913,35.5981,TRUE,FALSE,
+936cb36f-3ff2-55cc-997a-833018e9f2ec,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 476,"Rue du 2 Mars, Nabeul, Unit 476",10.7366,36.3761,TRUE,FALSE,24/7
+e54bd090-a4ed-5e01-b17b-648223ad8db9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 477,"Bordj El Kebir, Mahdia, Unit 477",11.0672,35.4247,FALSE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+f08dc3fd-2b24-52f5-bfaa-6948e12115ea,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 478,"Avenue de la Liberte, Medenine, Unit 478",10.5153,33.2740,TRUE,FALSE,Mo-Sa 07:00-22:00
+76bf115f-935b-5bd3-8604-b91d1da31f20,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 479,"Rue de l'Independance, Kasserine, Unit 479",8.8487,35.0921,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+13237cd2-74af-576b-b92d-8dd95de4d46e,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 480,"Avenue Farhat Hached, Jendouba, Unit 480",8.8002,36.4213,TRUE,FALSE,
+bd62b32e-5a7f-59d4-8ba0-0d5887919082,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 481,"Avenue Habib Bourguiba, Tunis, Unit 481",10.2065,36.7265,TRUE,FALSE,24/7
+545b04b8-052b-5c44-8c5a-99e9dd61e342,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 482,"Boulevard Haffouz, Sousse, Unit 482",10.6669,35.7454,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+bf1baf81-a4d4-5a23-958b-7ebeb357580c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 483,"Rue de la Republique, Sfax, Unit 483",10.7953,34.6606,TRUE,FALSE,Mo-Sa 07:00-22:00
+7e44bd3e-cd1d-5858-a6eb-bac6ffbf52b5,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 484,"Avenue Habib Bouguiba, Bizerte, Unit 484",9.9138,37.1944,FALSE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+7ce125fe-c521-51e6-80ef-59fe5fa48eca,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 485,"Rue de Tripoli, Gabes, Unit 485",10.1422,33.8015,TRUE,TRUE,
+0e616958-8ffe-5bd3-81ed-f4902db782d7,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ariana Station Borne 486,"Rue Ibn Khaldoun, Ariana, Unit 486",10.2404,36.7825,TRUE,FALSE,24/7
+0165443b-bae9-50d2-8fb7-b35830bc7801,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gafsa Station Borne 487,"Avenue de la Republique, Gafsa, Unit 487",8.8392,34.3450,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+01f7540b-c0b8-5a61-b448-30e5e02c08a2,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Monastir Station Borne 488,"Boulevard de l'Environnement, Monastir, Unit 488",10.8861,35.6843,TRUE,FALSE,Mo-Sa 07:00-22:00
+26e9462d-a110-5991-920b-a03aa6d4ef1c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Ben Arous Station Borne 489,"Rue des Freres Bouadla, Ben Arous, Unit 489",10.2880,36.6733,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+9bc16c8a-e80d-5f81-a4f7-1c6de4383ca1,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kairouan Station Borne 490,"Avenue Ibn Sina, Kairouan, Unit 490",10.1663,35.5981,TRUE,FALSE,
+7d8c32bc-6e40-58f3-a82d-d44c6dabb891,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Nabeul Station Borne 491,"Rue du 2 Mars, Nabeul, Unit 491",10.8116,36.3761,FALSE,FALSE,24/7
+b02e0a29-c344-5817-a7e5-ae4d760b305c,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Mahdia Station Borne 492,"Bordj El Kebir, Mahdia, Unit 492",11.1422,35.4247,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+0c568c2d-4011-5386-99e8-4d31b05d0d96,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Medenine Station Borne 493,"Avenue de la Liberte, Medenine, Unit 493",10.5903,33.2740,TRUE,FALSE,Mo-Sa 07:00-22:00
+648e20cf-277f-5195-bdc5-beea997b04fb,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Kasserine Station Borne 494,"Rue de l'Independance, Kasserine, Unit 494",8.9237,35.0921,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+1e16623a-7602-5f4e-83e9-1a1dce04dbb9,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Jendouba Station Borne 495,"Avenue Farhat Hached, Jendouba, Unit 495",8.8752,36.4213,TRUE,FALSE,
+df8611e1-cfd4-56eb-80fc-1a5f57a86d8f,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Tunis Central Station Borne 496,"Avenue Habib Bourguiba, Tunis, Unit 496",10.2815,36.7265,TRUE,TRUE,24/7
+f7c18a06-81ff-504e-a1e9-8c2d540535ca,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sousse Station Borne 497,"Boulevard Haffouz, Sousse, Unit 497",10.7419,35.7454,TRUE,FALSE,Mo-Fr 08:00-20:00; Sa 09:00-13:00
+85d0018d-9f8f-5024-afb1-12368aaa4a00,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Sfax Station Borne 498,"Rue de la Republique, Sfax, Unit 498",10.8703,34.6606,FALSE,FALSE,Mo-Sa 07:00-22:00
+3f419367-7ac0-5f54-a475-bec84d332797,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Bizerte Station Borne 499,"Avenue Habib Bouguiba, Bizerte, Unit 499",9.9888,37.1944,TRUE,FALSE,Mo-Fr 06:00-22:00; Sa-Su 08:00-20:00
+69651d47-08ed-55d2-aade-954c7c755433,064c1d59-d3f8-5ad1-af24-e0dd5fd275f0,Gabes Station Borne 500,"Rue de Tripoli, Gabes, Unit 500",10.2172,33.8015,TRUE,FALSE,
