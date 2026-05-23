@@ -1,0 +1,75 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "BorneMap API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/v1/auth/mock-login": {
+      "post": {
+        "operationId": "authMockLogin",
+        "tags": ["auth"],
+        "summary": "Issue a mock JWT (MVP 1 only)"
+      }
+    },
+    "/api/v1/stations": {
+      "get": {
+        "operationId": "stationsListByViewport",
+        "tags": ["stations"],
+        "summary": "List stations inside a viewport bounding box"
+      }
+    },
+    "/api/v1/stations/{id}": {
+      "get": {
+        "operationId": "stationsGetById",
+        "tags": ["stations"],
+        "summary": "Full station detail"
+      }
+    },
+    "/api/v1/admin/stations": {
+      "get": {
+        "operationId": "adminStationsList",
+        "tags": ["admin"],
+        "summary": "Admin paginated list of stations"
+      },
+      "post": {
+        "operationId": "adminStationsCreate",
+        "tags": ["admin"],
+        "summary": "Create a station"
+      }
+    },
+    "/api/v1/admin/stations/{id}": {
+      "patch": {
+        "operationId": "adminStationsPatch",
+        "tags": ["admin"],
+        "summary": "Partial update"
+      },
+      "delete": {
+        "operationId": "adminStationsSoftDelete",
+        "tags": ["admin"],
+        "summary": "Soft-delete a station"
+      }
+    },
+    "/health/live": {
+      "get": {
+        "operationId": "healthLive",
+        "tags": ["health"],
+        "summary": "Liveness probe"
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "operationId": "healthReady",
+        "tags": ["health"],
+        "summary": "Readiness probe (DB check)"
+      }
+    },
+    "/metrics": {
+      "get": {
+        "operationId": "metrics",
+        "tags": ["observability"],
+        "summary": "Prometheus exposition"
+      }
+    }
+  }
+}
