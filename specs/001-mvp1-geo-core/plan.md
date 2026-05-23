@@ -270,7 +270,15 @@ bornemap/
 
 > Fill ONLY if Constitution Check has violations that must be justified.
 
-No violations. Section intentionally empty.
+### CT-001: Degraded-Operations Rule Deferred
+
+**Constitution Reference**: §Performance Constraints — "if average spatial query latency > 1500 ms over any rolling 15-minute window, the frontend MUST display a cached static map snapshot and disable live fetches until latency recovers."
+
+**Justification**: MVP 1 deploys to staging only (single-network, controlled cohort). There is no production traffic that could trigger sustained 1500 ms latency. The degraded-operations UI requires: (1) a latency-monitoring middleware emitting rolling-window metrics, (2) a frontend polling or WebSocket channel to receive degraded-state signals, and (3) a static map snapshot cache — all of which add meaningful complexity with zero staging benefit. This rule activates from MVP 4 (Redis cache layer + production deploy) onward.
+
+**Risk**: Low. Staging environment has ≤ 500 stations and ≤ 10 concurrent users; P95 target is 200 ms, making 1500 ms threshold unreachable under normal conditions.
+
+No other violations. Section otherwise intentionally empty.
 
 ---
 

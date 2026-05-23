@@ -53,7 +53,7 @@ An administrator logs into the admin portal, lists stations in a searchable/sort
 
 ---
 
-### User Story 3 — Mock authentication for admins (Priority: P2)
+### User Story 3 — Mock authentication for admins (Priority: P1 by dependency, P2 by user-facing impact)
 
 An admin enters a username at `/login`. If the username is on the environment's `MOCK_ADMIN_USERNAMES` allowlist, the system issues a mock JWT with `realm_access.roles = ["admin"]` carrying the canonical claim shape (`sub`, `preferred_username`, `realm_access.roles`, `iat`, `exp`). All admin endpoints require this token. No driver accounts exist yet.
 
