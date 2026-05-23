@@ -243,7 +243,7 @@ Per `plan.md` Project Structure:
 - [x] T100 Run k6 load test profile: 50 concurrent viewport queries/s against 500 seeded stations; verify P95 ≤ 200 ms (SC-001)
 - [ ] T100a Profile map FPS on reference devices (Samsung Galaxy A33 5G + iPhone 11) using platform frame profiler during a 10-second sustained pan/zoom gesture; verify ≥ 60 FPS (SC-002)
 - [ ] T100b Measure cold-start time to first marker render on 4G throttled connection: web (DevTools Network 4G throttle) ≤ 2.5 s, mobile (Network Link Conditioner 4G) ≤ 3.5 s (SC-003)
-- [ ] T101 Verify `#![deny(clippy::unwrap_used, clippy::expect_used, clippy::panic)]` is set on the `station-service` binary crate; run `cargo clippy` and confirm zero violations (SC-009)
+- [x] T101 Verify `#![deny(clippy::unwrap_used, clippy::expect_used, clippy::panic)]` is set on the `station-service` binary crate; run `cargo clippy` and confirm zero violations (SC-009)
 - [x] T102 Walk through `specs/001-mvp1-geo-core/quickstart.md` steps 1–11 end-to-end on a clean machine; document any deviations
 - [x] T102a Create `specs/001-mvp1-geo-core/validation.md` template per constitution Principle XI: cohort definition (≥5 drivers + ≥2 admins), per-task success/failure breakdown, SUS score fields, SC-001..SC-009 measurement sections, proceed/kill gate for MVP 2
 

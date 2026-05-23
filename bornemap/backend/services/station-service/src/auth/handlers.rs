@@ -1,8 +1,7 @@
 use actix_web::{web, HttpResponse};
-use common_utils::error::DomainError;
 use crate::error_adapter::ApiError;
 
-use super::models::{MockLoginRequest, MockLoginResponse};
+use super::models::MockLoginRequest;
 use super::service::MockAuthService;
 
 /// Issue a mock JWT (MVP 1 only)

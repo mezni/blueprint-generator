@@ -1,7 +1,8 @@
-use actix_web::{web, App, HttpServer, HttpResponse, middleware as actix_mw};
+#![deny(clippy::unwrap_used, clippy::expect_used, clippy::panic)]
+
+use actix_web::{web, App, HttpServer, HttpResponse};
 use sqlx::postgres::PgPoolOptions;
 use station_service::config::AppConfig;
-use common_utils::error::DomainError;
 use station_service::observability;
 use tracing_actix_web::TracingLogger;
 use utoipa::OpenApi;

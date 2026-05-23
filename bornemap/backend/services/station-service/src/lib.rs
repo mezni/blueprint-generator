@@ -1,3 +1,5 @@
+#![deny(clippy::unwrap_used, clippy::expect_used, clippy::panic)]
+
 pub mod auth;
 pub mod companies;
 pub mod config;
