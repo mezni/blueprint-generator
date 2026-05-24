@@ -92,100 +92,104 @@ export function StationEditPage({ isNew = false }: { isNew?: boolean }) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6 max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">
+    <div className="h-full flex flex-col p-6 overflow-y-auto max-w-2xl">
+      <h1 className="text-lg font-bold mb-6">
         {isNew ? "New Station" : "Edit Station"}
       </h1>
       {error && (
-        <div className="bg-red-50 text-red-700 p-3 rounded mb-4 text-sm">
+        <div className="bg-red-500/20 text-red-400 p-3 rounded-lg mb-4 text-xs border border-red-500/30">
           {error}
         </div>
       )}
       {fetching ? (
-        <p className="text-gray-500">Loading station data...</p>
+        <p className="text-sm text-slate-500">Loading station data...</p>
       ) : (
-      <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded shadow">
-        <div>
-          <label className="block text-sm font-medium mb-1">Name</label>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full border rounded px-3 py-2"
-            required
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium mb-1">Address</label>
-          <input
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            className="w-full border rounded px-3 py-2"
-            required
-          />
-        </div>
-        <div className="grid grid-cols-2 gap-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="rounded-xl border border-slate-800 bg-slate-900 p-5 space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-1">Longitude</label>
+            <label className="block text-xs font-medium text-slate-400 mb-1.5">Name</label>
             <input
-              type="number"
-              step="0.0001"
-              value={lng}
-              onChange={(e) => setLng(e.target.value)}
-              className="w-full border rounded px-3 py-2"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Latitude</label>
+            <label className="block text-xs font-medium text-slate-400 mb-1.5">Address</label>
             <input
-              type="number"
-              step="0.0001"
-              value={lat}
-              onChange={(e) => setLat(e.target.value)}
-              className="w-full border rounded px-3 py-2"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
               required
             />
           </div>
-        </div>
-        <div>
-          <label className="block text-sm font-medium mb-1">Opening Hours (OSM format)</label>
-          <input
-            value={openingHours}
-            onChange={(e) => setOpeningHours(e.target.value)}
-            placeholder="e.g. Mo-Fr 08:00-20:00; Sa 09:00-13:00"
-            className="w-full border rounded px-3 py-2"
-          />
-        </div>
-        <div className="flex items-center gap-4">
-          <label className="flex items-center gap-2">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">Longitude</label>
+              <input
+                type="number"
+                step="0.0001"
+                value={lng}
+                onChange={(e) => setLng(e.target.value)}
+                className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">Latitude</label>
+              <input
+                type="number"
+                step="0.0001"
+                value={lat}
+                onChange={(e) => setLat(e.target.value)}
+                className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+                required
+              />
+            </div>
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-slate-400 mb-1.5">Opening Hours (OSM format)</label>
             <input
-              type="checkbox"
-              checked={isActive}
-              onChange={(e) => setIsActive(e.target.checked)}
+              value={openingHours}
+              onChange={(e) => setOpeningHours(e.target.value)}
+              placeholder="e.g. Mo-Fr 08:00-20:00; Sa 09:00-13:00"
+              className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
             />
-            Active
-          </label>
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={underMaintenance}
-              onChange={(e) => setUnderMaintenance(e.target.checked)}
-            />
-            Under Maintenance
-          </label>
+          </div>
+          <div className="flex items-center gap-6">
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={isActive}
+                onChange={(e) => setIsActive(e.target.checked)}
+                className="rounded border-slate-700 bg-slate-800 text-blue-500 focus:ring-blue-500/40"
+              />
+              <span className="text-sm text-slate-300">Active</span>
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={underMaintenance}
+                onChange={(e) => setUnderMaintenance(e.target.checked)}
+                className="rounded border-slate-700 bg-slate-800 text-blue-500 focus:ring-blue-500/40"
+              />
+              <span className="text-sm text-slate-300">Under Maintenance</span>
+            </label>
+          </div>
         </div>
         <div className="flex gap-3">
           <button
             type="submit"
             disabled={loading}
-            className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+            className="px-5 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-500 disabled:opacity-50 transition-colors"
           >
             {loading ? "Saving..." : isNew ? "Create" : "Save"}
           </button>
           <button
             type="button"
             onClick={() => navigate("/admin/stations")}
-            className="px-6 py-2 bg-gray-200 rounded hover:bg-gray-300"
+            className="px-5 py-2 bg-slate-800 text-slate-300 text-sm rounded-lg hover:bg-slate-700 transition-colors"
           >
             Cancel
           </button>

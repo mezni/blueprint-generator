@@ -2,5 +2,5 @@ packages:
   - "packages/*"
   - "admin-portal"
   - "mobile-app"
-allowBuilds:
-  esbuild: true
+onlyBuiltDependencies:
+  - esbuild

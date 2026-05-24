@@ -6,6 +6,12 @@ macro_rules! newtype_id {
         #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
         pub struct $name(pub Uuid);
 
+        impl Default for $name {
+            fn default() -> Self {
+                Self::new()
+            }
+        }
+
         impl $name {
             pub fn new() -> Self {
                 Self(Uuid::new_v4())

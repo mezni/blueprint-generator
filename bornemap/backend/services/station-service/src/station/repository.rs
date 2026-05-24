@@ -1,10 +1,20 @@
-use sqlx::PgPool;
-use common_utils::error::DomainError;
 use crate::station::models::*;
+use common_utils::error::{db_err, DomainError};
+use sqlx::PgPool;
 
-fn db_err(e: sqlx::Error) -> DomainError {
-    DomainError::Internal(e.to_string())
-}
+type StationRow = (
+    uuid::Uuid,
+    uuid::Uuid,
+    String,
+    String,
+    f64,
+    f64,
+    bool,
+    bool,
+    Option<String>,
+    chrono::DateTime<chrono::Utc>,
+    chrono::DateTime<chrono::Utc>,
+);
 
 pub struct StationRepository;
 
@@ -43,26 +53,25 @@ impl StationRepository {
 
         let markers = rows
             .into_iter()
-            .map(|(id, name, lng, lat, is_active, under_maintenance)| StationMarker {
-                id: id.to_string(),
-                name,
-                coord: [lng, lat],
-                is_active,
-                under_maintenance,
-            })
+            .map(
+                |(id, name, lng, lat, is_active, under_maintenance)| StationMarker {
+                    id: id.to_string(),
+                    name,
+                    coord: [lng, lat],
+                    is_active,
+                    under_maintenance,
+                },
+            )
             .collect();
 
         Ok(markers)
     }
 
-    pub async fn get_by_id(
-        pool: &PgPool,
-        id: &str,
-    ) -> Result<StationDetail, DomainError> {
+    pub async fn get_by_id(pool: &PgPool, id: &str) -> Result<StationDetail, DomainError> {
         let station_id = uuid::Uuid::parse_str(id)
             .map_err(|e| DomainError::Validation(format!("Invalid station ID: {e}")))?;
 
-        let row: Option<(uuid::Uuid, uuid::Uuid, String, String, f64, f64, bool, bool, Option<String>, chrono::DateTime<chrono::Utc>, chrono::DateTime<chrono::Utc>)> = sqlx::query_as(
+        let row: Option<StationRow> = sqlx::query_as(
             r#"
             SELECT
                 s.id,
@@ -143,7 +152,7 @@ impl StationRepository {
             .map(|(id, connector, power_kw, is_active)| Charger {
                 id: id.to_string(),
                 connector,
-                power_kw: power_kw as f64,
+                power_kw,
                 is_active,
             })
             .collect())
@@ -192,7 +201,7 @@ impl StationRepository {
                 .bind(charger_id)
                 .bind(station_id)
                 .bind(&charger.connector)
-                .bind(charger.power_kw as f64)
+                .bind(charger.power_kw)
                 .bind(charger.is_active)
                 .execute(pool)
                 .await
@@ -217,7 +226,9 @@ impl StationRepository {
         let coord = patch.coord.unwrap_or(current.coord);
         let is_active = patch.is_active.unwrap_or(current.is_active);
         let under_maintenance = patch.under_maintenance.unwrap_or(current.under_maintenance);
-        let opening_hours_osm = patch.opening_hours_osm.as_ref()
+        let opening_hours_osm = patch
+            .opening_hours_osm
+            .as_ref()
             .or(current.opening_hours_osm.as_ref());
 
         let result = sqlx::query(
@@ -249,10 +260,7 @@ impl StationRepository {
         Ok(result.rows_affected() > 0)
     }
 
-    pub async fn admin_soft_delete(
-        pool: &PgPool,
-        id: &str,
-    ) -> Result<bool, DomainError> {
+    pub async fn admin_soft_delete(pool: &PgPool, id: &str) -> Result<bool, DomainError> {
         let station_id = uuid::Uuid::parse_str(id)
             .map_err(|e| DomainError::Validation(format!("Invalid station ID: {e}")))?;
 
@@ -271,7 +279,9 @@ impl StationRepository {
         .map_err(db_err)?;
 
         if result.rows_affected() == 0 {
-            return Err(DomainError::NotFound("Station not found or already deleted".into()));
+            return Err(DomainError::NotFound(
+                "Station not found or already deleted".into(),
+            ));
         }
         Ok(true)
     }
@@ -284,12 +294,14 @@ impl StationRepository {
         include_test: bool,
     ) -> Result<(Vec<StationDetail>, Option<String>), DomainError> {
         let cursor_id = match cursor {
-            Some(c) => Some(uuid::Uuid::parse_str(c)
-                .map_err(|e| DomainError::Validation(format!("Invalid cursor: {e}")))?),
+            Some(c) => Some(
+                uuid::Uuid::parse_str(c)
+                    .map_err(|e| DomainError::Validation(format!("Invalid cursor: {e}")))?,
+            ),
             None => None,
         };
 
-        let rows: Vec<(uuid::Uuid, uuid::Uuid, String, String, f64, f64, bool, bool, Option<String>, chrono::DateTime<chrono::Utc>, chrono::DateTime<chrono::Utc>)> = sqlx::query_as(
+        let rows: Vec<StationRow> = sqlx::query_as(
             r#"
             SELECT
                 s.id,
@@ -325,7 +337,7 @@ impl StationRepository {
         let mut items = Vec::with_capacity(rows.len());
         for row in &rows {
             let company_row: Option<(String,)> = sqlx::query_as(
-                "SELECT name FROM station_domain.companies WHERE id = $1",
+                "SELECT name FROM station_domain.companies WHERE id = $1 AND deleted_at IS NULL",
             )
             .bind(row.1)
             .fetch_optional(pool)

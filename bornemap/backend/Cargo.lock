@@ -2896,7 +2896,6 @@ dependencies = [
  "common-utils",
  "dotenvy",
  "jsonwebtoken",
- "lazy_static",
  "opening-hours",
  "prometheus",
  "reqwest",

@@ -1,6 +1,6 @@
 #![deny(clippy::unwrap_used, clippy::expect_used, clippy::panic)]
 
-use actix_web::{web, App, HttpServer, HttpResponse};
+use actix_web::{web, App, HttpResponse, HttpServer};
 use sqlx::postgres::PgPoolOptions;
 use station_service::config::AppConfig;
 use station_service::observability;
@@ -49,7 +49,10 @@ async fn main() -> std::io::Result<()> {
             .route("/health/live", web::get().to(health_live))
             .route("/health/ready", web::get().to(health_ready))
             .route("/metrics", web::get().to(metrics))
-            .service(utoipa_swagger_ui::SwaggerUi::new("/swagger-ui/{_:.*}").url("/api-docs/openapi.json", openapi))
+            .service(
+                utoipa_swagger_ui::SwaggerUi::new("/swagger-ui/{_:.*}")
+                    .url("/api-docs/openapi.json", openapi),
+            )
     })
     .bind(&bind_addr)?
     .run()
@@ -71,7 +74,5 @@ async fn metrics() -> HttpResponse {
     let body = prometheus::TextEncoder::new()
         .encode_to_string(&prometheus::default_registry().gather())
         .unwrap_or_default();
-    HttpResponse::Ok()
-        .content_type("text/plain")
-        .body(body)
+    HttpResponse::Ok().content_type("text/plain").body(body)
 }

@@ -1,5 +1,9 @@
 use thiserror::Error;
 
+pub fn db_err(e: impl ToString) -> DomainError {
+    DomainError::Internal(e.to_string())
+}
+
 #[derive(Debug, Error)]
 pub enum DomainError {
     #[error("Validation failed: {0}")]

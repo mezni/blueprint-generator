@@ -52,9 +52,9 @@ export function MapView() {
   const handleViewportChange = (v: MapViewportModel) => setViewport(v);
 
   return (
-    <div className="h-screen w-screen relative">
+    <div className="absolute inset-0">
       {isError && (
-        <div className="absolute top-4 left-4 z-[1000] bg-red-50 text-red-700 px-3 py-1 rounded shadow text-sm">
+        <div className="absolute top-3 left-3 z-[1000] bg-red-500/20 text-red-400 px-2.5 py-1 rounded text-[11px] font-medium">
           Failed to load markers
         </div>
       )}
@@ -91,7 +91,7 @@ export function MapView() {
         </MarkerClusterGroup>
       </MapContainer>
       {isLoading && (
-        <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded shadow text-sm">
+        <div className="absolute top-3 right-3 z-[1000] bg-slate-800/80 text-slate-300 px-2.5 py-1 rounded text-[11px] font-medium">
           Loading...
         </div>
       )}

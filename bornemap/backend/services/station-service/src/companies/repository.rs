@@ -1,10 +1,6 @@
-use sqlx::PgPool;
-use common_utils::error::DomainError;
 use crate::station::models::Company;
-
-fn db_err(e: sqlx::Error) -> DomainError {
-    DomainError::Internal(e.to_string())
-}
+use common_utils::error::{db_err, DomainError};
+use sqlx::PgPool;
 
 pub struct CompanyRepository;
 
@@ -13,7 +9,10 @@ impl CompanyRepository {
         let row: Option<(uuid::Uuid, String)> = sqlx::query_as(
             "SELECT id, name FROM station_domain.companies WHERE id = $1 AND deleted_at IS NULL",
         )
-        .bind(uuid::Uuid::parse_str(id).map_err(|e| DomainError::Validation(format!("Invalid company ID: {e}")))?)
+        .bind(
+            uuid::Uuid::parse_str(id)
+                .map_err(|e| DomainError::Validation(format!("Invalid company ID: {e}")))?,
+        )
         .fetch_optional(pool)
         .await
         .map_err(db_err)?;

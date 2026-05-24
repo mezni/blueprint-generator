@@ -1,6 +1,8 @@
 name: OpenAPI Breaking Diff
 
 on:
+  pull_request:
+    branches: [main, 001-mvp1-geo-core]
   workflow_dispatch:
 
 jobs:
@@ -15,12 +17,12 @@ jobs:
           sudo mv oasdiff /usr/local/bin/
       - name: Generate current openapi.json
         run: cd bornemap/backend && cargo run -p openapi-spec --release > /tmp/openapi.current.json
-      - name: Checkout main baseline
+      - name: Checkout base branch
         uses: actions/checkout@v4
         with:
-          ref: main
-          path: main-checkout
+          ref: ${{ github.base_ref }}
+          path: base-checkout
       - name: Generate baseline openapi.json
-        run: cd main-checkout/bornemap/backend && cargo run -p openapi-spec --release > /tmp/openapi.baseline.json
+        run: cd base-checkout/bornemap/backend && cargo run -p openapi-spec --release > /tmp/openapi.baseline.json
       - name: Breaking diff
         run: oasdiff breaking /tmp/openapi.baseline.json /tmp/openapi.current.json

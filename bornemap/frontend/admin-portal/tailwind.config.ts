@@ -6,6 +6,7 @@ export default {
       colors: {
         borne: {
           green: "#22c55e",
+          amber: "#eab308",
           red: "#ef4444",
         },
       },

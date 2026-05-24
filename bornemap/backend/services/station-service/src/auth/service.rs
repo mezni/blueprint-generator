@@ -1,7 +1,7 @@
 use common_utils::error::DomainError;
-use jsonwebtoken::{EncodingKey, Header, encode};
+use jsonwebtoken::{encode, EncodingKey, Header};
 
-use super::claims::{TokenClaims, ADMIN_ROLE, RealmAccess};
+use super::claims::{RealmAccess, TokenClaims, ADMIN_ROLE};
 use super::models::MockLoginResponse;
 
 const JWT_EXPIRY_SECS: i64 = 3600;

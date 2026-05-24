@@ -1,4 +1,4 @@
-use actix_web::{HttpResponse, http::StatusCode};
+use actix_web::{http::StatusCode, HttpResponse};
 use common_utils::error::DomainError;
 use serde_json::json;
 
@@ -18,8 +18,8 @@ impl std::fmt::Debug for ApiError {
 
 impl actix_web::ResponseError for ApiError {
     fn error_response(&self) -> HttpResponse {
-        let status = StatusCode::from_u16(self.0.status_code())
-            .unwrap_or(StatusCode::INTERNAL_SERVER_ERROR);
+        let status =
+            StatusCode::from_u16(self.0.status_code()).unwrap_or(StatusCode::INTERNAL_SERVER_ERROR);
         let code = self.0.error_code();
 
         HttpResponse::build(status).json(json!({

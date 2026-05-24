@@ -1,9 +1,9 @@
-use actix_web::{web, HttpResponse};
-use common_utils::error::DomainError;
 use crate::auth::middleware;
 use crate::error_adapter::ApiError;
 use crate::station::models::*;
 use crate::station::service::StationService;
+use actix_web::{web, HttpResponse};
+use common_utils::error::DomainError;
 
 /// List stations inside a viewport bounding box
 #[utoipa::path(
@@ -79,7 +79,7 @@ pub async fn admin_stations_list(
     let claims = middleware::extract_claims_from_req(&req, secret.get_ref())?;
     middleware::require_admin(&claims)?;
 
-    let limit = query.limit.unwrap_or(50).min(200).max(1);
+    let limit = query.limit.unwrap_or(50).clamp(1, 200);
     let response = StationService::admin_list(
         pool.get_ref(),
         limit,
@@ -185,28 +185,25 @@ pub struct AdminListQuery {
 }
 
 pub fn configure(cfg: &mut web::ServiceConfig) {
-    cfg.service(
-        web::resource("/stations")
-            .route(web::get().to(stations_list_by_viewport)),
-    )
-    .service(
-        web::resource("/stations/{id}")
-            .route(web::get().to(stations_get_by_id)),
-    )
-    .service(
-        web::resource("/admin/stations")
-            .route(web::get().to(admin_stations_list))
-            .route(web::post().to(admin_stations_create)),
-    )
-    .service(
-        web::resource("/admin/stations/{id}")
-            .route(web::patch().to(admin_stations_patch))
-            .route(web::delete().to(admin_stations_soft_delete)),
-    );
+    cfg.service(web::resource("/stations").route(web::get().to(stations_list_by_viewport)))
+        .service(web::resource("/stations/{id}").route(web::get().to(stations_get_by_id)))
+        .service(
+            web::resource("/admin/stations")
+                .route(web::get().to(admin_stations_list))
+                .route(web::post().to(admin_stations_create)),
+        )
+        .service(
+            web::resource("/admin/stations/{id}")
+                .route(web::patch().to(admin_stations_patch))
+                .route(web::delete().to(admin_stations_soft_delete)),
+        );
 }
 
 impl crate::auth::middleware::TokenClaimsExtractor for actix_web::HttpRequest {
-    fn extract_claims(&self, secret: &str) -> Result<crate::auth::claims::TokenClaims, DomainError> {
+    fn extract_claims(
+        &self,
+        secret: &str,
+    ) -> Result<crate::auth::claims::TokenClaims, DomainError> {
         let auth_header = self
             .headers()
             .get("Authorization")

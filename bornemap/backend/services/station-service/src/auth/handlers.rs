@@ -1,5 +1,5 @@
-use actix_web::{web, HttpResponse};
 use crate::error_adapter::ApiError;
+use actix_web::{web, HttpResponse};
 
 use super::models::MockLoginRequest;
 use super::service::MockAuthService;
@@ -31,8 +31,5 @@ pub async fn auth_mock_login(
 }
 
 pub fn configure(cfg: &mut web::ServiceConfig) {
-    cfg.service(
-        web::resource("/auth/mock-login")
-            .route(web::post().to(auth_mock_login)),
-    );
+    cfg.service(web::resource("/auth/mock-login").route(web::post().to(auth_mock_login)));
 }

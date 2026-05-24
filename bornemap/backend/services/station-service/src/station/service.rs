@@ -1,8 +1,8 @@
-use sqlx::PgPool;
-use common_utils::error::DomainError;
 use super::filters;
 use super::models::*;
 use super::repository::StationRepository;
+use common_utils::error::DomainError;
+use sqlx::PgPool;
 
 const VALID_CONNECTORS: &[&str] = &["Type2", "CCS", "CHAdeMO", "Type2_Tethered"];
 
@@ -23,10 +23,7 @@ impl StationService {
         })
     }
 
-    pub async fn get_by_id(
-        pool: &PgPool,
-        id: &str,
-    ) -> Result<StationDetail, DomainError> {
+    pub async fn get_by_id(pool: &PgPool, id: &str) -> Result<StationDetail, DomainError> {
         StationRepository::get_by_id(pool, id).await
     }
 
@@ -67,10 +64,7 @@ impl StationService {
         StationRepository::get_by_id(pool, id).await
     }
 
-    pub async fn admin_soft_delete(
-        pool: &PgPool,
-        id: &str,
-    ) -> Result<(), DomainError> {
+    pub async fn admin_soft_delete(pool: &PgPool, id: &str) -> Result<(), DomainError> {
         StationRepository::admin_soft_delete(pool, id).await?;
         Ok(())
     }
@@ -85,21 +79,18 @@ impl StationService {
         let (items, next_cursor) =
             StationRepository::admin_list(pool, limit, cursor, include_deleted, include_test)
                 .await?;
-        Ok(AdminStationListResponse {
-            items,
-            next_cursor,
-        })
+        Ok(AdminStationListResponse { items, next_cursor })
     }
 
     fn validate_coord(coord: [f64; 2]) -> Result<(), DomainError> {
         let lng = coord[0];
         let lat = coord[1];
-        if lng < -180.0 || lng > 180.0 {
+        if !(-180.0..=180.0).contains(&lng) {
             return Err(DomainError::Validation(
                 "Longitude must be between -180 and 180".into(),
             ));
         }
-        if lat < -90.0 || lat > 90.0 {
+        if !(-90.0..=90.0).contains(&lat) {
             return Err(DomainError::Validation(
                 "Latitude must be between -90 and 90".into(),
             ));
@@ -135,5 +126,106 @@ impl StationService {
                 "Invalid opening_hours_osm: {e}"
             ))),
         }
+    }
+}
+
+#[cfg(test)]
+#[allow(clippy::unwrap_used)]
+mod tests {
+    use super::*;
+
+    // --- validate_coord ---
+
+    #[test]
+    fn valid_coord_ok() {
+        StationService::validate_coord([10.0, 36.0]).unwrap();
+        StationService::validate_coord([-180.0, -90.0]).unwrap();
+        StationService::validate_coord([180.0, 90.0]).unwrap();
+        StationService::validate_coord([0.0, 0.0]).unwrap();
+    }
+
+    #[test]
+    fn coord_lng_out_of_range_errs() {
+        let err = StationService::validate_coord([181.0, 0.0]).unwrap_err();
+        assert!(matches!(err, DomainError::Validation(_)));
+
+        let err = StationService::validate_coord([-181.0, 0.0]).unwrap_err();
+        assert!(matches!(err, DomainError::Validation(_)));
+    }
+
+    #[test]
+    fn coord_lat_out_of_range_errs() {
+        let err = StationService::validate_coord([0.0, 91.0]).unwrap_err();
+        assert!(matches!(err, DomainError::Validation(_)));
+
+        let err = StationService::validate_coord([0.0, -91.0]).unwrap_err();
+        assert!(matches!(err, DomainError::Validation(_)));
+    }
+
+    // --- validate_connector ---
+
+    #[test]
+    fn valid_connectors_ok() {
+        for c in &["Type2", "CCS", "CHAdeMO", "Type2_Tethered"] {
+            StationService::validate_connector(c).unwrap();
+        }
+    }
+
+    #[test]
+    fn invalid_connector_errs() {
+        let err = StationService::validate_connector("Tesla").unwrap_err();
+        assert!(matches!(err, DomainError::Validation(_)));
+    }
+
+    #[test]
+    fn empty_connector_errs() {
+        let err = StationService::validate_connector("").unwrap_err();
+        assert!(matches!(err, DomainError::Validation(_)));
+    }
+
+    // --- validate_power_kw ---
+
+    #[test]
+    fn valid_power_ok() {
+        StationService::validate_power_kw(1.0).unwrap();
+        StationService::validate_power_kw(50.0).unwrap();
+        StationService::validate_power_kw(600.0).unwrap();
+    }
+
+    #[test]
+    fn zero_power_errs() {
+        let err = StationService::validate_power_kw(0.0).unwrap_err();
+        assert!(matches!(err, DomainError::Validation(_)));
+    }
+
+    #[test]
+    fn negative_power_errs() {
+        let err = StationService::validate_power_kw(-1.0).unwrap_err();
+        assert!(matches!(err, DomainError::Validation(_)));
+    }
+
+    #[test]
+    fn power_too_high_errs() {
+        let err = StationService::validate_power_kw(600.001).unwrap_err();
+        assert!(matches!(err, DomainError::Validation(_)));
+    }
+
+    // --- validate_opening_hours ---
+
+    #[test]
+    fn empty_opening_hours_ok() {
+        StationService::validate_opening_hours("").unwrap();
+    }
+
+    #[test]
+    fn valid_opening_hours_ok() {
+        StationService::validate_opening_hours("24/7").unwrap();
+        StationService::validate_opening_hours("Mo-Fr 08:00-18:00").unwrap();
+    }
+
+    #[test]
+    fn invalid_opening_hours_errs() {
+        let err = StationService::validate_opening_hours("not-a-valid-spec").unwrap_err();
+        assert!(matches!(err, DomainError::Validation(_)));
     }
 }

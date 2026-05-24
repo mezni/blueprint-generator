@@ -9,9 +9,7 @@ pub async fn setup_test_db() -> Result<sqlx::PgPool, Box<dyn std::error::Error>>
         .connect(&database_url)
         .await?;
 
-    sqlx::query("SELECT 1")
-        .execute(&pool)
-        .await?;
+    sqlx::query("SELECT 1").execute(&pool).await?;
 
     Ok(pool)
 }
