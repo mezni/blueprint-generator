@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { quantizeBounds } from "@bornemap/geo-models";
 import type { MapViewportModel } from "@bornemap/geo-models";

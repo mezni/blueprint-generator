@@ -7,7 +7,11 @@ export function buildNavigateUrl(coord: CoordinateModel): string {
   return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
 }
 
-export function openNavigate(coord: CoordinateModel): void {
+export async function openNavigate(coord: CoordinateModel): Promise<void> {
   const url = buildNavigateUrl(coord);
-  Linking.openURL(url);
+  try {
+    await Linking.openURL(url);
+  } catch {
+    console.warn("Failed to open navigation URL:", url);
+  }
 }

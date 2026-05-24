@@ -125,7 +125,7 @@ impl StationRepository {
             SELECT
                 ch.id,
                 ch.connector,
-                ch.power_kw,
+                ch.power_kw::float8,
                 ch.is_active
             FROM station_domain.chargers ch
             WHERE ch.station_id = $1
@@ -162,7 +162,7 @@ impl StationRepository {
             INSERT INTO station_domain.stations
                 (id, company_id, name, address, location, is_active, under_maintenance, opening_hours_osm, is_test)
             VALUES
-                ($1, $2, $3, ST_MakePoint($4, $5)::geography, $6, $7, $8, FALSE)
+                ($1, $2, $3, $4, ST_MakePoint($5, $6)::geography, $7, $8, $9, FALSE)
             "#,
         )
         .bind(station_id)

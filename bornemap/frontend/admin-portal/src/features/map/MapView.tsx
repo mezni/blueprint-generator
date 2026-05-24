@@ -47,12 +47,17 @@ function MapEvents({
 
 export function MapView() {
   const [viewport, setViewport] = useState<MapViewportModel | null>(null);
-  const { markers, isLoading } = useViewportStations(viewport);
+  const { markers, isLoading, isError } = useViewportStations(viewport);
 
   const handleViewportChange = (v: MapViewportModel) => setViewport(v);
 
   return (
     <div className="h-screen w-screen relative">
+      {isError && (
+        <div className="absolute top-4 left-4 z-[1000] bg-red-50 text-red-700 px-3 py-1 rounded shadow text-sm">
+          Failed to load markers
+        </div>
+      )}
       <MapContainer
         center={TUNISIA_CENTER}
         zoom={DEFAULT_ZOOM}

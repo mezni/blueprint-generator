@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "";
 
 export async function apiFetch<T>(
   path: string,
@@ -14,6 +14,11 @@ export async function apiFetch<T>(
   }
 
   const res = await fetch(`${API_BASE}${path}`, { ...options, headers });
+  if (res.status === 401) {
+    localStorage.removeItem("bornemap_token");
+    window.location.href = "/login";
+    throw new Error("Session expired");
+  }
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
     throw new Error(body.detail || body.title || `HTTP ${res.status}`);
