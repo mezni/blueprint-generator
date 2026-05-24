@@ -34,7 +34,7 @@ description: "Task list for Phase 0 — Foundation & Infrastructure Loop"
 
 - [ ] T001 Create root-level infra files: `docker-compose.yml`, `.gitignore`, `README.md`
 - [ ] T002 [P] Initialize backend Python project: `backend/pyproject.toml`, `backend/app/__init__.py`
-- [ ] T003 [P] Initialize web frontend: `web/package.json`, `web/vite.config.ts`, `web/tsconfig.json`, `web/index.html`
+- [ ] T003 [P] Initialize web frontend: `web/package.json`, `web/vite.config.ts`, `web/tsconfig.json`, `web/index.html`, `web/public/favicon.svg`
 - [ ] T004 [P] Initialize mobile Expo project: `mobile/package.json`, `mobile/app.json`, `mobile/tsconfig.json`
 
 ---
@@ -46,6 +46,7 @@ description: "Task list for Phase 0 — Foundation & Infrastructure Loop"
 **⚠️ CRITICAL**: No user story can begin until this phase is complete
 
 - [ ] T005 Create `backend/app/core/config.py` with pydantic-settings `Settings` class (DATABASE_URL, APP_NAME, CORS_ORIGINS, etc.)
+- [ ] T005b Create `backend/.env.example` documenting all required env vars with defaults for local dev (DATABASE_URL=postgresql+asyncpg://borne:map@localhost:5432/borne, APP_NAME=BorneMap, CORS_ORIGINS=["http://localhost:5173"])
 - [ ] T006 [P] Create `backend/app/core/database.py` — async SQLAlchemy engine + `AsyncSession` factory for PostGIS
 - [ ] T007 [P] Create `backend/app/core/dependencies.py` — `get_db` session dependency, health-check helpers
 - [ ] T008 Setup Alembic: `backend/alembic.ini`, `backend/migrations/env.py`, baseline revision `001_create_stations.py`
@@ -61,12 +62,12 @@ description: "Task list for Phase 0 — Foundation & Infrastructure Loop"
 **Independent Test**: Clone repo, run `docker compose up -d`, `uvicorn` dev server, verify `GET /health/live` returns 200 and `GET /health/ready` confirms DB connected
 
 - [ ] T009 [US1] Create FastAPI app entry point in `backend/app/main.py` — app factory, CORS middleware, include health router
-- [ ] T010 [P] [US1] Implement health liveness router in `backend/app/health/router.py` — `GET /health/live` → `{"status": "alive"}`
-- [ ] T011 [US1] Implement health readiness router — `GET /health/ready` → verifies DB with `SELECT 1`, returns `{"status": "ready", "database": "connected"}` or 503
-- [ ] T012 [US1] Create `backend/requirements.txt` with all dependencies (fastapi, uvicorn, sqlalchemy[asyncio], asyncpg, geoalchemy2, alembic, pydantic-settings, httpx, pytest, pytest-asyncio)
+- [ ] T010 [P] [US1] Implement health liveness router in `backend/app/health/router.py` — `GET /health/live` → `{"status": "ok"}`
+- [ ] T011 [US1] Implement health readiness router — `GET /health/ready` → verifies DB with `SELECT 1`, returns `{"status": "ok", "database": "connected"}` or 503
+- [ ] T012 [US1] Define all backend dependencies in `backend/pyproject.toml` — main deps (fastapi, uvicorn, sqlalchemy[asyncio], asyncpg, geoalchemy2, alembic, pydantic-settings) under `[project]`; test deps (httpx, pytest, pytest-asyncio) under `[project.optional-dependencies] dev`
 - [ ] T013 [US1] Create `backend/Dockerfile` — Python 3.12-slim, install deps, copy app, run uvicorn with hot-reload
 - [ ] T014 [US1] Create `backend/tests/conftest.py` (async test client fixture) and `backend/tests/test_health.py` (live + ready endpoint tests)
-- [ ] T015 [P] [US1] Create feature-scoped station placeholders: `backend/app/stations/{models.py,schemas.py,repository.py,service.py,router.py}` (empty classes/functions per constitution §6)
+- [ ] T015 [P] [US1] Create feature-scoped station stubs: `backend/app/stations/{models.py,schemas.py,repository.py,service.py,router.py}` — each file must have correct module-level declarations per constitution §6 (router.py gets `APIRouter()` instance, models.py gets `Base` import, etc.) so imports across the layer stack resolve
 
 **Checkpoint**: US1 functional — backend serves health endpoints, DB connected, hot-reload works
 
@@ -92,11 +93,11 @@ description: "Task list for Phase 0 — Foundation & Infrastructure Loop"
 **Independent Test**: Navigate to admin portal URL, see full-screen map with CartoDB Positron tiles and floating panel containers with design tokens
 
 - [ ] T018 [P] [US3] Configure `web/tailwind.config.ts` and `web/postcss.config.js` with shadcn/ui theme
-- [ ] T019 [P] [US3] Initialize shadcn/ui: run `npx shadcn@latest init`, add `button` and `card` components to `web/src/components/ui/`
+- [ ] T019 [P] [US3] Create shadcn/ui config in `web/components.json` and scaffold `web/src/components/ui/button.tsx` and `web/src/components/ui/card.tsx` with design token class bindings
 - [ ] T020 [US3] Create `web/src/styles/globals.css` — Tailwind directives, design token CSS custom properties (accent green #22c55e, border-radius 2xl, backdrop blur, shadow), font imports
 - [ ] T021 [US3] Create `web/src/main.tsx` (React DOM render) and `web/src/App.tsx` (full-screen layout, h-screen, map mount point, panel slots)
 - [ ] T022 [P] [US3] Create Leaflet map wrapper in `web/src/components/map/MapView.tsx` — react-leaflet `MapContainer`, `TileLayer` with CartoDB Positron, `useMapEvents` for pan/zoom
-- [ ] T023 [US3] Implement tile fallback: CartoDB Positron primary → OSM on error → warning banner (`web/src/components/map/TileFallback.tsx`)
+- [ ] T023 [US3] Implement tile fallback: CartoDB Positron primary → OSM on error → warning banner at top of map viewport with red background, white text "Map tiles unavailable — using fallback tiles" (`web/src/components/map/TileFallback.tsx`)
 - [ ] T024 [US3] Create floating panel containers in `web/src/components/panels/SearchPanel.tsx`, `StationListPanel.tsx`, `StationFormPanel.tsx` — design tokens applied (green accent border, rounded-2xl, backdrop-blur, shadow-lg)
 - [ ] T025 [P] [US3] Create API client stub in `web/src/lib/api.ts` — base fetch wrapper for `http://localhost:8000`
 - [ ] T026 [US3] Create stations feature placeholder: `web/src/features/stations/` with empty component stubs
@@ -112,10 +113,12 @@ description: "Task list for Phase 0 — Foundation & Infrastructure Loop"
 **Independent Test**: Scan Expo QR code, see responsive placeholder app shell with safe area margins and accent-colored elements
 
 - [ ] T027 [US4] Create `mobile/app/_layout.tsx` — Expo Router tab layout with SafeAreaView, design tokens (green accent), status bar styling
-- [ ] T028 [P] [US4] Create map tab in `mobile/app/(tabs)/index.tsx` — placeholder text, map container area, accent-colored header
-- [ ] T029 [P] [US4] Create favorites tab in `mobile/app/(tabs)/favorites.tsx` — placeholder list, safe area, design tokens
-- [ ] T030 [US4] Create placeholder map component in `mobile/components/map/MapView.tsx` — empty map container (react-native-maps ready for Phase 2), green accent border
-- [ ] T031 [P] [US4] Create API client stub in `mobile/lib/api.ts` — base fetch wrapper for backend
+- [ ] T027b [US4] Create `mobile/babel.config.js` with Expo preset and reanimated plugin (required for @gorhom/bottom-sheet in Phase 2)
+- [ ] T028 [P] [US4] Create tab group layout in `mobile/app/(tabs)/_layout.tsx` with Expo Router TabNavigator before individual tab screens
+- [ ] T029 [P] [US4] Create map tab in `mobile/app/(tabs)/index.tsx` — placeholder text, map container area, accent-colored header
+- [ ] T030 [P] [US4] Create favorites tab in `mobile/app/(tabs)/favorites.tsx` — placeholder list, safe area, design tokens
+- [ ] T031 [US4] Create placeholder map component in `mobile/components/map/MapView.tsx` — empty map container (react-native-maps ready for Phase 2), green accent border. Must forward a ref prop for snap-sheet compatibility (Phase 2 needs `bottomSheetRef`)
+- [ ] T032 [P] [US4] Create API client stub in `mobile/lib/api.ts` — base fetch wrapper for backend
 
 **Checkpoint**: US4 functional — mobile app loads in Expo Go, tabs render, hot-reload works
 
@@ -125,9 +128,7 @@ description: "Task list for Phase 0 — Foundation & Infrastructure Loop"
 
 **Purpose**: Verify everything works together end-to-end
 
-- [ ] T032 Verify hot-reload: edit `backend/app/health/router.py` → backend reloads; edit `web/src/App.tsx` → web reloads; edit `mobile/app/(tabs)/index.tsx` → mobile reloads (Expo Go)
-- [ ] T033 Update `specs/001-foundation-infrastructure/quickstart.md` with any implementation changes
-- [ ] T034 Run full CI validation locally: backend Ruff + Black + pytest, web tsc + build, mobile tsc
+- [ ] T033 Update `specs/001-foundation-infrastructure/quickstart.md` — add verification checklist items: health endpoints respond, web map loads, mobile renders, hot-reload confirmed
 
 ---
 
@@ -153,7 +154,7 @@ description: "Task list for Phase 0 — Foundation & Infrastructure Loop"
 - Foundational tasks T006, T007 can run in parallel
 - Within US1: T010 and T015 can run in parallel with T009
 - Within US3: T018, T019, T022, T025 can run in parallel
-- Within US4: T028, T029, T031 can run in parallel
+- Within US4: T028, T029, T030, T032 can run in parallel (T031 depends on react-native-maps import, not on tab layout)
 - US2 and US3 can run in parallel after US1 completes
 
 ### Parallel Example: User Story 1
@@ -170,7 +171,7 @@ Task: "Create stations feature placeholders in backend/app/stations/"
 ```bash
 # Launch simultaneously:
 Task: "Configure Tailwind CSS with design tokens"
-Task: "Initialize shadcn/ui components"
+Task: "Create shadcn/ui config in web/components.json"
 Task: "Create Leaflet map wrapper in web/src/components/map/MapView.tsx"
 Task: "Create API client stub in web/src/lib/api.ts"
 ```
