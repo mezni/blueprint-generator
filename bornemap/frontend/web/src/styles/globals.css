@@ -4,6 +4,9 @@
 
 :root {
   --accent: #22c55e;
+  --accent-light: #4ade80;
+  --accent-dark: #16a34a;
+  --accent-muted: #dcfce7;
   --accent-foreground: #ffffff;
   --card: #ffffff;
   --card-foreground: #0a0a0a;

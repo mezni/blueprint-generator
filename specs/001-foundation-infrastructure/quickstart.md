@@ -5,6 +5,7 @@
 - Docker Engine 24+ with docker compose plugin
 - Node.js 20+ (LTS)
 - Python 3.12+
+- pnpm 9+ (`npm install -g pnpm`)
 - Expo Go app on iOS/Android device or simulator
 - Visual Studio Code (recommended)
 
@@ -32,8 +33,8 @@ npm run dev
 
 # 4. Mobile (separate terminal)
 cd ../mobile
-npm install
-npx expo start
+pnpm install
+pnpm start
 ```
 
 ## Verify
@@ -74,9 +75,10 @@ ruff check . && black --check . && pytest
 cd bornemap/frontend/web
 npx tsc --noEmit && npm run build
 
-# Mobile
+# Mobile (pnpm required)
 cd bornemap/frontend/mobile
-npx tsc --noEmit
+pnpm typecheck
+pnpm test
 ```
 
 ## Branch Workflow

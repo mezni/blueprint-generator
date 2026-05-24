@@ -36,7 +36,8 @@
 ### CI Pipeline
 - Two workflows: `backend.yml` and `frontend.yml`
 - Backend: Ruff lint → Black format check → pytest (with docker service postgis)
-- Frontend: `tsc --noEmit` → `npm run build`
+- Frontend: two jobs — `web` (`npm ci` → `tsc --noEmit` → `npm run build`) and `mobile` (`pnpm install --frozen-lockfile` → `pnpm typecheck` → `pnpm test`)
+- Mobile uses pnpm 9+ via `pnpm/action-setup@v4`
 - Both triggered on PR to `main`
 
 ## Unresolved Questions

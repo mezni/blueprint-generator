@@ -135,8 +135,8 @@ QR code, and see a responsive placeholder screen with the app shell visible
   simulator as fallback for local testing.
 - **Map tile CDN unreachable**: If CartoDB Positron tile CDN fails to load,
   the map shows a warning banner and falls back to OpenStreetMap default tiles.
-- **Dependency install failure**: If `npm install`, `pip install`, or Docker
-  image pull fails, the setup process must print the specific error and
+- **Dependency install failure**: If `pnpm install`, `npm install`, `pip install`,
+  or Docker image pull fails, the setup process must print the specific error and
   suggest corrective action (network check, disk space, version requirements).
 
 ## Requirements *(mandatory)*

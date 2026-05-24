@@ -1,28 +1,28 @@
-import { View, StyleSheet } from "react-native";
 import React from "react";
+import MapView, { PROVIDER_DEFAULT } from "react-native-maps";
+import { StyleSheet } from "react-native";
 
-type MapViewProps = {
-  // Forward ref for snap-sheet compatibility (Phase 2 needs bottomSheetRef)
-};
+interface MapViewProps {
+  onMapPress?: () => void;
+}
 
-const MapView = React.forwardRef<View, MapViewProps>((_props, ref) => {
+const BorneMapView = React.forwardRef<MapView, MapViewProps>((_props, ref) => {
   return (
-    <View
+    <MapView
       ref={ref}
-      style={styles.container}
+      style={StyleSheet.absoluteFillObject}
+      provider={PROVIDER_DEFAULT}
+      initialRegion={{
+        latitude: 33.8869,
+        longitude: 9.5375,
+        latitudeDelta: 10,
+        longitudeDelta: 10,
+      }}
+      toolbarEnabled={false}
     />
   );
 });
 
-MapView.displayName = "MapView";
+BorneMapView.displayName = "BorneMapView";
 
-export default MapView;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    borderWidth: 2,
-    borderColor: "#22c55e",
-    borderRadius: 16,
-  },
-});
+export default BorneMapView;
