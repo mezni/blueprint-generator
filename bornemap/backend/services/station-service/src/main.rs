@@ -9,6 +9,8 @@ use utoipa::OpenApi;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    let _ = dotenvy::dotenv();
+
     let config = AppConfig::from_env().unwrap_or_else(|e| {
         eprintln!("Configuration error: {e}");
         std::process::exit(1);
