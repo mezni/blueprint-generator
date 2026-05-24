@@ -4,7 +4,7 @@
 > constitution at `.specify/memory/constitution.md`. In any conflict between this
 > document and the constitution, **the constitution wins**.
 
-**Last Updated**: 2026-05-24 | **Constitution Version**: 1.0.0
+**Last Updated**: 2026-05-24 (revised) | **Constitution Version**: 1.0.0
 
 ---
 
@@ -146,6 +146,7 @@ bornemap/
 │   ├── vite.config.ts
 │   └── tailwind.config.ts
 ├── mobile/                        # Expo Go React Native
+│   ├── __tests__/                 # Jest smoke tests
 │   ├── app/                       # Expo Router file-based routing
 │   │   ├── (tabs)/
 │   │   │   ├── index.tsx          # Map tab
@@ -158,7 +159,11 @@ bornemap/
 │   ├── lib/
 │   │   ├── api.ts                 # shared API client (same pattern as web)
 │   │   └── storage.ts            # AsyncStorage wrapper
-│   └── package.json
+│   ├── .npmrc                     # pnpm config (hoist deps for RN)
+│   ├── jest.config.js             # jest-expo preset with pnpm support
+│   ├── metro.config.js            # @expo/metro-config wrapper
+│   ├── package.json
+│   └── pnpm-lock.yaml             # pnpm lockfile
 ├── docker-compose.yml
 └── .github/workflows/
     ├── backend.yml
@@ -196,8 +201,10 @@ stations/               # CORRECT: feature-scoped
 | Mobile Map | react-native-maps | 1.14+ | Native map views |
 | Server State | @tanstack/react-query | v5 | HTTP state management |
 | Styling | Tailwind CSS + shadcn/ui | latest | Design system |
+| Package Manager | pnpm | 9+ | Mobile dependency management |
 | Linting | Ruff + Black | latest | Python code quality |
 | Type Check | TypeScript (`strict: true`) | 5+ | Frontend type safety |
+| Mobile Testing | Jest + jest-expo + RNTL | latest | Mobile unit tests |
 | CI | GitHub Actions | — | Automated pipelines |
 
 ### Auth Phases
@@ -525,7 +532,29 @@ Use `expo-haptics` on every snap transition.
 </Marker>
 ```
 
-### 9.4 Local Favorites (AsyncStorage)
+### 9.4 Testing
+
+Mobile tests use **Jest** with the `jest-expo` preset and `@testing-library/react-native`. The
+`transformIgnorePatterns` accounts for pnpm's `.pnpm/` virtual store layout:
+
+```typescript
+// jest.config.js — pnpm-compatible transform patterns
+module.exports = {
+  preset: "jest-expo",
+  transformIgnorePatterns: [
+    "node_modules/(?!.pnpm/|((jest-)?react-native|@react-native(-community)?|@react-native/js-polyfills|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|expo-modules-core|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)/)",
+  ],
+};
+```
+
+Run tests with:
+
+```bash
+pnpm test
+pnpm test -- --watch  # watch mode
+```
+
+### 9.5 Local Favorites (AsyncStorage)
 
 ```typescript
 // Key: "bornemap_favorites"
@@ -658,14 +687,42 @@ jobs:
 ```yaml
 # .github/workflows/frontend.yml
 jobs:
-  check:
+  web:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: bornemap/frontend/web
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: {node-version: "20"}
-      - run: cd web && npm ci
-      - run: cd web && npx tsc --noEmit
-      - run: cd web && npm run build
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: bornemap/frontend/web/package-lock.json
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npm run build
+
+  mobile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: bornemap/frontend/mobile
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+          cache-dependency-path: bornemap/frontend/mobile/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm test
 ```
 
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TileLayer, useMap } from "react-leaflet";
+import { TileLayer } from "react-leaflet";
 
 const PRIMARY_URL = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
 const PRIMARY_ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors, &copy; <a href="https://carto.com/">CARTO</a>';
@@ -10,7 +10,6 @@ const FALLBACK_ATTR = "&copy; OpenStreetMap contributors";
 export default function TileFallback() {
   const [useFallback, setUseFallback] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
-  const map = useMap();
 
   return (
     <>

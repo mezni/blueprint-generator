@@ -32,7 +32,7 @@ strict automated testing guardrails.
 - **Mobile Client** — Expo Go managed framework initialised with a simple responsive
   placeholder screen.
 - **CI Pipelines** — GitHub Actions enforcing Ruff/Black lint, TypeScript `tsc` check,
-  and build verification on every PR.
+  build verification, and mobile unit tests (Jest) on every PR.
 
 ### Success Criteria
 
@@ -242,10 +242,10 @@ remediation path documented.
 ### Week 1 — Foundation & Pipeline Integration
 
 - Deploy local FastAPI workspace with PostGIS containers via Docker Compose.
-- Configure strict Ruff, Black, and TypeScript verification workflows inside active
-  GitHub Actions.
-- Spin up React/Vite admin layout and Expo Go mobile repository with placeholder
-  validation message screen.
+- Configure strict Ruff, Black, TypeScript (tsc), and Jest verification workflows
+  inside active GitHub Actions.
+- Spin up React/Vite admin layout and Expo Go mobile repository (pnpm-managed)
+  with placeholder validation message screen.
 
 ### Week 2 — Spatial Layout & Admin API
 
