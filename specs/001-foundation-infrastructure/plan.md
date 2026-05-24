@@ -23,8 +23,8 @@ Expo SDK 51 (mobile)
 - Web: React 18, Vite 5, Leaflet + react-leaflet, Tailwind CSS + shadcn/ui,
   @tanstack/react-query v5
 - Mobile: Expo SDK 51, react-native-maps, @gorhom/bottom-sheet, expo-haptics,
-  expo-location
-- Dev: Ruff, Black, pytest, httpx, ESLint, Prettier
+  expo-location, pnpm 9+ (package manager)
+- Dev: Ruff, Black, pytest, httpx, Jest, jest-expo, @testing-library/react-native
 
 **Storage**: PostgreSQL 16 + PostGIS 3.4 (local Docker container)
 
@@ -121,6 +121,8 @@ bornemap/
 │   └── package.json
 
 └── mobile/
+    ├── __tests__/
+    │   └── smoke.test.tsx       # Jest smoke test
     ├── app/
     │   ├── (tabs)/
     │   │   ├── index.tsx        # Map tab placeholder
@@ -130,8 +132,11 @@ bornemap/
     │   ├── map/                 # Empty placeholder for Phase 2
     │   └── sheets/              # Empty placeholder for Phase 2
     ├── lib/api.ts               # API client stub
+    ├── .npmrc                   # pnpm config
     ├── app.json
-    └── package.json
+    ├── jest.config.js           # jest-expo preset
+    ├── package.json
+    └── pnpm-lock.yaml           # pnpm lockfile
 
 docker-compose.yml            # PostGIS + backend services
 .github/workflows/

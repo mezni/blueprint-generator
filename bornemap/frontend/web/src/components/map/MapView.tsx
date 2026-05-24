@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer } from "react-leaflet";
+import { MapContainer } from "react-leaflet";
 import TileFallback from "./TileFallback";
 import "leaflet/dist/leaflet.css";
 
