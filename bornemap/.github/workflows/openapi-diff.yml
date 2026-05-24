@@ -1,0 +1,26 @@
+name: OpenAPI Breaking Diff
+
+on:
+  workflow_dispatch:
+
+jobs:
+  diff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install oasdiff
+        run: |
+          curl -sL https://github.com/Tufin/oasdiff/releases/download/v1.10.0/oasdiff_1.10.0_linux_amd64.tar.gz | tar xz
+          sudo mv oasdiff /usr/local/bin/
+      - name: Generate current openapi.json
+        run: cd bornemap/backend && cargo run -p openapi-spec --release > /tmp/openapi.current.json
+      - name: Checkout main baseline
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main-checkout
+      - name: Generate baseline openapi.json
+        run: cd main-checkout/bornemap/backend && cargo run -p openapi-spec --release > /tmp/openapi.baseline.json
+      - name: Breaking diff
+        run: oasdiff breaking /tmp/openapi.baseline.json /tmp/openapi.current.json
