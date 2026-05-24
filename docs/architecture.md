@@ -1,7 +1,7 @@
-# BorneMap — Architecture Reference
+# Amilcar — Architecture Reference
 
-**Version:** 1.0.0
-**Scope:** Cross-cutting, system-wide architecture for BorneMap.
+**Version:** 2.0.0 (constitution-aligned)
+**Scope:** Cross-cutting, system-wide architecture for the Amilcar EV Charging Admin Portal.
 **Companions:** [`constitution.md`](./constitution.md), [`plan.md`](./plan.md).
 **Per-feature design docs:** `specs/00X-…/data-model.md`, `specs/00X-…/contracts/`.
 
@@ -20,8 +20,8 @@ flowchart TB
     social["Social IdP<br/>(Google / Facebook)<br/>Phase 5+"]
     mailer["Mail Transport<br/>(SMTP / Provider)"]
 
-    subgraph platform["BorneMap Platform"]
-        bm["BorneMap<br/>Geospatial Discovery System"]
+    subgraph platform["Amilcar Platform"]
+        bm["Amilcar<br/>EV Charging Admin Portal"]
     end
 
     driver -->|HTTPS| bm
@@ -301,7 +301,7 @@ ORDER BY s.id
 LIMIT 5000;
 ```
 
-### 7.3 Idempotent Profile Initialization (Constitution Principle X)
+### 7.3 Idempotent Profile Initialization (Constitution Principle XI)
 
 ```sql
 INSERT INTO profile_domain.driver_profiles (user_id, display_name, locale)
@@ -447,7 +447,7 @@ return (
 `frontend/admin-portal/src/styles/map-theme.constants.ts` (mirror in mobile):
 
 ```ts
-export const BorneMapMapStyles = {
+export const AmilcarMapStyles = {
   overlays: {
     searchBar: {
       borderRadius: '9999px',
@@ -771,4 +771,4 @@ Architectural Decision Records live under `docs/adr/`. Each MVP adds at least on
 
 ## 16. Non-Goals Restated
 
-Per Constitution §2 / NG-1..NG-7. Any feature crossing those lines requires a constitution amendment.
+Per Constitution §2 / Non-Goals (NG-1..NG-7). Any feature crossing those lines requires a constitution amendment.

@@ -1,22 +1,23 @@
-# BorneMap — Constitution (Human Mirror)
+# Amilcar — Constitution (Human Mirror)
 
-**Version:** 1.0.0
+**Version:** 2.0.0
 **Ratified:** 2026-05-23
+**Last Amended:** 2026-05-24
 **Canonical file:** [`.specify/memory/constitution.md`](../.specify/memory/constitution.md) — that file is what Speckit reads. This document mirrors it for human review. In any conflict, the canonical file wins.
 
 ---
 
 ## 0. How To Read This
 
-This is a binding rulebook for everyone working on BorneMap, including LLM implementers. Each rule is written to be **directly testable**: a reviewer (or `/speckit.analyze`) can mechanically verify compliance. If a rule sounds aspirational, it is broken and must be tightened.
+This is a binding rulebook for everyone working on Amilcar, including LLM implementers. Each rule is written to be **directly testable**: a reviewer (or `/speckit.analyze`) can mechanically verify compliance. If a rule sounds aspirational, it is broken and must be tightened.
 
 ---
 
 ## 1. Mission
 
-BorneMap is a geospatial EV-charging discovery platform for Tunisia. Drivers find chargers on an interactive map and leave reviews; administrators manage station data and monitor usage. The product is optimized for **viewport-driven map exploration**, **fast mobile interactions**, and **iterative validation with real users**.
+Amilcar is an EV Charging Admin Portal for monitoring, managing, and remediating charging infrastructure. Operators view live charger status on a spatial map, consume real-time OCPP/WebSocket telemetry, and manage operational queues for fault remediation. The product is optimized for **full-screen non-scrollable dashboards**, **high-throughput telemetry pipelines**, and **iterative validation with real admin operators**.
 
-The core spatial engine is PostGIS — across every phase, forever.
+The core data paths are OCPP streaming telemetry and PostGIS spatial queries — across every phase, forever.
 
 ---
 
@@ -26,13 +27,13 @@ The system **shall not** include:
 
 | # | Excluded capability |
 | --- | --- |
-| NG-1 | EV charging session control (OCPP / OPP / hardware signaling) |
-| NG-2 | Billing, payments, or wallets |
-| NG-3 | Smart-charging or grid energy optimization |
-| NG-4 | Real-time hardware telemetry from chargers |
-| NG-5 | Custom routing / turn-by-turn navigation (delegated to OS map providers) |
+| NG-1 | Billing, payments, or wallet integration |
+| NG-2 | Smart-charging or grid energy optimization algorithms |
+| NG-3 | Custom turn-by-turn navigation (delegated to OS map providers) |
+| NG-4 | Driver-facing mobile apps or consumer portal (admin-operators only) |
+| NG-5 | Real-time charger-to-vehicle communication (PWM, PLC, ISO 15118) |
 | NG-6 | Distributed event streaming or microservices before Phase 6 is justified |
-| NG-7 | Infrastructure scale-out before real-world user validation demands it |
+| NG-7 | Hardware firmware management or OTA update orchestration |
 
 Any feature touching NG-1..NG-7 requires a constitutional amendment **before** code is written.
 
@@ -40,7 +41,29 @@ Any feature touching NG-1..NG-7 requires a constitutional amendment **before** c
 
 ## 3. Core Principles
 
-### I. Spatial-First, PostGIS-Always (NON-NEGOTIABLE)
+### I. Real-Time Telemetry & OCPP Streaming (NON-NEGOTIABLE)
+
+- System MUST ingest streaming telemetry from EV chargers via WebSocket/OCPP as a first-class data path.
+- Pipeline MUST sustain ≥ 10,000 events/second per gateway with backpressure and dead-letter queue.
+- Every event carries: `station_id`, `event_type`, `timestamp` (ISO 8601), `severity` (info/warn/error/critical), structured JSON payload.
+- OCPP status codes (e.g., `OCPP_InternalError`) MUST propagate verbatim — no translation or aliasing.
+- Event storage is append-only with TTL-based retention (≥ 90 days). Audit replay MUST be supported.
+- Pipeline uses a message broker (RabbitMQ / Kafka) for decoupling. Synchronous telemetry handling in HTTP handlers is banned.
+
+### II. API-First Contract (NON-NEGOTIABLE)
+
+- `utoipa` emits OpenAPI 3.1 from the Rust handlers. That JSON is the single source of API truth.
+- Frontend HTTP types are **generated** (`openapi-typescript-codegen` or equivalent). Hand-rolled interfaces for HTTP payloads are banned.
+- CI fails on a breaking OpenAPI diff.
+
+### III. Backend Authority, Frontend Projection (NON-NEGOTIABLE)
+
+- All validation, authorization, business rules, spatial filtering, charger state mutation, and telemetry aggregation live on the backend.
+- The frontend holds UI state, scroll position, form drafts, and WebSocket subscriptions only — never business rules.
+- Server collections must not be filtered client-side after fetch.
+- Layer flow is strict: **Handlers → Services → Repositories**.
+
+### IV. Spatial-First, PostGIS-Always (NON-NEGOTIABLE)
 
 - Database: PostgreSQL 16 + PostGIS 3.4 — no substitutes.
 - Spatial column type: `GEOGRAPHY(Point, 4326)` — no exceptions.
@@ -48,217 +71,162 @@ Any feature touching NG-1..NG-7 requires a constitutional amendment **before** c
 - Primary predicate: `ST_DWithin`. `ST_Distance` is allowed only as a secondary, post-filter sort.
 - Coordinate format on the wire and in code: `[lng, lat]`. `{lat, lng}` JSON is rejected in review.
 - Viewport bounding boxes are quantized to **4 decimal places** before cache or query use.
+- Charger locations in map viewport MUST be served via bounded spatial queries. "Fetch all" unbounded endpoint is banned.
 
-### II. Backend Authority, Frontend Projection (NON-NEGOTIABLE)
-
-- All validation, authorization, business rules, and filtering live on the backend.
-- The frontend holds UI state and form drafts only — never business rules.
-- Server collections must not be filtered client-side after fetch.
-- Layer flow is strict: **Handlers → Services → Repositories**.
-
-### III. API-First Contract (NON-NEGOTIABLE)
-
-- `utoipa` emits OpenAPI 3.1 from the Rust handlers. That JSON is the single source of API truth.
-- Frontend HTTP types are **generated** (`openapi-typescript-codegen` or equivalent). Hand-rolled interfaces for HTTP payloads are banned.
-- CI fails on a breaking OpenAPI diff.
-
-### IV. Modular Monolith Until Justified
+### V. Modular Monolith, OCPP Gateway Isolation
 
 - Phases 1–5: one Rust binary, Cargo workspace, isolated domain modules.
-- Domain modules communicate **only** through public service traits passing DTOs.
+- Domain modules (`station`, `identity`, `telemetry`, `queue`, `settings`) communicate **only** through public service traits passing DTOs.
+- OCPP gateway adapter is isolated in `amilcar-ocpp-gateway` crate with a `TelemetryIngest` trait.
 - Microservice extraction (Phase 6) requires a written justification matching one of:
   - sustained CPU/memory saturation,
   - per-domain traffic skew ≥ 10×,
-  - regulatory / tenancy / contractual isolation requirement.
+  - regulatory / tenancy / contractual isolation requirement for telemetry data.
 
-### V. Test-First with PostGIS in CI (NON-NEGOTIABLE)
+### VI. Test-First with Real Infrastructure in CI (NON-NEGOTIABLE)
 
 - TDD: failing test, then code.
-- Integration tests run against real PostGIS via **Testcontainers** — spatial mocks are banned.
+- Integration tests run against real PostGIS + message broker via **Testcontainers** — mocks are banned in integration tests.
 - Every endpoint ships with a contract test and an integration test.
-
-### VI. SQLx Compile-Time Verified
-
-- All SQL goes through `sqlx::query!` / `query_as!`. No string concatenation.
-- `.sqlx/` query metadata is committed; CI runs `SQLX_OFFLINE=true`.
+- Every telemetry pipeline change adds a throughput test verifying ≥ 10,000 events/second per gateway.
 
 ### VII. Type-Driven Safety (Rust)
 
-- Newtype IDs (`StationId`, `UserId`, etc.). Bare `Uuid` in handler/service signatures is rejected.
+- Newtype IDs (`StationId`, `UserId`, `ChargerId`). Bare `Uuid` in handler/service signatures is rejected.
 - All fallible paths return `Result<T, DomainError>`.
 - `unwrap` / `expect` / `panic!` are banned outside tests.
 - Errors are serialized as **RFC-7807** `application/problem+json`.
+- Telemetry event types modeled as sealed `TelemetryEvent` enum — stringly-typed discrimination is banned.
 
-### VIII. Map Interaction Runtime Rules (CI-Blocking)
+### VIII. Admin Portal Layout & Rendering Contract (NON-NEGOTIABLE)
 
-The dedicated frontend module `MapInteractionDomain` enforces these rules. Violations block merge.
+The frontend enforces these layout rules. Violations block merge.
 
-| # | Rule | Mechanical check |
+| # | Rule | Implementation |
 | --- | --- | --- |
-| **R1** | **Viewport Debounce.** Fetches fire only after the map is settled ≥ 300 ms; bind to `moveend`/`zoomend`. | Unit test: pan storm → ≤ 1 fetch per 300 ms. |
-| **R2** | **Query Quantization.** Bounding-box coordinates are rounded to 4 decimal places before cache keys / network. | `quantizeBounds()` unit test; key regex `-?\d+\.\d{4}`. |
-| **R3** | **Marker Virtualization.** Off-viewport markers are filtered out before render. | Snapshot test: off-bounds coords absent from rendered tree. |
-| **R4** | **Gesture Priority.** RN `<Marker tracksViewChanges={false}>` for static markers; web markers do not re-render on pan. | ESLint rule + perf trace. |
-| **R5** | **Lazy Hydration.** Marker payloads are summary-only; details fetch lazily. Filter pills mutate local state only when current viewport is cached. | Network panel: filter click → 0 requests. |
-| **R6** | **Bounds Cache Registry.** React Query keys: `['stations', quantizedBbox]`; cached within `staleTime` (60 s default) reused. | Devtools: repeated viewports = cache hits. |
-| **R7** | **Cluster Threshold.** Clustering activates at > 15 markers within a 40 px radius. | Visual test at synthetic density. |
+| **R1** | **Fixed Viewport.** Main container: `flex h-screen w-screen overflow-hidden bg-slate-900`. No viewport-level scrolling. | CSS audit |
+| **R2** | **Persistent Sidebar.** `w-64 h-full flex-shrink-0 border-r border-slate-850`. Navigation does not re-render chrome. | Snapshot test |
+| **R3** | **Global Header.** Contains global search, breadcrumbs, systemic health badges, user role badge. | Component test |
+| **R4** | **Upper Workspace Split.** `grid grid-cols-5 gap-4 p-6 h-1/2`. Map `col-span-3`, Telemetry `col-span-2`. Pins: Available=`#22c55e`, Occupied=`#eab308`, Faulted=`#ef4444`. | Layout test + color audit |
+| **R5** | **Lower Operational Queue.** `flex-1 p-6 overflow-y-auto h-1/2`. Columns: Priority, Station ID, Fault Code, Status, Created At, Assigned To, Actions. Sortable. | Grid snapshot |
+| **R6** | **Telemetry Log Format.** `{timestamp} \| {station_id} \| {event_type} \| {severity} \| {payload}`. Severity badge: critical=red, error=orange, warn=yellow, info=gray. | Format validation test |
+| **R7** | **KPI Table Format.** Exactly 4 columns: Metric Component, Current Live Value, MoM Delta %, Engineering/Business Impact. Delta % shows direction arrow (↑/↓) + color. | Schema validation |
+| **R8** | **WebSocket Reconnection.** Exponential backoff (1 s → 30 s max) with jitter. Connection state reflected in header badges. | Integration test |
 
-### IX. Status Projection Rule
+### IX. Operational Queue Discipline
 
-- Pin color reflects backend-computed `is_active` + `under_maintenance` only.
-- Frontends never override pin status from any other source.
-- Real-time hardware telemetry remains a non-goal (NG-4).
+- Charger lifecycle state machine: `Available → Occupied → Faulted → Maintenance → Available`. State diagram at `docs/operations/charger-lifecycle.md`.
+- State transitions are idempotent, logged with before/after snapshot in telemetry audit trail.
+- Queue items carry: priority (P1–P5), station_id, fault_code, created_at (ISO 8601), assigned_to, status (open/acknowledged/in_progress/resolved/closed).
+- Items faulted > 24 h without acknowledgement auto-escalate to P1 with on-call alert.
 
-### X. Idempotent Profile Initialization
+### X. Backend Authority Over Charger Health & Status
 
-- First-login profile creation uses `INSERT … ON CONFLICT (user_id) DO UPDATE`. No "check-then-create" anywhere.
+- Pin color and badge reflect backend-computed `is_active`, `under_maintenance`, `last_heartbeat_age`.
+- Frontend never overrides charger status or derives health from raw telemetry.
+- Backend derives aggregate health from 5-minute sliding window. No heartbeat > 120 s → `Faulted`.
 
-### XI. Iterative Real-User Validation (NON-NEGOTIABLE)
+### XI. Idempotent State Management
 
-- Every MVP ends with a real-user validation cycle: defined cohort, scripted tasks, quantitative metrics, ≥ 5 qualitative interviews.
+- First-login profile creation uses `INSERT … ON CONFLICT (user_id) DO UPDATE`. No "check-then-create".
+- Charger state transitions use `UPDATE … WHERE current_state = expected_previous_state`.
+- Queue item re-assignment to same user is a no-op.
+
+### XII. Iterative Real-User Validation (NON-NEGOTIABLE)
+
+- Every MVP ends with a real-user validation cycle: defined cohort (≥ 5 operators), scripted tasks, quantitative metrics (task success rate, P50/P95 latency, error rate), ≥ 5 qualitative interviews.
 - A proceed/kill gate (documented in the MVP's `spec.md` Success Criteria) decides whether the next MVP starts.
+- Telemetry pipeline throughput and queue resolution time tracked as validation metrics from MVP 1.
 
-### XII. Non-Goals (See §2)
+### XIII. Non-Goals (See §2)
 
 Listed above as NG-1..NG-7. Amendments required before crossing those lines.
 
 ---
 
-## 4. Domain Model
+## 4. Technology Stack
 
-```text
-Company ───► Station ───► Charger
-                │
-                └───► Review (Driver)
+### Backend
 
-Identity ───► User Lifecycle (Invitations Portal)
-                  │
-                  ▼
-         Driver Profile Metadata
-                  │
-                  ▼
-            MinIO / S3 Storage
+| Layer | Technology |
+| --- | --- |
+| Language | Rust (stable, MSRV pinned) |
+| HTTP | actix-web v4 |
+| DB driver | sqlx (Postgres, `runtime-tokio-rustls`) |
+| Spatial DB | PostgreSQL 16 + PostGIS 3.4 |
+| Message broker | RabbitMQ via `lapin` (Phase 3+) |
+| OpenAPI | utoipa + utoipa-swagger-ui |
+| Cache | Redis 7 (Phase 4+) |
+| Auth (Phases 1–2) | Mock JWT HS256 |
+| Auth (Phases 3–4) | Internal identity_domain, argon2 |
+| Auth (Phase 5+) | Keycloak (OIDC, OAuth2 PKCE) |
+| Logging | tracing + tracing-subscriber (JSON) |
+| Metrics | Prometheus on `/metrics` |
+| Errors | thiserror, RFC-7807 problem+json |
+
+### Frontend (Admin Portal)
+
+| Layer | Technology |
+| --- | --- |
+| Stack | React 18, Vite, TypeScript strict |
+| Map engine | Leaflet + react-leaflet + react-leaflet-cluster |
+| Server state | @tanstack/react-query v5 |
+| Real-time | Native WebSocket client, exponential-backoff reconnection |
+| Styling | Tailwind CSS + shadcn/ui |
+| HTTP client | Generated from openapi.json |
+| Forms | react-hook-form + zod |
+
+### Tooling & CI
+
+- Pre-commit: cargo fmt, clippy, ESLint + Prettier, `tsc --noEmit`.
+- CI pipeline: fmt → clippy → `SQLX_OFFLINE=true cargo build` → cargo test (Testcontainers) → pnpm lint/typecheck/test → OpenAPI diff check → Docker build (distroless/cc, ≤ 50 MB) → tag `vMAJ.MIN.PATCH-GIT_SHA`.
+
+### Performance Constraints
+
+| Target | Value |
+| --- | --- |
+| Spatial query latency (P95) | ≤ 200 ms |
+| Telemetry ingestion | ≥ 10,000 events/s per gateway |
+| Health check (P99) | ≤ 50 ms |
+| Queue query (top 100) | ≤ 100 ms |
+| WebSocket push latency | ≤ 500 ms end-to-end |
+| Map rendering | ≥ 60 FPS |
+| Availability | ≥ 99.5% monthly uptime |
+| Continuous outage budget | ≤ 3.65 h / month |
+| Degraded-ops fallback | Static map when spatial latency > 1500 ms or throughput < 1000 events/s over 15-minute window |
+
+---
+
+## 5. Security & Network Zones
+
 ```
-
-| Domain | Owns | Does not own |
-| --- | --- | --- |
-| `station_domain` | Companies, stations, chargers, spatial indexing | User identity, ratings text |
-| `identity_domain` | Auth state, sessions, invitations, federation | Display preferences, avatars |
-| `profile_domain` | Avatars, display metadata, localization, preferences | Authentication state |
-| `review_domain` | Ratings, feedback, interaction matrices | Station metadata |
-| `event_domain` | Append-only telemetry log | Business decisions |
-| `settings_domain` | Lookup tables, feature flags | All of the above |
-
----
-
-## 5. Authentication Phases
-
-| Phase | Mechanism | Notes |
-| --- | --- | --- |
-| 1–2 | Mock JWT (HS256, dev secret) | Claim shape **frozen** from day 1: `sub`, `preferred_username`, `realm_access.roles`, `iat`, `exp`. |
-| 3–4 | Internal `identity_domain` + argon2 password hashing | RBAC server-side; invitation-only admin signup. |
-| 5+ | Keycloak (OIDC, OAuth2 Authorization Code + PKCE) | Tokens proxied through BFF; social federation optional. |
-
-The claim shape is **immutable** across all phases — moving to Keycloak must not require a downstream code change outside the identity layer.
-
-### Administrative invitation flow
-
-1. Admin enters email + role in the `InviteCollaborators` modal.
-2. Frontend `POST /admin/invitations` (BFF gateway).
-3. `identity_domain` generates a single-use, role-scoped, signed token bound to email + expiry.
-4. Mail transport delivers the link.
-5. Invitee opens `/signup?token=…`; backend validates token, runs idempotent profile insert (Principle X), provisions session.
-
----
-
-## 6. Repository Structure
-
-```text
-bornemap/
-├── .github/workflows/        # CI pipelines
-├── .specify/                 # Speckit canonical files
-├── backend/                  # Cargo workspace
-│   ├── Cargo.toml
-│   ├── api-gateway/          # BFF (Phase 6+)
-│   ├── libs/
-│   │   ├── common-utils/
-│   │   └── openapi-spec/     # utoipa harness
-│   └── services/
-│       ├── station-service/
-│       ├── identity-service/
-│       ├── profile-service/
-│       ├── review-service/
-│       └── event-service/
-├── frontend/
-│   ├── admin-portal/         # React + Vite
-│   ├── mobile-app/           # React Native + Expo
-│   └── packages/
-│       ├── api-client/       # generated OpenAPI client
-│       └── geo-models/       # CoordinateModel et al.
-├── infrastructure/
-│   ├── docker-compose.local.yml
-│   └── terraform/
-├── docs/                     # Human-readable docs
-└── specs/                    # Per-feature Speckit specs
-```
-
----
-
-## 7. CI/CD Contract
-
-Pipeline stages (all must pass):
-
-1. `cargo fmt --check`
-2. `cargo clippy --workspace --all-targets -- -D warnings`
-3. `SQLX_OFFLINE=true cargo build --workspace`
-4. `cargo test --workspace` (Testcontainers PostGIS)
-5. `pnpm -r lint && pnpm -r typecheck && pnpm -r test`
-6. OpenAPI breaking-diff check
-7. Multi-stage Docker build; image ≤ 50 MB per service
-8. Tag images `v[MAJOR].[MINOR].[PATCH]-[GIT_SHA]`
-
----
-
-## 8. Deployment Topology
-
-Three logical zones:
-
-```text
 PUBLIC DMZ            APPS & RUNTIMES (PRIVATE)         DATA STORAGE (ISOLATED)
 ─────────────         ──────────────────────────        ────────────────────────
-Admin Portal          Actix backend / BFF                Keycloak (Phase 5+)
-Mobile clients        RabbitMQ + workers (Phase 3+)      MinIO (Phase 3+)
-                                                         PostgreSQL + PostGIS
+Admin Portal          Actix backend / RabbitMQ           PostgreSQL + PostGIS
+                      Workers / OCPP gateway             Keycloak (Phase 5+)
+                                                         MinIO (Phase 3+)
+
+OT NETWORK (ISOLATED):
+OCPP gateway adapter receives WebSocket connections from chargers
 ```
 
 - Frontends are the only zone reachable from the public internet.
-- No public path reaches the data-storage zone. Keycloak admin endpoints are private-only.
+- No public path reaches the data-storage zone. OCPP gateway in separate OT network segment.
+- Admin signup is invitation-only. Single-use, role-scoped tokens.
+- All inter-zone traffic uses internal DNS + mTLS where supported.
 
 ---
 
-## 9. Observability
+## 6. Observability
 
 - **Logs:** `tracing` JSON output with `trace_id` per request lifecycle.
-- **Metrics:** Prometheus exposition on `/metrics` (DB pool, memory, HTTP rate, query latency histograms).
-- **Health:** `/health/live` (cheap) and `/health/ready` (verifies DB + broker).
+- **Metrics:** Prometheus on `/metrics` (DB pool, memory, HTTP rate, query latency, telemetry throughput, queue depth).
+- **Health:** `/health/live` (cheap) and `/health/ready` (verifies DB + broker + OCPP gateway connectivity).
 - **Distributed tracing:** OpenTelemetry from Phase 6 onward.
 
 ---
 
-## 10. Performance & SLA
-
-| Target | Value |
-| --- | --- |
-| Spatial query latency (server) | P95 ≤ 200 ms |
-| Identity sync hook | ≤ 500 ms |
-| Map rendering | ≥ 60 FPS on reference mid-range Android |
-| Availability | ≥ 99.5% monthly uptime |
-| Continuous outage budget | ≤ 3.65 h / month |
-| Degraded-ops fallback | Static map snapshot when avg spatial latency > 1500 ms over any 15-minute window |
-
----
-
-## 11. Governance
+## 7. Governance
 
 This constitution supersedes all other practices.
 
@@ -277,7 +245,7 @@ This constitution supersedes all other practices.
 
 ---
 
-## 12. Constitution Gate (per-PR checklist)
+## 8. Constitution Gate (per-PR checklist)
 
 - [ ] No spatial column added without GiST index.
 - [ ] No `unwrap` / `expect` / `panic!` in non-test Rust.
@@ -287,5 +255,6 @@ This constitution supersedes all other practices.
 - [ ] `cargo clippy -- -D warnings` green.
 - [ ] `.sqlx/` committed when SQL changed.
 - [ ] OpenAPI snapshot updated; breaking-change report attached if any.
-- [ ] Map components: R1–R7 verification notes attached.
+- [ ] If touching telemetry pipeline: throughput test results attached.
+- [ ] If touching map components: R1–R8 verification notes attached.
 - [ ] If shipping an MVP: real-user validation report attached.

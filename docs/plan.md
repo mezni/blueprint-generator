@@ -1,7 +1,7 @@
-# BorneMap — Global Roadmap & Iterative Validation Plan
+# Amilcar — Global Roadmap & Iterative Validation Plan
 
-**Version:** 1.0.0
-**Scope:** Cross-MVP roadmap for the BorneMap platform.
+**Version:** 2.0.0 (constitution-aligned)
+**Scope:** Cross-MVP roadmap for the Amilcar EV Charging Admin Portal.
 **Companions:** [`constitution.md`](./constitution.md), [`architecture.md`](./architecture.md).
 **Per-MVP specs:** `specs/001-mvp1-geo-core/` … `specs/006-mvp6-scale/`.
 
@@ -210,7 +210,7 @@ GET /api/v1/stations?bbox=10.0000,33.0000,11.0000,34.0000
   - `MapScreen.tsx` using `react-native-maps`.
   - `<Marker tracksViewChanges={false}>` for static markers.
   - Bottom-sheet detail using `@gorhom/bottom-sheet`.
-  - Filter pills mutate **local state only** (R5).
+  - Filter pills mutate **local state only** (Layout Rule R5).
 
 ### MVP 1 Success Criteria
 
@@ -232,7 +232,7 @@ GET /api/v1/stations?bbox=10.0000,33.0000,11.0000,34.0000
 ### Validation Cohort (MVP 1)
 
 - 5 EV drivers (recruited via local EV community channels).
-- 2 admin personas (BorneMap ops + 1 third-party station operator).
+- 2 admin personas (Amilcar ops + 1 third-party station operator).
 
 ---
 
@@ -261,11 +261,11 @@ Convert the read-only directory into an interactive product: drivers create acco
 ### Functional Requirements
 
 - **FR2.1** `POST /api/v1/auth/mock-signup` and `POST /api/v1/auth/mock-login` issue JWTs with `realm_access.roles = ["driver"]` or `["admin"]`.
-- **FR2.2** `POST /api/v1/profile` and `GET /api/v1/profile/me` (idempotent insert per Principle X).
+- **FR2.2** `POST /api/v1/profile` and `GET /api/v1/profile/me` (idempotent insert per Constitution Principle XI).
 - **FR2.3** `POST /api/v1/stations/{id}/reviews`, `GET /api/v1/stations/{id}/reviews`, `DELETE /api/v1/reviews/{id}` (author-only).
 - **FR2.4** `POST /api/v1/favorites` `{station_id}`, `DELETE /api/v1/favorites/{station_id}`, `GET /api/v1/favorites`.
 - **FR2.5** `GET /api/v1/admin/reviews?status=…` for moderation.
-- **FR2.6** Pin color reflects backend `is_active` + `under_maintenance` (no client override — Principle IX).
+- **FR2.6** Pin color reflects backend `is_active` + `under_maintenance` + `last_heartbeat_age` (no client override — Constitution Principle X).
 
 ### Data Model Additions
 
@@ -313,7 +313,7 @@ CREATE TABLE profile_domain.favorites (
 );
 ```
 
-### Idempotent Profile (Principle X, exact SQL)
+### Idempotent Profile (Constitution Principle XI, exact SQL)
 
 ```sql
 INSERT INTO profile_domain.driver_profiles (user_id, display_name, locale)
@@ -421,7 +421,7 @@ Cut spatial P95 latency under realistic load; tune clustering and indexes.
 - TTL: 60 s default, configurable per env.
 - Synthetic load test: 10 000 stations, 200 concurrent viewport queries/s for 5 min.
 - GiST index review + analyze.
-- Clustering threshold tuning (R7).
+- Clustering threshold tuning (R1-R8 rules — see Constitution Principle VIII).
 
 ### Functional Requirements
 
