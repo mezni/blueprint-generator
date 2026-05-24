@@ -1,0 +1,49 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: ["Docker Build & Push"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/bornemap-backend
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract tag from workflow
+        id: image
+        run: |
+          SHA="${{ github.sha }}"
+          echo "tag=${SHA:0:7}" >> $GITHUB_OUTPUT
+          echo "image=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${SHA:0:7}" >> $GITHUB_OUTPUT
+
+      # --- Deploy target placeholder ---
+      # Replace with your actual deployment step:
+      #
+      # SSH example:
+      #   - uses: appleboy/ssh-action@v1
+      #     with:
+      #       host: ${{ secrets.DEPLOY_HOST }}
+      #       username: ${{ secrets.DEPLOY_USER }}
+      #       key: ${{ secrets.DEPLOY_KEY }}
+      #       script: |
+      #         docker pull ${{ steps.image.outputs.image }}
+      #         docker service update --image ${{ steps.image.outputs.image }} bornemap-backend
+      #
+      # Helm example:
+      #   - uses: azure/setup-helm@v4
+      #   - run: helm upgrade bornemap ./chart --set image.tag=${{ steps.image.outputs.tag }}
+      #
+      - name: Deploy (placeholder)
+        run: |
+          echo "Ready to deploy: ${{ steps.image.outputs.image }}"
+          echo "Configure your deployment target in .github/workflows/deploy.yml"
