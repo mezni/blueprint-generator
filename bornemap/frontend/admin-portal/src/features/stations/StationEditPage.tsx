@@ -24,32 +24,43 @@ export function StationEditPage({ isNew = false }: { isNew?: boolean }) {
   const [openingHours, setOpeningHours] = useState("");
   const [companyId] = useState("00000000-0000-0000-0000-000000000001");
   const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
     if (!isNew && id) {
-      apiFetch<StationDetail>(`/api/v1/stations/${id}`).then((s) => {
-        setName(s.name);
-        setAddress(s.address);
-        setLng(String(s.coord[0]));
-        setLat(String(s.coord[1]));
-        setIsActive(s.is_active);
-        setUnderMaintenance(s.under_maintenance);
-        setOpeningHours(s.opening_hours_osm || "");
-      });
+      setFetching(true);
+      apiFetch<StationDetail>(`/api/v1/stations/${id}`)
+        .then((s) => {
+          setName(s.name);
+          setAddress(s.address);
+          setLng(String(s.coord[0]));
+          setLat(String(s.coord[1]));
+          setIsActive(s.is_active);
+          setUnderMaintenance(s.under_maintenance);
+          setOpeningHours(s.opening_hours_osm || "");
+        })
+        .catch((err: Error) => setError(err.message))
+        .finally(() => setFetching(false));
     }
   }, [id, isNew]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    const lngNum = parseFloat(lng);
+    const latNum = parseFloat(lat);
+    if (isNaN(lngNum) || isNaN(latNum)) {
+      setError("Invalid coordinates");
+      return;
+    }
     setLoading(true);
     try {
       const body = {
         company_id: companyId,
         name,
         address,
-        coord: [parseFloat(lng), parseFloat(lat)],
+        coord: [lngNum, latNum],
         is_active: isActive,
         under_maintenance: underMaintenance,
         opening_hours_osm: openingHours || null,
@@ -65,7 +76,7 @@ export function StationEditPage({ isNew = false }: { isNew?: boolean }) {
           body: JSON.stringify({
             name,
             address,
-            coord: [parseFloat(lng), parseFloat(lat)],
+            coord: [lngNum, latNum],
             is_active: isActive,
             under_maintenance: underMaintenance,
             opening_hours_osm: openingHours || null,
@@ -90,6 +101,9 @@ export function StationEditPage({ isNew = false }: { isNew?: boolean }) {
           {error}
         </div>
       )}
+      {fetching ? (
+        <p className="text-gray-500">Loading station data...</p>
+      ) : (
       <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded shadow">
         <div>
           <label className="block text-sm font-medium mb-1">Name</label>
@@ -177,6 +191,7 @@ export function StationEditPage({ isNew = false }: { isNew?: boolean }) {
           </button>
         </div>
       </form>
+      )}
     </div>
   );
 }

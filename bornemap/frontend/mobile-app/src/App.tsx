@@ -4,6 +4,7 @@ import { View, StyleSheet } from "react-native";
 import { useOsFloorCheck } from "./hooks/useOsFloorCheck";
 import { OsUpdateRequiredScreen } from "./screens/OsUpdateRequiredScreen";
 import { MapScreen } from "./screens/MapScreen";
+import { ErrorBoundary } from "./lib/ErrorBoundary";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,11 +23,13 @@ export default function App() {
   }
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <View style={styles.container}>
-        <MapScreen />
-      </View>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <View style={styles.container}>
+          <MapScreen />
+        </View>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 }
 

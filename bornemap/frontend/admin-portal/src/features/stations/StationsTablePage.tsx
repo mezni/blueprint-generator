@@ -17,7 +17,7 @@ export function StationsTablePage() {
   const logout = useAuthStore((s) => s.logout);
   const queryClient = useQueryClient();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ["admin-stations"],
     queryFn: () =>
       apiFetch<{ items: StationRow[]; next_cursor: string | null }>(
@@ -29,6 +29,9 @@ export function StationsTablePage() {
     mutationFn: (id: string) =>
       apiFetch(`/api/v1/admin/stations/${id}`, { method: "DELETE" }),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["admin-stations"] }),
+    onError: (err: Error) => {
+      alert(err.message);
+    },
   });
 
   return (
@@ -59,6 +62,12 @@ export function StationsTablePage() {
           </button>
         </div>
       </div>
+
+      {isError && (
+        <div className="bg-red-50 text-red-700 p-3 rounded mb-4 text-sm">
+          Failed to load stations: {(error as Error)?.message || "Unknown error"}
+        </div>
+      )}
 
       {isLoading ? (
         <p>Loading stations...</p>

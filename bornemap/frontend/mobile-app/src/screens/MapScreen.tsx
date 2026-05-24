@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { pinColor } from "@bornemap/geo-models";
 import type { MapViewportModel, StationMarkerModel } from "@bornemap/geo-models";
@@ -17,7 +17,7 @@ interface RawMarker {
 
 export function MapScreen() {
   const [viewport, setViewport] = useState<MapViewportModel | null>(null);
-  const { data } = useViewportStations(viewport);
+  const { data, isError, error } = useViewportStations(viewport);
 
   const markers: StationMarkerModel[] = (data?.markers || []).map(
     (m: RawMarker) => ({
@@ -31,6 +31,13 @@ export function MapScreen() {
 
   return (
     <View style={styles.container}>
+      {isError && (
+        <View style={styles.errorBanner}>
+          <Text style={styles.errorText}>
+            {(error as Error)?.message || "Failed to load stations"}
+          </Text>
+        </View>
+      )}
       <MapView
         style={styles.map}
         initialRegion={{
@@ -64,4 +71,15 @@ export function MapScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   map: { flex: 1 },
+  errorBanner: {
+    position: "absolute",
+    top: 60,
+    left: 16,
+    right: 16,
+    zIndex: 100,
+    backgroundColor: "#fef2f2",
+    padding: 12,
+    borderRadius: 8,
+  },
+  errorText: { color: "#dc2626", fontSize: 14 },
 });

@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiFetch } from "../../lib/apiClient";
-import { quantizeBounds, insideViewport, pinColor } from "@bornemap/geo-models";
+import { quantizeBounds, insideViewport } from "@bornemap/geo-models";
 import type { MapViewportModel, StationMarkerModel } from "@bornemap/geo-models";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 
 interface ViewportStation {
   id: string;
@@ -66,5 +66,7 @@ export function useViewportStations(viewport: MapViewportModel | null) {
     markers,
     truncated: query.data?.truncated ?? false,
     isLoading: query.isLoading,
+    isError: query.isError,
+    error: query.error,
   };
 }
