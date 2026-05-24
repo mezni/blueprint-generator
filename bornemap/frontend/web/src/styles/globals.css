@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: #22c55e;
+  --accent-foreground: #ffffff;
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  --border: #e5e7eb;
+  --background: #f9fafb;
+  --muted: #6b7280;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}

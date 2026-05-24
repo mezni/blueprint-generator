@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "name": "BorneMap",
+    "slug": "bornemap",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "bornemap",
+    "platforms": ["ios", "android"],
+    "ios": { "supportsTablet": true },
+    "android": { "adaptiveIcon": { "backgroundColor": "#22c55e" } }
+  }
+}
