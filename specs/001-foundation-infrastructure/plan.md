@@ -77,60 +77,61 @@ specs/001-foundation-infrastructure/
 ### Source Code (repository root)
 
 ```text
-backend/
-├── app/
-│   ├── main.py              # FastAPI app entry point
-│   ├── core/
-│   │   ├── config.py        # pydantic-settings BaseSettings
-│   │   ├── database.py      # SQLAlchemy async engine + session
-│   │   └── dependencies.py  # Depends() factories
-│   ├── health/
-│   │   └── router.py        # /health/live, /health/ready
-│   └── stations/            # Feature-scoped (empty placeholder for Phase 1)
-│       ├── models.py
-│       ├── schemas.py
-│       ├── repository.py
-│       ├── service.py
-│       └── router.py
-├── migrations/
-│   └── versions/
-│       └── 001_create_stations.py  # Initial alembic baseline
-├── tests/
-│   ├── conftest.py
-│   └── test_health.py
-├── alembic.ini
-├── pyproject.toml
-└── Dockerfile
+bornemap/
+├── backend/
+│   ├── app/
+│   │   ├── main.py              # FastAPI app entry point
+│   │   ├── core/
+│   │   │   ├── config.py        # pydantic-settings BaseSettings
+│   │   │   ├── database.py      # SQLAlchemy async engine + session
+│   │   │   └── dependencies.py  # Depends() factories
+│   │   ├── health/
+│   │   │   └── router.py        # /health/live, /health/ready
+│   │   └── stations/            # Feature-scoped (empty placeholder for Phase 1)
+│   │       ├── models.py
+│   │       ├── schemas.py
+│   │       ├── repository.py
+│   │       ├── service.py
+│   │       └── router.py
+│   ├── migrations/
+│   │   └── versions/
+│   │       └── 001_create_stations.py  # Initial alembic baseline
+│   ├── tests/
+│   │   ├── conftest.py
+│   │   └── test_health.py
+│   ├── alembic.ini
+│   ├── pyproject.toml
+│   └── Dockerfile
 
-web/
-├── src/
-│   ├── main.tsx
-│   ├── App.tsx
-│   ├── components/
-│   │   ├── ui/              # shadcn/ui generated
-│   │   └── map/             # Leaflet map wrapper
-│   ├── features/
-│   │   └── stations/        # Empty placeholder for Phase 1
-│   ├── lib/api.ts           # API client stub
-│   └── styles/globals.css   # Tailwind + design tokens
-├── index.html
-├── vite.config.ts
-├── tailwind.config.ts
-├── tsconfig.json
-└── package.json
+├── web/
+│   ├── src/
+│   │   ├── main.tsx
+│   │   ├── App.tsx
+│   │   ├── components/
+│   │   │   ├── ui/              # shadcn/ui generated
+│   │   │   └── map/             # Leaflet map wrapper
+│   │   ├── features/
+│   │   │   └── stations/        # Empty placeholder for Phase 1
+│   │   ├── lib/api.ts           # API client stub
+│   │   └── styles/globals.css   # Tailwind + design tokens
+│   ├── index.html
+│   ├── vite.config.ts
+│   ├── tailwind.config.ts
+│   ├── tsconfig.json
+│   └── package.json
 
-mobile/
-├── app/
-│   ├── (tabs)/
-│   │   ├── index.tsx        # Map tab placeholder
-│   │   └── favorites.tsx    # Favorites tab placeholder
-│   └── _layout.tsx          # Tab layout
-├── components/
-│   ├── map/                 # Empty placeholder for Phase 2
-│   └── sheets/              # Empty placeholder for Phase 2
-├── lib/api.ts               # API client stub
-├── app.json
-└── package.json
+└── mobile/
+    ├── app/
+    │   ├── (tabs)/
+    │   │   ├── index.tsx        # Map tab placeholder
+    │   │   └── favorites.tsx    # Favorites tab placeholder
+    │   └── _layout.tsx          # Tab layout
+    ├── components/
+    │   ├── map/                 # Empty placeholder for Phase 2
+    │   └── sheets/              # Empty placeholder for Phase 2
+    ├── lib/api.ts               # API client stub
+    ├── app.json
+    └── package.json
 
 docker-compose.yml            # PostGIS + backend services
 .github/workflows/

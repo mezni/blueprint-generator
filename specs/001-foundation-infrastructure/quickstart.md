@@ -15,9 +15,11 @@
 docker compose up -d
 
 # 2. Backend
-cd backend
+cd bornemap/backend
 python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
+pip install -e ".[dev]"
+# Copy env template
+cp .env.example .env
 # Run migrations
 alembic upgrade head
 # Start dev server
@@ -39,7 +41,10 @@ npx expo start
 ```bash
 # Health endpoints
 curl http://localhost:8000/health/live
+# → {"status":"ok"}
+
 curl http://localhost:8000/health/ready
+# → {"status":"ok","database":"connected"}
 
 # Web admin
 open http://localhost:5173
@@ -47,19 +52,30 @@ open http://localhost:5173
 # Mobile: scan QR code from Expo Go terminal
 ```
 
+## Verification Checklist
+
+- [ ] `GET /health/live` returns 200 `{"status":"ok"}`
+- [ ] `GET /health/ready` returns 200 `{"status":"ok","database":"connected"}` (or 503 without PostGIS)
+- [ ] Web admin loads full-screen map with CartoDB Positron tiles
+- [ ] Floating panels visible (Search top-left, Stations top-right, Details bottom)
+- [ ] Mobile app renders in Expo Go with Map and Favorites tabs
+- [ ] Backend hot-reload: edit `bornemap/backend/app/health/router.py` → server reloads
+- [ ] Web hot-reload: edit `bornemap/frontend/web/src/App.tsx` → browser reloads
+- [ ] Mobile hot-reload: edit `bornemap/frontend/mobile/app/(tabs)/index.tsx` → Expo reloads
+
 ## CI Validation
 
 ```bash
 # Backend
-cd backend
+cd bornemap/backend
 ruff check . && black --check . && pytest
 
 # Frontend
-cd web
+cd bornemap/frontend/web
 npx tsc --noEmit && npm run build
 
 # Mobile
-cd mobile
+cd bornemap/frontend/mobile
 npx tsc --noEmit
 ```
 
