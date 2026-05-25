@@ -62,6 +62,52 @@ map interaction pipelines, and nearby geospatial query lookups.
 > Admin coordinates saved on the portal appear instantly on the map within localized
 > bounding boxes. UX fully vetted for visual polish.
 
+### Data Model (Phase 0 — User Management + Data Tables)
+
+```
+users
+├── id SERIAL PK
+├── username VARCHAR(100) UNIQUE NOT NULL
+├── email VARCHAR(255) UNIQUE NOT NULL
+├── role VARCHAR(50) NOT NULL DEFAULT 'viewer'
+├── password_hash VARCHAR(255)
+├── is_active BOOLEAN NOT NULL DEFAULT true
+├── created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+└── updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+
+partners
+├── id SERIAL PK
+├── name VARCHAR(255) NOT NULL
+├── contact_email VARCHAR(255)
+├── phone VARCHAR(50)
+├── is_active BOOLEAN NOT NULL DEFAULT true
+├── created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+└── updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+
+stations
+├── id SERIAL PK
+├── partner_id INTEGER FK → partners (nullable)
+├── name VARCHAR(255) NOT NULL
+├── operator VARCHAR(255)
+├── address VARCHAR(500)
+├── location GEOGRAPHY(Point, 4326)  ← GiST index
+├── plug_types TEXT[]
+├── speed_kw FLOAT
+├── is_active BOOLEAN NOT NULL DEFAULT true
+├── created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+└── updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+
+chargers
+├── id SERIAL PK
+├── station_id INTEGER FK → stations (nullable)
+├── connector VARCHAR(50) NOT NULL (CCS, Type2, CHAdeMO)
+├── power_kw NUMERIC
+├── status VARCHAR(50) NOT NULL DEFAULT 'available'
+├── is_active BOOLEAN NOT NULL DEFAULT true
+├── created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+└── updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+```
+
 ### Data Model (Phase 1)
 
 ```
@@ -256,6 +302,22 @@ remediation path documented.
 - Build core backend Station CRUD endpoints and model structures.
 - Implement CartoDB Positron tile layer in admin portal. Configure custom green
   `DivIcon` markers.
+- Build backend User CRUD endpoints (`users/` feature domain) with is_active status
+  toggle, mock auth integration.
+- Create Alembic migration for `users` table (id, username, email, role, password_hash,
+  is_active, timestamps).
+- Implement web admin Users page with data table, add/edit dialog, activate/deactivate
+  toggle, and React Query hooks.
+- Update Dashboard overview to show summary stats with inline Settings link.
+- Complete backend `stations/` feature domain with full models (name, operator, address,
+  location GEOGRAPHY(Point,4326), plug_types, speed_kw, partner_id FK, is_active).
+- Create backend `partners/` feature domain (id, name, contact_email, phone, is_active).
+- Create backend `chargers/` feature domain (id, station_id FK, connector, power_kw,
+  status, is_active).
+- Create Alembic migrations for partners, stations, and chargers tables.
+- Implement web admin Data sub-pages (Partners, Stations, Chargers) with data tables,
+  add/edit dialogs, active/inactive toggle, and React Query hooks.
+- Update sidebar Data accordion with clickable sub-item navigation.
 
 ---
 
