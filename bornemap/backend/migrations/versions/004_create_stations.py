@@ -28,7 +28,7 @@ def upgrade() -> None:
         sa.Column("updated_at", sa.DateTime(timezone=True), nullable=False, server_default=sa.text("now()")),
         sa.PrimaryKeyConstraint("id"),
     )
-    op.create_index("idx_stations_location", "stations", ["location"], postgresql_using="gist")
+    op.create_index("idx_stations_location", "stations", ["location"], postgresql_using="gist", if_not_exists=True)
 
 
 def downgrade() -> None:

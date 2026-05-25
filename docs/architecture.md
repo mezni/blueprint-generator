@@ -96,6 +96,9 @@ BorneMap is a geospatial EV charging discovery platform serving three actor grou
   - Every spatial column MUST have a GiST index.
   - Repository methods accept and return domain models (not ORM instances across
     layer boundaries).
+  - Every write operation MUST call `session.commit()` after `session.flush()`.
+    Omitting `commit()` silently rolls back the transaction when the session
+    closes, losing all writes.
 
 ### 2.4 Database Layer
 
@@ -489,53 +492,11 @@ export default {
 }
 ```
 
-### 8.3 Floating Panel Layout (Preview Map)
-
-The map is always full-screen (`h-screen w-full`). All panels float on top:
-
-```
-┌─────────────────────────────────────────────────────┐
-│  MAP (full screen, z-index: 0)                       │
-│                                                       │
-│  ┌─────────────────────┐    ┌──────────────────┐     │
-│  │ Search + Filters    │    │ Station Form     │     │
-│  │ top-left float      │    │ top-right float   │     │
-│  │ z-10, backdrop-blur │    │ z-10              │     │
-│  └─────────────────────┘    └──────────────────┘     │
-│                                                       │
-│       [green marker pins on map]                      │
-│                                                       │
-│  ┌─────────────────────────────────────────────┐     │
-│  │ Station list card   bottom-left float        │     │
-│  │ max-h-80, overflow-y-auto, z-10              │     │
-│  └─────────────────────────────────────────────┘     │
-└─────────────────────────────────────────────────────┘
-```
-
-```typescript
-const floatingPanel = `
-  absolute z-10 bg-white/90 backdrop-blur-md
-  rounded-2xl shadow-float border border-white/60
-  p-4
-`
-```
-
-### 8.4 Custom Green Marker
-
-```typescript
-// Applies to web (Leaflet) — never default blue pin
-const stationIcon = L.divIcon({
-  className: "",
-  html: `<div style="
-    width:32px; height:32px; border-radius:50%;
-    background:#22c55e; border:3px solid white;
-    box-shadow:0 2px 8px rgba(0,0,0,0.25);
-    display:flex; align-items:center; justify-content:center;
-  ">...</div>`,
-  iconSize: [32, 32],
-  iconAnchor: [16, 16],
-})
-```
+> **Important:** Every query hook (not just mutations) MUST pass `getToken()` to
+> its `get()` call. Without it, requests send no auth header, the backend returns
+> 401, and React Query silently caches an error state. Additionally, the login
+> handler MUST call `queryClient.invalidateQueries()` to refetch all cached
+> queries after setting the token — otherwise stale error cache persists.
 
 ---
 

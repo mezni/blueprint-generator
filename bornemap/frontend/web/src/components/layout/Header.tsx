@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Eye, LayoutDashboard } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
+import { Eye, LayoutDashboard, LogIn, LogOut } from "lucide-react";
 import { cn } from "../../lib/utils";
+import { isAuthenticated, login, logout } from "../../lib/auth";
 
 const tabs = [
   { label: "Preview", icon: Eye, path: "/preview" },
@@ -10,7 +13,20 @@ const tabs = [
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
+  const queryClient = useQueryClient();
   const currentPath = location.pathname;
+  const [authed, setAuthed] = useState(isAuthenticated());
+
+  const handleLogin = () => {
+    login();
+    setAuthed(true);
+    queryClient.invalidateQueries();
+  };
+
+  const handleLogout = () => {
+    logout();
+    setAuthed(false);
+  };
 
   return (
     <header className="flex h-14 items-center justify-between border-b border-border bg-white px-6">
@@ -49,6 +65,18 @@ export default function Header() {
       </div>
 
       <div className="flex items-center gap-3">
+        <button
+          onClick={authed ? handleLogout : handleLogin}
+          className={cn(
+            "flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors",
+            authed
+              ? "bg-red-50 text-red-600 hover:bg-red-100"
+              : "bg-accent-muted text-accent-dark hover:bg-accent/20",
+          )}
+        >
+          {authed ? <LogOut size={14} /> : <LogIn size={14} />}
+          {authed ? "Logout" : "Login"}
+        </button>
         <div className="flex h-7 w-7 items-center justify-center rounded-full bg-accent-muted">
           <span className="text-[10px] font-bold text-accent-dark">A</span>
         </div>
