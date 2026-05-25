@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Search,
   LayoutDashboard,
@@ -10,6 +10,7 @@ import {
   Navigation,
   Zap,
   Plug,
+  Settings,
 } from "lucide-react";
 import NavItem from "./NavItem";
 import NavAccordion from "./NavAccordion";
@@ -20,7 +21,10 @@ const mainNavItems = [
   { icon: Database, label: "Data", path: "/data", badge: undefined },
   { icon: BarChart3, label: "Analytics", path: "/analytics", badge: undefined },
   { icon: TrendingUp, label: "Growth", path: "/growth", badge: undefined },
+  { icon: Settings, label: "Settings", path: "/settings", badge: undefined },
 ];
+
+const dataPaths = ["/data/partners", "/data/stations", "/data/chargers"];
 
 const dataNavItems = [
   { icon: Navigation, label: "Partners", active: false },
@@ -31,6 +35,7 @@ const dataNavItems = [
 export default function Sidebar() {
   const [search, setSearch] = useState("");
   const location = useLocation();
+  const navigate = useNavigate();
   const currentPath = location.pathname;
 
   return (
@@ -65,7 +70,11 @@ export default function Sidebar() {
                 label={item.label}
                 defaultOpen={true}
                 active={isActive}
-                items={dataNavItems}
+                items={dataNavItems.map((ni, idx) => ({
+                  ...ni,
+                  active: currentPath === dataPaths[idx],
+                  onClick: () => navigate(dataPaths[idx]),
+                }))}
               />
             );
           }
@@ -76,6 +85,7 @@ export default function Sidebar() {
               label={item.label}
               active={isActive}
               badge={item.badge}
+              onClick={() => navigate(item.path)}
             />
           );
         })}

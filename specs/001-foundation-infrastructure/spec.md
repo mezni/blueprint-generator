@@ -93,6 +93,19 @@ map with CartoDB Positron tiles and floating panel placeholders.
    floating panel containers for search, station list, and station form are
    present with design tokens applied (green accents, rounded corners,
    backdrop blur, clean drop-shadows).
+4. **Given** the admin portal is running, **When** the user navigates to the
+   settings page, **Then** the main content area displays two configuration
+   sections: an App info card and a General Settings card.
+5. **Given** the settings page is displayed, **When** the user inspects the
+   App info card, **Then** it shows application metadata (name, version,
+   environment, status) styled with design tokens.
+6. **Given** the settings page is displayed, **When** the user inspects the
+   General Settings card, **Then** it shows configurable application settings
+   (theme, language, notifications, map defaults) with appropriate form
+   controls styled with design tokens.
+7. **Given** the dashboard map is displayed, **When** the user inspects the
+   main content area, **Then** a link to the settings page is present as a
+   floating action element.
 
 ---
 
@@ -120,6 +133,37 @@ QR code, and see a responsive placeholder screen with the app shell visible
    margins and accent-colored elements matching the design tokens.
 3. **Given** the app is running in Expo Go, **When** the developer edits a
    source file and saves, **Then** the app hot-reloads with the change.
+
+---
+
+### User Story 5 — User Management (Priority: P1)
+
+As an administrator, I want to manage user accounts through a dedicated
+interface so that I can control access to the admin portal.
+
+**Why this priority**: User management is a core administrative function
+required before onboarding real team members to the platform.
+
+**Independent Test**: Navigate to the Users page, create a new user, verify it
+appears in the table, edit the user's details, and toggle their active status.
+
+**Acceptance Scenarios**:
+
+1. **Given** the admin portal is running, **When** the user clicks "Users" in
+   the sidebar, **Then** a table of all users is displayed with columns for
+   name, email, role, status, and actions.
+2. **Given** the users table is displayed, **When** the user clicks "Add User",
+   **Then** a dialog opens with form fields for name, email, role, and password.
+3. **Given** the add user dialog is filled and submitted, **When** the user
+   confirms, **Then** the new user appears in the table with an "Active" status.
+4. **Given** a user is selected in the table, **When** the user clicks "Edit",
+   **Then** a dialog opens with the user's current details pre-filled for
+   modification.
+5. **Given** a user is selected in the table, **When** the user clicks
+   "Deactivate", **Then** the user's status changes to "Inactive" and the
+   button text changes to "Activate".
+6. **Given** an inactive user is selected, **When** the user clicks "Activate",
+   **Then** the user's status changes back to "Active".
 
 ---
 
@@ -163,11 +207,39 @@ QR code, and see a responsive placeholder screen with the app shell visible
   devices and display a responsive placeholder screen.
 - **FR-009**: Both the admin portal and mobile app MUST support hot-reload
   during development.
+- **FR-010**: The admin portal MUST include a settings page accessible via
+  sidebar navigation that renders an App info card displaying application
+  metadata (name, version, environment, status).
+- **FR-011**: The settings page MUST also render a General Settings card with
+  controls for configurable application settings (theme toggle, language
+  selector, notification preferences, map defaults).
+- **FR-012**: The admin portal dashboard (Overview) MUST display summary
+  statistics and an inline link to the Settings page.
+- **FR-013**: The backend MUST expose CRUD endpoints for user management at
+  `/api/v1/users` with support for listing, creating, editing, and toggling
+  user active status.
+- **FR-014**: The admin portal MUST include a Users page accessible via sidebar
+  navigation that renders a data table of all users.
+- **FR-015**: The Users page MUST support adding new users, editing existing
+  users, and toggling user active/inactive status via dialog modals.
+- **FR-016**: The users table MUST display columns for username, email, role,
+  status, and action buttons.
+- **FR-017**: The sidebar Data accordion MUST contain clickable sub-items for
+  Partners, Stations, and Chargers that navigate to their respective pages.
+- **FR-018**: The admin portal MUST include a Partners page with a data table
+  displaying name, contact email, phone, and status columns, with add/edit/toggle/delete.
+- **FR-019**: The admin portal MUST include a Stations page with a data table
+  displaying name, operator, partner, plug types, speed, and status columns,
+  with add/edit/toggle/delete.
+- **FR-020**: The admin portal MUST include a Chargers page with a data table
+  displaying connector, power, station, status, and status columns,
+  with add/edit/toggle/delete.
 
 ### Key Entities *(include if feature involves data)*
 
-- **No persistent data entities in this phase.** Phase 0 establishes the
-  development infrastructure only. Data models begin in Phase 1.
+- **users** — Admin user accounts with username, email, role, password_hash,
+  and is_active status. Managed through the admin portal Users page.
+  Created via Alembic migration `002_create_users.py`.
 
 ## Success Criteria *(mandatory)*
 
