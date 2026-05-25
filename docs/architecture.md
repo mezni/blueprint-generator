@@ -119,14 +119,31 @@ bornemap/
 │   │   │   ├── config.py         # pydantic-settings BaseSettings
 │   │   │   ├── database.py       # SQLAlchemy async engine + session
 │   │   │   └── dependencies.py   # Depends() factories (db session, auth)
-│   │   ├── stations/             # feature domain — NOT type-scoped
+│   │   ├── users/                # feature domain — user management
 │   │   │   ├── models.py
 │   │   │   ├── schemas.py
 │   │   │   ├── repository.py
 │   │   │   ├── service.py
 │   │   │   └── router.py
-│   │   ├── users/                # (same pattern)
-│   │   ├── reviews/              # (same pattern)
+│   │   ├── partners/             # feature domain — partner organizations
+│   │   │   ├── models.py
+│   │   │   ├── schemas.py
+│   │   │   ├── repository.py
+│   │   │   ├── service.py
+│   │   │   └── router.py
+│   │   ├── stations/             # feature domain — EV charging stations
+│   │   │   ├── models.py
+│   │   │   ├── schemas.py
+│   │   │   ├── repository.py
+│   │   │   ├── service.py
+│   │   │   └── router.py
+│   │   ├── chargers/             # feature domain — charger connectors
+│   │   │   ├── models.py
+│   │   │   ├── schemas.py
+│   │   │   ├── repository.py
+│   │   │   ├── service.py
+│   │   │   └── router.py
+│   │   ├── reviews/              # (future)
 │   │   └── health/
 │   │       └── router.py
 │   ├── migrations/
@@ -137,11 +154,28 @@ bornemap/
 ├── web/                           # React admin portal
 │   ├── src/
 │   │   ├── main.tsx
+│   │   ├── App.tsx               # Routes: /, /users, /data/*, /settings, /preview
+│   │   ├── pages/
+│   │   │   ├── DashboardPage.tsx  # Overview with stats + Settings link
+│   │   │   ├── UsersPage.tsx      # User CRUD table
+│   │   │   ├── PartnersPage.tsx   # Partner data table
+│   │   │   ├── StationsPage.tsx   # Station data table
+│   │   │   ├── ChargersPage.tsx   # Charger data table
+│   │   │   ├── SettingsPage.tsx   # App info + general settings
+│   │   │   └── PreviewPage.tsx    # Full-screen map
 │   │   ├── components/
-│   │   │   ├── ui/               # shadcn/ui generated components
+│   │   │   ├── layout/           # Header, Sidebar, DashboardLayout
+│   │   │   ├── ui/               # shadcn/ui components
+│   │   │   ├── settings/         # AppInfoCard, GeneralSettingsCard
 │   │   │   └── map/              # Leaflet wrapper components
-│   │   ├── features/stations/    # feature-scoped hooks, views, forms
-│   │   ├── lib/api.ts            # typed fetch client
+│   │   ├── features/
+│   │   │   ├── users/            # User API hooks, dialog, table
+│   │   │   ├── partners/         # Partner API hooks, dialog, table
+│   │   │   ├── stations/         # Station API hooks, dialog, table
+│   │   │   └── chargers/         # Charger API hooks, dialog, table
+│   │   ├── lib/
+│   │   │   ├── api.ts            # typed fetch client
+│   │   │   └── utils.ts          # cn() helper
 │   │   └── styles/globals.css
 │   ├── vite.config.ts
 │   └── tailwind.config.ts
@@ -398,7 +432,31 @@ CREATE INDEX idx_chargers_location  ON chargers  USING GIST (location);
 
 ## 8. Web Admin Portal
 
-### 8.1 Design Tokens
+### 8.1 Dashboard Layout
+
+The admin portal uses a sidebar + header layout. The sidebar hosts primary navigation
+(Dashboard/Overview, Users, Data, Analytics, Growth, Settings). The main content area
+renders the active page via `<Outlet>`.
+
+```
+┌──────────────────────────────────────────────────┐
+│ Header  [Preview] [Dashboard]              [BM]  │
+├────────┬─────────────────────────────────────────┤
+│        │                                         │
+│ Search │  Main Content Area                      │
+│        │                                         │
+│ Overview │  Dashboard: stats cards + Settings link │
+│ Users  │  Users: data table with CRUD dialogs     │
+│ Data   │  Settings: app info + config forms       │
+│────────│                                         │
+│ v0.1.0 │                                         │
+└────────┴─────────────────────────────────────────┘
+```
+
+The side navigation items drive client-side routing via `react-router-dom`.
+Default route `/` loads the Dashboard overview page.
+
+### 8.2 Design Tokens
 
 ```typescript
 // tailwind.config.ts — never hardcode hex in component files
@@ -431,7 +489,7 @@ export default {
 }
 ```
 
-### 8.2 Floating Panel Layout
+### 8.3 Floating Panel Layout (Preview Map)
 
 The map is always full-screen (`h-screen w-full`). All panels float on top:
 
@@ -462,7 +520,7 @@ const floatingPanel = `
 `
 ```
 
-### 8.3 Custom Green Marker
+### 8.4 Custom Green Marker
 
 ```typescript
 // Applies to web (Leaflet) — never default blue pin

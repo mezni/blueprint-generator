@@ -9,6 +9,7 @@ interface NestedItem {
   label: string;
   active?: boolean;
   badge?: string | number;
+  onClick?: () => void;
 }
 
 interface NavAccordionProps {
@@ -68,6 +69,7 @@ export default function NavAccordion({
               label={item.label}
               active={item.active}
               badge={item.badge}
+              onClick={item.onClick}
             />
           </div>
         ))}
