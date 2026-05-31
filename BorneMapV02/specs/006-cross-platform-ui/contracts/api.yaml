@@ -1,0 +1,210 @@
+openapi: "3.0.3"
+info:
+  title: BorneMap Cross-Platform API
+  version: "1.0.0"
+  description: Shared API consumed by desktop web and mobile app for cross-platform UI synchronization.
+
+servers:
+  - url: /api/v1
+
+paths:
+  /search:
+    get:
+      summary: Search charging stations by query text
+      operationId: searchStations
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Free-text search query (station name, address, area)
+        - name: filters
+          in: query
+          required: false
+          schema:
+            type: string
+          description: JSON-encoded filter object (connector_types, status, min_available)
+      responses:
+        "200":
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StationSummary"
+
+  /stations/{stationId}:
+    get:
+      summary: Get detailed information for a specific charging station
+      operationId: getStationDetail
+      parameters:
+        - name: stationId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Unique station identifier
+      responses:
+        "200":
+          description: Station detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StationDetail"
+
+  /filters:
+    get:
+      summary: Get currently active filter set for the session
+      operationId: getActiveFilters
+      parameters:
+        - name: session_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Active filter state
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FilterState"
+    put:
+      summary: Update the active filter set for the session (last-writer-wins)
+      operationId: setActiveFilters
+      parameters:
+        - name: session_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FilterState"
+      responses:
+        "200":
+          description: Updated filter state
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FilterState"
+
+  /events:
+    post:
+      summary: Ingest a clickstream event from any platform
+      operationId: ingestEvent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClickstreamEvent"
+      responses:
+        "202":
+          description: Event accepted for async processing
+        "400":
+          description: Schema validation failure
+
+components:
+  schemas:
+    StationSummary:
+      type: object
+      properties:
+        station_id:
+          type: string
+          format: uuid
+        station_name:
+          type: string
+        address:
+          type: string
+        available_chargers:
+          type: integer
+          minimum: 0
+        total_chargers:
+          type: integer
+          minimum: 0
+        status:
+          $ref: "#/components/schemas/StationStatus"
+
+    StationDetail:
+      allOf:
+        - $ref: "#/components/schemas/StationSummary"
+        - type: object
+          properties:
+            connector_types:
+              type: array
+              items:
+                $ref: "#/components/schemas/ConnectorType"
+            navigate_url:
+              type: string
+              format: uri
+              description: Deep link to Google Maps / Waze directions
+
+    StationStatus:
+      type: string
+      enum: [available, busy, offline, unknown]
+
+    ConnectorType:
+      type: string
+      enum: [type_2, type_2_combo, chademo, ccs, tesla]
+
+    FilterState:
+      type: object
+      properties:
+        connector_types:
+          type: array
+          items:
+            $ref: "#/components/schemas/ConnectorType"
+        status:
+          type: array
+          items:
+            $ref: "#/components/schemas/StationStatus"
+        min_available:
+          type: integer
+          minimum: 0
+
+    ClickstreamEvent:
+      type: object
+      required:
+        - event_name
+        - platform
+        - session_id
+        - timestamp
+      properties:
+        event_name:
+          type: string
+          enum: [marker_tap, search_submit, filter_change, zoom_in, zoom_out, locate_me]
+        platform:
+          type: string
+          enum: [desktop_web, mobile_app]
+        session_id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        properties:
+          type: object
+          properties:
+            station_id:
+              type: string
+              format: uuid
+            query:
+              type: string
+            zoom_level:
+              type: number
+            viewport_center:
+              type: object
+              properties:
+                lat:
+                  type: number
+                lng:
+                  type: number

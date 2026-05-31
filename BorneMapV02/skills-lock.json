@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "063a0e6448123cd359ad0044cc46b0e490cc7964d45ef4bb9fd842bd2ffbca67"
+    },
+    "react": {
+      "source": "vercel-labs/json-render",
+      "sourceType": "github",
+      "skillPath": "skills/react/SKILL.md",
+      "computedHash": "67d6daabd85c23cc58eeabea56f25b899723932dfb69c55ddae4990b43c918d2"
+    },
+    "rust-skills": {
+      "source": "leonardomso/rust-skills",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "6451366a387b2c62fbebfefc955ae2c88be99fe3a3af739072df96a7fb2d4028"
+    }
+  }
+}
