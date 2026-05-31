@@ -18,13 +18,16 @@ class PartnerRepository:
     async def create(self, partner: Partner) -> Partner:
         self._session.add(partner)
         await self._session.flush()
+        await self._session.commit()
         await self._session.refresh(partner)
         return partner
 
     async def update(self, partner: Partner) -> Partner:
         await self._session.flush()
+        await self._session.commit()
         await self._session.refresh(partner)
         return partner
 
     async def delete(self, partner_id: int) -> None:
         await self._session.execute(delete(Partner).where(Partner.id == partner_id))
+        await self._session.commit()
