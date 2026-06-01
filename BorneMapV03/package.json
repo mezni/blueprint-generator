@@ -1,0 +1,17 @@
+{
+  "name": "borne-map",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test": "echo \"No root-level tests yet\""
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

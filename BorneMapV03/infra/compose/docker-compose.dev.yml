@@ -1,0 +1,25 @@
+services:
+  postgres:
+    ports:
+      - "5432:5432"
+
+  rabbitmq:
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  keycloak:
+    ports:
+      - "8080:8080"
+
+  admin-service:
+    ports:
+      - "9001:8080"
+
+  driver-service:
+    ports:
+      - "9002:8080"
+
+  clickstream-service:
+    ports:
+      - "9003:8080"

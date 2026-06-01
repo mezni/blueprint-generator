@@ -1,0 +1,123 @@
+http:
+  routers:
+    driver-api:
+      rule: "PathPrefix(`/api/v1/driver`)"
+      service: driver-service
+      priority: 10
+      middlewares:
+        - strip-driver-prefix
+        - rate-limit
+        - auth-reject
+
+    admin-api:
+      rule: "PathPrefix(`/api/v1/admin`)"
+      service: admin-service
+      priority: 10
+      middlewares:
+        - strip-admin-prefix
+        - auth-reject
+
+    events-api:
+      rule: "PathPrefix(`/api/v1/events`)"
+      service: clickstream-service
+      priority: 10
+      middlewares:
+        - strip-events-prefix
+        - auth-reject
+
+    auth:
+      rule: "PathPrefix(`/auth`)"
+      service: keycloak
+      priority: 5
+
+    driver-web:
+      rule: "Path(`/`) || PathPrefix(`/assets`)"
+      service: driver-web
+      priority: 1
+
+    admin-dashboard:
+      rule: "PathPrefix(`/admin`)"
+      service: admin-dashboard
+      priority: 1
+
+    partner-dashboard:
+      rule: "PathPrefix(`/partner`)"
+      service: partner-dashboard
+      priority: 1
+
+  services:
+    driver-service:
+      loadBalancer:
+        servers:
+          - url: "http://driver-service:8080"
+        healthCheck:
+          path: /health
+          interval: 15s
+          timeout: 3s
+
+    admin-service:
+      loadBalancer:
+        servers:
+          - url: "http://admin-service:8080"
+        healthCheck:
+          path: /health
+          interval: 15s
+          timeout: 3s
+
+    clickstream-service:
+      loadBalancer:
+        servers:
+          - url: "http://clickstream-service:8080"
+        healthCheck:
+          path: /health
+          interval: 15s
+          timeout: 3s
+
+    keycloak:
+      loadBalancer:
+        servers:
+          - url: "http://keycloak:8080"
+
+    driver-web:
+      loadBalancer:
+        servers:
+          - url: "http://driver-web:80"
+
+    admin-dashboard:
+      loadBalancer:
+        servers:
+          - url: "http://admin-dashboard:80"
+
+    partner-dashboard:
+      loadBalancer:
+        servers:
+          - url: "http://partner-dashboard:80"
+
+  middlewares:
+    strip-driver-prefix:
+      stripPrefix:
+        prefixes:
+          - "/api/v1/driver"
+
+    strip-admin-prefix:
+      stripPrefix:
+        prefixes:
+          - "/api/v1/admin"
+
+    strip-events-prefix:
+      stripPrefix:
+        prefixes:
+          - "/api/v1/events"
+
+    rate-limit:
+      rateLimit:
+        average: 100
+        burst: 20
+
+    auth-reject:
+      forwardAuth:
+        address: "http://keycloak:8080/realms/ev-platform/protocol/openid-connect/userinfo"
+        trustForwardHeader: true
+        authResponseHeaders:
+          - X-Auth-User
+          - X-Auth-Roles

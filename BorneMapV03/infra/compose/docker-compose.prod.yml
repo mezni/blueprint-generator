@@ -1,0 +1,65 @@
+services:
+  traefik:
+    ports:
+      - "443:443"
+    volumes:
+      - ./infra/traefik/certs:/etc/traefik/certs:ro
+    restart: always
+
+  postgres:
+    restart: always
+
+  rabbitmq:
+    restart: always
+
+  keycloak:
+    restart: always
+
+  admin-service:
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+
+  driver-service:
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+
+  clickstream-service:
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+
+  gis-sync-worker:
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+
+  driver-web:
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+
+  admin-dashboard:
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+
+  partner-dashboard:
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 64M

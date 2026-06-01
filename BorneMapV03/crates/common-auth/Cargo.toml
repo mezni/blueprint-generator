@@ -1,0 +1,16 @@
+[package]
+name = "common-auth"
+version = "0.1.0"
+edition.workspace = true
+
+[dependencies]
+jsonwebtoken = "9"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+tokio = { version = "1", features = ["full"] }
+thiserror = "1"
+tracing = "0.1"
+uuid = { version = "1", features = ["v4"] }
+async-trait = "0.1"
+chrono = { version = "0.4", features = ["serde"] }

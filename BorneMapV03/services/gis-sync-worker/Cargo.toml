@@ -1,0 +1,11 @@
+[package]
+name = "gis-sync-worker"
+version = "0.1.0"
+edition.workspace = true
+
+[dependencies]
+common-auth = { path = "../../crates/common-auth" }
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+tracing = "0.1"
+tracing-subscriber = "0.3"
