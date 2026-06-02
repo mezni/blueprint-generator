@@ -1,0 +1,14 @@
+{
+  "rabbit_version": "4.0",
+  "rabbitmq_version": "4.0",
+  "vhosts": [
+    {"name": "/"}
+  ],
+  "queues": [
+    {"name": "clickstream.raw", "vhost": "/", "durable": true, "auto_delete": false},
+    {"name": "gis.sync", "vhost": "/", "durable": true, "auto_delete": false},
+    {"name": "analytics.ingest", "vhost": "/", "durable": true, "auto_delete": false}
+  ],
+  "exchanges": [],
+  "bindings": []
+}

@@ -1,0 +1,17 @@
+[package]
+name = "gis-worker"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tracing = { workspace = true }
+common-observability = { path = "../../crates/common-observability" }
+common-config = { path = "../../crates/common-config" }
+envy = { workspace = true }
+sqlx = { workspace = true }
+lapin = { workspace = true }
+common-auth = { path = "../../crates/common-auth" }
