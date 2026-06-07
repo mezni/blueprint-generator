@@ -1,0 +1,56 @@
+name: bornemap
+
+services:
+  platform_db:
+    image: postgis/postgis:14-3.2
+    container_name: bornemap-platform-db
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres123}
+      POSTGRES_DB: ${POSTGRES_DB:-platform_db}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - bornemap-net
+
+  driver-service:
+    build:
+      context: ../..
+      dockerfile: services/driver-service/Dockerfile
+    container_name: bornemap-driver
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      SERVICE_HOST: ${SERVICE_HOST:-0.0.0.0}
+      SERVICE_PORT: ${SERVICE_PORT:-8000}
+      DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:postgres123@platform_db:5432/platform_db}
+      RUST_LOG: ${RUST_LOG:-info}
+    depends_on:
+      platform_db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - bornemap-net
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  bornemap-net:
+    driver: bridge

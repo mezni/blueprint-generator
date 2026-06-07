@@ -1,0 +1,20 @@
+{
+  "name": "@bornemap/root",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev:web": "pnpm --filter @bornemap/driver-web dev",
+    "dev:mobile": "pnpm --filter @bornemap/driver-mobile start",
+    "build:web": "pnpm --filter @bornemap/driver-web build",
+    "lint": "pnpm -r lint",
+    "format": "prettier --write '**/*.{js,ts,jsx,tsx,json,css}'"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.0"
+  },
+  "engines": {
+    "npm": ">=9.0.0",
+    "node": ">=18.0.0"
+  },
+  "packageManager": "pnpm@8.15.0"
+}

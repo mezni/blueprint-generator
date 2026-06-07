@@ -1,0 +1,20 @@
+[workspace]
+resolver = "2"
+members = [
+  "services/driver-service",
+  "services/admin-service",
+  "services/clickstream-service",
+  "services/gis-worker",
+  "services/analytics-writer",
+  "crates/common-types",
+  "crates/common-errors",
+  "crates/common-auth",
+  "crates/common-db",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+
+[profile.release]
+opt-level = 2

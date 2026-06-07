@@ -1,0 +1,277 @@
+{
+  "name": "GET /api/v1/stations/nearby",
+  "description": "Public endpoint to discover nearby charging stations by geographic proximity. No authentication required.",
+  "summary": "User Story 1 — Public Driver Discovers Nearby Charging Stations (P1)",
+  "method": "GET",
+  "path": "/api/v1/stations/nearby",
+  "authentication": "none",
+  "rateLimit": "100 requests per minute per IP (IPv4/IPv6)",
+  "query_parameters": {
+    "lat": {
+      "type": "number (float64)",
+      "required": true,
+      "description": "User latitude (WGS84)",
+      "constraints": {
+        "min": -90.0,
+        "max": 90.0
+      },
+      "example": 36.8
+    },
+    "lng": {
+      "type": "number (float64)",
+      "required": true,
+      "description": "User longitude (WGS84)",
+      "constraints": {
+        "min": -180.0,
+        "max": 180.0
+      },
+      "example": 10.1
+    },
+    "radius": {
+      "type": "integer",
+      "required": false,
+      "default": 5000,
+      "description": "Search radius in meters",
+      "constraints": {
+        "min": 100,
+        "max": 50000
+      },
+      "example": 5000
+    }
+  },
+  "success_response": {
+    "status_code": 200,
+    "content_type": "application/json",
+    "body": {
+      "type": "object",
+      "properties": {
+        "stations": {
+          "type": "array",
+          "description": "List of stations sorted by distance (nearest first)",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^STN-[A-Z0-9]{13}$",
+                "description": "Station identifier",
+                "example": "STN-ABC123XYZ1234"
+              },
+              "name": {
+                "type": "string",
+                "description": "Station name",
+                "example": "Tunis Central Station"
+              },
+              "address": {
+                "type": "string",
+                "nullable": true,
+                "description": "Physical address (may be null)",
+                "example": "Avenue Habib Bourguiba, Tunis 1000"
+              },
+              "latitude": {
+                "type": "number",
+                "description": "Station latitude",
+                "example": 36.8
+              },
+              "longitude": {
+                "type": "number",
+                "description": "Station longitude",
+                "example": 10.15
+              },
+              "distance_m": {
+                "type": "integer",
+                "description": "Distance from user location in meters",
+                "example": 450
+              },
+              "availability_status": {
+                "type": "string",
+                "enum": ["available", "unavailable", "unknown"],
+                "description": "Current availability status",
+                "example": "available"
+              },
+              "capacity": {
+                "type": "integer",
+                "nullable": true,
+                "description": "Total number of chargers (may be null)",
+                "example": 6
+              }
+            },
+            "required": ["id", "name", "latitude", "longitude", "distance_m", "availability_status"]
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "query": {
+          "type": "object",
+          "description": "Echo of input parameters",
+          "properties": {
+            "latitude": {
+              "type": "number",
+              "example": 36.8
+            },
+            "longitude": {
+              "type": "number",
+              "example": 10.1
+            },
+            "radius_m": {
+              "type": "integer",
+              "example": 5000
+            }
+          },
+          "required": ["latitude", "longitude", "radius_m"]
+        }
+      },
+      "required": ["stations", "query"],
+      "example": {
+        "stations": [
+          {
+            "id": "STN-ABC123XYZ1234",
+            "name": "Tunis Central",
+            "address": "Avenue Habib Bourguiba, Tunis 1000",
+            "latitude": 36.8020,
+            "longitude": 10.1552,
+            "distance_m": 450,
+            "availability_status": "available",
+            "capacity": 6
+          },
+          {
+            "id": "STN-DEF456UVW5678",
+            "name": "La Marsa",
+            "address": "Route de La Marsa, Tunis",
+            "latitude": 36.8567,
+            "longitude": 10.3245,
+            "distance_m": 2800,
+            "availability_status": "unknown",
+            "capacity": null
+          }
+        ],
+        "query": {
+          "latitude": 36.8,
+          "longitude": 10.1,
+          "radius_m": 5000
+        }
+      }
+    }
+  },
+  "error_responses": [
+    {
+      "status_code": 400,
+      "description": "Invalid query parameters",
+      "content_type": "application/json",
+      "body": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error code"
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message"
+          },
+          "field": {
+            "type": "string",
+            "nullable": true,
+            "description": "Field that caused the error (if applicable)"
+          }
+        },
+        "required": ["error", "message"],
+        "example": {
+          "error": "invalid_coordinates",
+          "message": "Invalid latitude: must be between -90 and 90, got 100",
+          "field": "lat"
+        }
+      }
+    },
+    {
+      "status_code": 429,
+      "description": "Rate limit exceeded",
+      "headers": {
+        "Retry-After": {
+          "type": "integer",
+          "description": "Seconds to wait before retrying"
+        }
+      },
+      "body": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "rate_limit_exceeded"
+          },
+          "message": {
+            "type": "string",
+            "example": "Too many requests. Maximum 100 per minute per IP."
+          }
+        }
+      }
+    },
+    {
+      "status_code": 500,
+      "description": "Internal server error",
+      "body": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "internal_error"
+          },
+          "message": {
+            "type": "string",
+            "example": "An unexpected error occurred. Please try again later."
+          }
+        }
+      }
+    }
+  ],
+  "acceptance_scenarios": [
+    {
+      "scenario": "US1-AC1: Stations within radius sorted by distance",
+      "given": "Stations exist in the database with valid coordinates",
+      "when": "User requests nearby stations within 5km radius",
+      "then": "System returns only stations within that radius sorted by distance (nearest first)",
+      "test_command": "GET /api/v1/stations/nearby?lat=36.8&lng=10.1&radius=5000",
+      "expected_result": "HTTP 200, array of 10+ stations sorted by distance_m (ascending)"
+    },
+    {
+      "scenario": "US1-AC2: Empty result for no stations in radius",
+      "given": "No stations exist in the requested radius",
+      "when": "User requests nearby stations",
+      "then": "System returns empty list (not error)",
+      "test_command": "GET /api/v1/stations/nearby?lat=0&lng=0&radius=100",
+      "expected_result": "HTTP 200, empty stations array"
+    },
+    {
+      "scenario": "US1-AC3: Invalid coordinates rejected",
+      "given": "User request with invalid coordinates (lat=100)",
+      "when": "Request is processed",
+      "then": "System rejects with clear error message",
+      "test_command": "GET /api/v1/stations/nearby?lat=100&lng=10.1&radius=5000",
+      "expected_result": "HTTP 400, error message: 'Invalid latitude: must be between -90 and 90, got 100'"
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "requirement": "SC-001: Performance (concurrent queries)",
+      "metric": "System supports 100 concurrent nearby searches"
+    },
+    {
+      "requirement": "SC-002: Latency",
+      "metric": "95% of queries return in <500ms (p95); median <300ms"
+    },
+    {
+      "requirement": "SC-008: Input validation",
+      "metric": "100% of invalid coordinate inputs rejected with clear error messages"
+    }
+  ],
+  "implementation_notes": [
+    "Query uses PostGIS ST_DWithin with GIST index for O(log n) performance",
+    "Coordinates validated in domain layer before database query",
+    "Rate limiting enforced at middleware level (IP-based, 100 req/min)",
+    "Soft-deleted stations (deleted_at IS NOT NULL) excluded from results",
+    "Default radius: 5000 meters (5km) if not specified",
+    "Max results: 100 stations (Limit in SQL query)",
+    "Sorted by ST_Distance in ascending order (nearest first)",
+    "Response includes 'distance_m' for client-side re-sorting if needed"
+  ]
+}

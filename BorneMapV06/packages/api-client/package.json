@@ -1,0 +1,14 @@
+{
+  "name": "@bornemap/api-client",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/index.ts",
+  "exports": {
+    "./driver": "./src/driver/index.ts",
+    "./types": "./src/types.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  }
+}

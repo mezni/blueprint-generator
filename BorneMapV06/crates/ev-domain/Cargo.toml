@@ -1,0 +1,15 @@
+[package]
+name = "ev-domain"
+version.workspace = true
+edition.workspace = true
+description = "Shared domain models and entities"
+license = "MIT"
+
+[dependencies]
+serde.workspace = true
+uuid.workspace = true
+chrono.workspace = true
+thiserror.workspace = true
+nanoid.workspace = true
+
+[dev-dependencies]

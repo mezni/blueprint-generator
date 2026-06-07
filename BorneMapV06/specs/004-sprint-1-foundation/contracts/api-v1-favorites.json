@@ -1,0 +1,305 @@
+{
+  "name": "Favorites API",
+  "description": "Authenticated endpoints for registered drivers to manage their saved charging stations.",
+  "summary": "User Story 3 — Registered Driver Creates Favorites & Views Reviews (P2)",
+  "endpoints": [
+    {
+      "name": "POST /api/v1/favorites",
+      "description": "Add a station to user's favorites",
+      "method": "POST",
+      "path": "/api/v1/favorites",
+      "authentication": "Required (Keycloak JWT)",
+      "authorization": "Only registered_driver and admin roles",
+      "request": {
+        "content_type": "application/json",
+        "body": {
+          "type": "object",
+          "properties": {
+            "station_id": {
+              "type": "string",
+              "pattern": "^STN-[A-Z0-9]{13}$",
+              "description": "Station to favorite",
+              "example": "STN-ABC123XYZ1234"
+            }
+          },
+          "required": ["station_id"]
+        }
+      },
+      "success_response": {
+        "status_code": 201,
+        "content_type": "application/json",
+        "body": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^FAV-[A-Z0-9]{13}$",
+              "description": "Favorite record ID"
+            },
+            "user_id": {
+              "type": "string",
+              "pattern": "^USR-[A-Z0-9]{13}$",
+              "description": "User ID (from JWT)"
+            },
+            "station_id": {
+              "type": "string",
+              "pattern": "^STN-[A-Z0-9]{13}$",
+              "description": "Favorited station"
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Favorite creation timestamp"
+            }
+          },
+          "required": ["id", "user_id", "station_id", "created_at"],
+          "example": {
+            "id": "FAV-FAV001ABC2345",
+            "user_id": "USR-DRV001XYZ6789",
+            "station_id": "STN-ABC123XYZ1234",
+            "created_at": "2026-06-05T14:30:00Z"
+          }
+        }
+      },
+      "error_responses": [
+        {
+          "status_code": 401,
+          "description": "Missing or invalid authentication token"
+        },
+        {
+          "status_code": 403,
+          "description": "User role does not permit favorites (e.g., partner user)"
+        },
+        {
+          "status_code": 404,
+          "description": "Station not found or soft-deleted"
+        },
+        {
+          "status_code": 409,
+          "description": "Station already in favorites"
+        }
+      ],
+      "acceptance_scenarios": [
+        {
+          "scenario": "US3-AC1: Favorite creation",
+          "given": "User is authenticated and a station exists",
+          "when": "User creates a favorite",
+          "then": "The station is added to user's favorites list",
+          "test_command": "POST /api/v1/favorites with station_id=STN-ABC123XYZ1234",
+          "expected_result": "HTTP 201, favorite record returned with id, user_id, station_id, created_at"
+        }
+      ]
+    },
+    {
+      "name": "GET /api/v1/favorites",
+      "description": "List authenticated user's favorite stations",
+      "method": "GET",
+      "path": "/api/v1/favorites",
+      "authentication": "Required (Keycloak JWT)",
+      "authorization": "Only registered_driver and admin roles; users see only their own favorites",
+      "query_parameters": {
+        "limit": {
+          "type": "integer",
+          "required": false,
+          "default": 50,
+          "description": "Max results per page",
+          "constraints": {
+            "min": 1,
+            "max": 500
+          }
+        },
+        "offset": {
+          "type": "integer",
+          "required": false,
+          "default": 0,
+          "description": "Pagination offset",
+          "constraints": {
+            "min": 0
+          }
+        }
+      },
+      "success_response": {
+        "status_code": 200,
+        "content_type": "application/json",
+        "body": {
+          "type": "object",
+          "properties": {
+            "favorites": {
+              "type": "array",
+              "description": "User's favorite stations",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^FAV-[A-Z0-9]{13}$",
+                    "description": "Favorite record ID"
+                  },
+                  "station": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "pattern": "^STN-[A-Z0-9]{13}$"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "address": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      },
+                      "availability_status": {
+                        "type": "string",
+                        "enum": ["available", "unavailable", "unknown"]
+                      },
+                      "capacity": {
+                        "type": "integer",
+                        "nullable": true
+                      }
+                    },
+                    "required": ["id", "name", "latitude", "longitude", "availability_status"]
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "When user favorited the station"
+                  }
+                },
+                "required": ["id", "station", "created_at"]
+              }
+            },
+            "pagination": {
+              "type": "object",
+              "properties": {
+                "total": {
+                  "type": "integer",
+                  "description": "Total number of favorites"
+                },
+                "limit": {
+                  "type": "integer"
+                },
+                "offset": {
+                  "type": "integer"
+                }
+              },
+              "required": ["total", "limit", "offset"]
+            }
+          },
+          "required": ["favorites", "pagination"],
+          "example": {
+            "favorites": [
+              {
+                "id": "FAV-FAV001ABC2345",
+                "station": {
+                  "id": "STN-ABC123XYZ1234",
+                  "name": "Tunis Central",
+                  "address": "Avenue Habib Bourguiba, Tunis 1000",
+                  "latitude": 36.8020,
+                  "longitude": 10.1552,
+                  "availability_status": "available",
+                  "capacity": 6
+                },
+                "created_at": "2026-06-05T14:30:00Z"
+              }
+            ],
+            "pagination": {
+              "total": 1,
+              "limit": 50,
+              "offset": 0
+            }
+          }
+        }
+      },
+      "error_responses": [
+        {
+          "status_code": 401,
+          "description": "Missing or invalid authentication token"
+        }
+      ],
+      "acceptance_scenarios": [
+        {
+          "scenario": "US3-AC2: View favorites with current data",
+          "given": "User has favorites",
+          "when": "User views their favorites page",
+          "then": "All favorited stations display with current availability and capacity",
+          "test_command": "GET /api/v1/favorites",
+          "expected_result": "HTTP 200, array of favorite objects with embedded station data"
+        }
+      ]
+    },
+    {
+      "name": "DELETE /api/v1/favorites/{favorite_id}",
+      "description": "Remove a station from user's favorites",
+      "method": "DELETE",
+      "path": "/api/v1/favorites/{favorite_id}",
+      "authentication": "Required (Keycloak JWT)",
+      "authorization": "Only owner of the favorite can delete it",
+      "path_parameters": {
+        "favorite_id": {
+          "type": "string",
+          "pattern": "^FAV-[A-Z0-9]{13}$",
+          "description": "Favorite record ID to delete",
+          "example": "FAV-FAV001ABC2345"
+        }
+      },
+      "success_response": {
+        "status_code": 204,
+        "description": "No content (favorite deleted successfully)"
+      },
+      "error_responses": [
+        {
+          "status_code": 401,
+          "description": "Missing or invalid authentication token"
+        },
+        {
+          "status_code": 403,
+          "description": "User does not own this favorite"
+        },
+        {
+          "status_code": 404,
+          "description": "Favorite not found"
+        }
+      ],
+      "acceptance_scenarios": [
+        {
+          "scenario": "US3-AC3: Favorite removal",
+          "given": "User has a favorite",
+          "when": "User removes the favorite",
+          "then": "The station no longer appears in the favorites list",
+          "test_command": "DELETE /api/v1/favorites/FAV-FAV001ABC2345",
+          "expected_result": "HTTP 204 No Content; next GET /api/v1/favorites does not include this station"
+        }
+      ]
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "requirement": "SC-005: Concurrent users",
+      "metric": "System handles 1000 concurrent authenticated users without performance degradation"
+    },
+    {
+      "requirement": "SC-007: Favorites durability",
+      "metric": "Zero data loss; all user-saved stations persist and display correctly"
+    },
+    {
+      "requirement": "SC-012: Data isolation",
+      "metric": "User can only access their own favorites (403 Forbidden for cross-user access)"
+    }
+  ],
+  "implementation_notes": [
+    "All endpoints require valid Keycloak JWT in Authorization header",
+    "Favorite deletion is hard-delete (immediate, no audit trail)",
+    "List endpoint returns paginated results (limit 1-500, default 50)",
+    "Station data in GET response reflects current state (availability, capacity)",
+    "If station is soft-deleted, it may still appear in favorites (UI responsibility to hide)",
+    "409 Conflict returned if user tries to favorite same station twice",
+    "User ID extracted from JWT 'sub' claim; cannot be overridden in request"
+  ]
+}

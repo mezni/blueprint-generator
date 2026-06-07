@@ -1,0 +1,26 @@
+[package]
+name = "partner-service"
+version.workspace = true
+edition.workspace = true
+description = "Partner-facing API for station management"
+license = "MIT"
+
+[dependencies]
+actix-web.workspace = true
+tokio.workspace = true
+sqlx.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+uuid.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+thiserror.workspace = true
+chrono.workspace = true
+dotenv.workspace = true
+
+ev-auth = { path = "../../crates/ev-auth" }
+ev-domain = { path = "../../crates/ev-domain" }
+ev-db = { path = "../../crates/ev-db" }
+
+[dev-dependencies]
+testcontainers.workspace = true

@@ -1,0 +1,21 @@
+[package]
+name = "common-auth"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+common-types = { path = "../common-types" }
+common-errors = { path = "../common-errors" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+axum = { version = "0.7", features = ["macros"] }
+tower = "0.4"
+tower-http = { version = "0.5", features = ["validate-request"] }
+tracing = "0.1"
+thiserror = "1"
+jsonwebtoken = "9"
+once_cell = "1"
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json"] }
+chrono = { version = "0.4", features = ["serde"] }
+sqlx = { version = "0.8", features = ["runtime-tokio", "postgres"] }

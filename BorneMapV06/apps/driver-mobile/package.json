@@ -1,0 +1,25 @@
+{
+  "name": "@bornemap/driver-mobile",
+  "version": "0.1.0",
+  "private": true,
+
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "expo": "~54.0.0",
+    "expo-location": "~17.0.0",
+    "react": "18.3.1",
+    "react-native": "0.75.1",
+    "react-native-maps": "^1.8.0",
+    "@react-navigation/native": "^6.1.0",
+    "@react-navigation/bottom-tabs": "^6.5.0",
+    "@react-navigation/native-stack": "^6.9.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}

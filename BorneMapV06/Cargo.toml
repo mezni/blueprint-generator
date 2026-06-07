@@ -1,0 +1,57 @@
+[workspace]
+members = [
+    "services/driver-service",
+    "services/partner-service",
+    "services/gis-worker",
+    "crates/ev-core",
+    "crates/ev-geo",
+    "crates/ev-db",
+    "crates/ev-auth",
+    "crates/ev-domain",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+
+[workspace.dependencies]
+# Web Framework
+actix-web = "4.4"
+actix-rt = "2.9"
+
+# Async Runtime
+tokio = { version = "1", features = ["full"] }
+
+# Database
+sqlx = { version = "0.7", features = ["runtime-tokio-native-tls", "postgres", "chrono", "uuid"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# ID Generation
+uuid = { version = "1.6", features = ["v4", "serde"] }
+nanoid = "0.4"
+
+# Date/Time
+chrono = { version = "0.4", features = ["serde"] }
+
+# Authentication
+jsonwebtoken = "9.2"
+
+# Error Handling
+thiserror = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# Configuration
+dotenv = "0.15"
+
+# Utilities
+backoff = { version = "0.4", features = ["tokio"] }
+
+# Testing
+testcontainers = "0.15"

@@ -1,0 +1,27 @@
+export const EVENT_NAMES = [
+  'page.viewed',
+  'map.loaded',
+  'map.viewport_changed',
+  'search.performed',
+  'stations.nearby.viewed',
+  'filter.applied',
+  'station.marker_clicked',
+  'station.opened',
+  'charger.opened',
+  'favorite_station.added',
+  'favorite_station.removed',
+  'review.submitted',
+  'review.updated',
+  'auth.started',
+  'auth.succeeded',
+  'auth.failed',
+  'partner_station.created',
+  'partner_station.updated',
+  'partner_availability.updated',
+  'admin_station.created',
+  'admin_review.moderated',
+  'search.failed',
+  'station.load_failed',
+] as const;
+
+export type EventName = typeof EVENT_NAMES[number];

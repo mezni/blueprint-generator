@@ -1,0 +1,25 @@
+[package]
+name = "gis-worker"
+version.workspace = true
+edition.workspace = true
+description = "GIS projection worker for async station location sync"
+
+[dependencies]
+actix-web.workspace = true
+tokio.workspace = true
+sqlx.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+uuid.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+thiserror.workspace = true
+chrono.workspace = true
+dotenv.workspace = true
+
+ev-domain = { path = "../ev-domain" }
+ev-db = { path = "../ev-db" }
+ev-geo = { path = "../ev-geo" }
+
+[dev-dependencies]
+testcontainers.workspace = true

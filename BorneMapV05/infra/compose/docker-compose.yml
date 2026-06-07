@@ -1,0 +1,174 @@
+services:
+  postgres:
+    image: postgis/postgis:17-3.5
+    env_file: ../../infra/env/postgres.env.example
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./postgres/init-dbs.sh:/docker-entrypoint-initdb.d/init-dbs.sh
+    networks:
+      internal: {}
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "platform_user", "-d", "platform_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+  rabbitmq:
+    image: rabbitmq:4.0-management
+    env_file: ../../infra/env/rabbitmq.env.example
+    volumes:
+      - rmqdata:/var/lib/rabbitmq
+    networks:
+      internal: {}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 15s
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.1
+    command: start-dev --import-realm
+    env_file: ../../infra/env/keycloak.env.example
+    volumes:
+      - ./keycloak:/opt/keycloak/data/import:ro
+    networks:
+      internal: {}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/8080 2>/dev/null || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 30
+      start_period: 300s
+
+  traefik:
+    image: traefik:v3.3
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./traefik/dynamic:/etc/traefik/dynamic:ro
+    networks:
+      internal: {}
+      public: {}
+    healthcheck:
+      test: ["CMD", "traefik", "healthcheck"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  driver-service:
+    build:
+      context: ../..
+      dockerfile: services/driver-service/Dockerfile
+    env_file: ../../infra/env/driver-service.env
+    networks:
+      internal: {}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'cat /dev/null > /dev/tcp/127.0.0.1/8081'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  admin-service:
+    build:
+      context: ../..
+      dockerfile: services/admin-service/Dockerfile
+    env_file: ../../infra/env/admin-service.env
+    environment:
+      - ADMIN_SERVICE_MIGRATIONS_DIR=/migrations
+    volumes:
+      - ../../services/admin-service/migrations:/migrations:ro
+    networks:
+      internal: {}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'cat /dev/null > /dev/tcp/127.0.0.1/8082'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  clickstream-service:
+    build:
+      context: ../..
+      dockerfile: services/clickstream-service/Dockerfile
+    env_file: ../../infra/env/clickstream-service.env.example
+    networks:
+      internal: {}
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'cat /dev/null > /dev/tcp/127.0.0.1/8083'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  gis-worker:
+    build:
+      context: ../..
+      dockerfile: services/gis-worker/Dockerfile
+    env_file: ../../infra/env/gis-worker.env.example
+    networks:
+      internal: {}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'cat /dev/null > /dev/tcp/127.0.0.1/8084'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  analytics-writer:
+    build:
+      context: ../..
+      dockerfile: services/analytics-writer/Dockerfile
+    env_file: ../../infra/env/analytics.env.example
+    networks:
+      internal: {}
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'cat /dev/null > /dev/tcp/127.0.0.1/8085'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+networks:
+  internal:
+    driver: bridge
+    internal: true
+  public:
+    driver: bridge
+
+volumes:
+  pgdata:
+  rmqdata:

@@ -1,0 +1,459 @@
+{
+  "name": "Partner Stations API",
+  "description": "Partner-facing endpoints to view and manage their own charging stations.",
+  "summary": "User Story 4 — Partner Views Their Own Stations (P2)",
+  "endpoints": [
+    {
+      "name": "GET /api/v1/partner/stations",
+      "description": "List authenticated partner's stations with availability and occupancy metrics",
+      "method": "GET",
+      "path": "/api/v1/partner/stations",
+      "authentication": "Required (Keycloak JWT)",
+      "authorization": "Only partner role; user must have partner_id matching their Keycloak claims",
+      "query_parameters": {
+        "limit": {
+          "type": "integer",
+          "required": false,
+          "default": 50,
+          "description": "Max results per page",
+          "constraints": {
+            "min": 1,
+            "max": 500
+          }
+        },
+        "offset": {
+          "type": "integer",
+          "required": false,
+          "default": 0,
+          "description": "Pagination offset"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["available", "unavailable", "unknown"],
+          "required": false,
+          "description": "Filter by availability status"
+        }
+      },
+      "success_response": {
+        "status_code": 200,
+        "content_type": "application/json",
+        "body": {
+          "type": "object",
+          "properties": {
+            "stations": {
+              "type": "array",
+              "description": "Partner's stations with operational metrics",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^STN-[A-Z0-9]{13}$",
+                    "description": "Station ID"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Station name"
+                  },
+                  "address": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "Physical address"
+                  },
+                  "latitude": {
+                    "type": "number",
+                    "description": "Station latitude"
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "description": "Station longitude"
+                  },
+                  "availability_status": {
+                    "type": "string",
+                    "enum": ["available", "unavailable", "unknown"],
+                    "description": "Current availability"
+                  },
+                  "capacity": {
+                    "type": "integer",
+                    "nullable": true,
+                    "description": "Total chargers at station"
+                  },
+                  "chargers": {
+                    "type": "object",
+                    "description": "Charger status summary",
+                    "properties": {
+                      "total": {
+                        "type": "integer",
+                        "description": "Total chargers"
+                      },
+                      "available": {
+                        "type": "integer",
+                        "description": "Currently available"
+                      },
+                      "in_use": {
+                        "type": "integer",
+                        "description": "Currently in use"
+                      },
+                      "maintenance": {
+                        "type": "integer",
+                        "description": "Under maintenance"
+                      },
+                      "offline": {
+                        "type": "integer",
+                        "description": "Offline/non-functional"
+                      }
+                    },
+                    "required": ["total", "available", "in_use", "maintenance", "offline"]
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Station creation timestamp"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Last update timestamp"
+                  }
+                },
+                "required": ["id", "name", "latitude", "longitude", "availability_status", "chargers", "created_at", "updated_at"]
+              }
+            },
+            "pagination": {
+              "type": "object",
+              "properties": {
+                "total": {
+                  "type": "integer",
+                  "description": "Total stations owned by partner"
+                },
+                "limit": {
+                  "type": "integer"
+                },
+                "offset": {
+                  "type": "integer"
+                }
+              },
+              "required": ["total", "limit", "offset"]
+            }
+          },
+          "required": ["stations", "pagination"],
+          "example": {
+            "stations": [
+              {
+                "id": "STN-ABC123XYZ1234",
+                "name": "Tunis Central",
+                "address": "Avenue Habib Bourguiba, Tunis 1000",
+                "latitude": 36.8020,
+                "longitude": 10.1552,
+                "availability_status": "available",
+                "capacity": 6,
+                "chargers": {
+                  "total": 6,
+                  "available": 4,
+                  "in_use": 2,
+                  "maintenance": 0,
+                  "offline": 0
+                },
+                "created_at": "2026-05-01T10:00:00Z",
+                "updated_at": "2026-06-05T14:30:00Z"
+              },
+              {
+                "id": "STN-DEF456UVW5678",
+                "name": "La Marsa",
+                "address": "Route de La Marsa, Tunis",
+                "latitude": 36.8567,
+                "longitude": 10.3245,
+                "availability_status": "unavailable",
+                "capacity": 3,
+                "chargers": {
+                  "total": 3,
+                  "available": 0,
+                  "in_use": 3,
+                  "maintenance": 0,
+                  "offline": 0
+                },
+                "created_at": "2026-05-15T12:00:00Z",
+                "updated_at": "2026-06-05T13:00:00Z"
+              }
+            ],
+            "pagination": {
+              "total": 2,
+              "limit": 50,
+              "offset": 0
+            }
+          }
+        }
+      },
+      "error_responses": [
+        {
+          "status_code": 401,
+          "description": "Missing or invalid authentication token"
+        },
+        {
+          "status_code": 403,
+          "description": "User role is not 'partner' or partner_id missing from token"
+        }
+      ],
+      "acceptance_scenarios": [
+        {
+          "scenario": "US4-AC1: Partner views own stations",
+          "given": "Authenticated partner user",
+          "when": "User requests their stations",
+          "then": "System returns ONLY stations they own, filtered at API layer",
+          "test_command": "GET /api/v1/partner/stations (with Partner JWT)",
+          "expected_result": "HTTP 200, array of stations with all owned stations and charger summary"
+        },
+        {
+          "scenario": "US4-AC2: Dashboard with metrics",
+          "given": "Partner owns multiple stations",
+          "when": "User views dashboard",
+          "then": "Availability and occupancy are displayed for each station",
+          "test_command": "GET /api/v1/partner/stations",
+          "expected_result": "HTTP 200, each station includes chargers object with status breakdown"
+        }
+      ]
+    },
+    {
+      "name": "GET /api/v1/partner/stations/{station_id}",
+      "description": "Detailed view of a single partner-owned station",
+      "method": "GET",
+      "path": "/api/v1/partner/stations/{station_id}",
+      "authentication": "Required (Keycloak JWT)",
+      "authorization": "Only partner role; must be owner of the station",
+      "path_parameters": {
+        "station_id": {
+          "type": "string",
+          "pattern": "^STN-[A-Z0-9]{13}$",
+          "description": "Station ID",
+          "example": "STN-ABC123XYZ1234"
+        }
+      },
+      "success_response": {
+        "status_code": 200,
+        "content_type": "application/json",
+        "body": {
+          "type": "object",
+          "properties": {
+            "station": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "name": { "type": "string" },
+                "address": { "type": "string", "nullable": true },
+                "latitude": { "type": "number" },
+                "longitude": { "type": "number" },
+                "availability_status": { "type": "string" },
+                "capacity": { "type": "integer", "nullable": true },
+                "chargers": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string", "pattern": "^CHG-[A-Z0-9]{13}$" },
+                      "connector_type": { "type": "string", "enum": ["chademo", "type2", "tesla_us", "gb_t"] },
+                      "power_kw": { "type": "number" },
+                      "status": { "type": "string", "enum": ["available", "in_use", "maintenance", "offline"] }
+                    },
+                    "required": ["id", "connector_type", "power_kw", "status"]
+                  }
+                },
+                "created_at": { "type": "string", "format": "date-time" },
+                "updated_at": { "type": "string", "format": "date-time" }
+              }
+            }
+          },
+          "required": ["station"]
+        }
+      },
+      "error_responses": [
+        {
+          "status_code": 401,
+          "description": "Missing or invalid authentication token"
+        },
+        {
+          "status_code": 403,
+          "description": "User is not the owner of this station"
+        },
+        {
+          "status_code": 404,
+          "description": "Station not found"
+        }
+      ]
+    },
+    {
+      "name": "PATCH /api/v1/partner/stations/{station_id}",
+      "description": "Update a partner-owned station (name, address, availability status)",
+      "method": "PATCH",
+      "path": "/api/v1/partner/stations/{station_id}",
+      "authentication": "Required (Keycloak JWT)",
+      "authorization": "Only partner role; must be owner of the station",
+      "path_parameters": {
+        "station_id": {
+          "type": "string",
+          "pattern": "^STN-[A-Z0-9]{13}$",
+          "description": "Station ID",
+          "example": "STN-ABC123XYZ1234"
+        }
+      },
+      "request": {
+        "content_type": "application/json",
+        "body": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 255,
+              "description": "Station name (optional)"
+            },
+            "address": {
+              "type": "string",
+              "nullable": true,
+              "description": "Physical address (optional)"
+            },
+            "availability_status": {
+              "type": "string",
+              "enum": ["available", "unavailable", "unknown"],
+              "description": "Availability status (optional)"
+            },
+            "capacity": {
+              "type": "integer",
+              "nullable": true,
+              "minimum": 1,
+              "description": "Total chargers (optional)"
+            }
+          }
+        }
+      },
+      "success_response": {
+        "status_code": 200,
+        "content_type": "application/json",
+        "body": {
+          "type": "object",
+          "properties": {
+            "station": {
+              "type": "object",
+              "description": "Updated station object (same structure as GET response)"
+            }
+          }
+        }
+      },
+      "error_responses": [
+        {
+          "status_code": 400,
+          "description": "Invalid request (e.g., duplicate name for partner)"
+        },
+        {
+          "status_code": 401,
+          "description": "Missing or invalid authentication token"
+        },
+        {
+          "status_code": 403,
+          "description": "User is not the owner of this station"
+        },
+        {
+          "status_code": 404,
+          "description": "Station not found"
+        }
+      ]
+    },
+    {
+      "name": "POST /api/v1/partner/stations",
+      "description": "Create a new charging station (partner-owned)",
+      "method": "POST",
+      "path": "/api/v1/partner/stations",
+      "authentication": "Required (Keycloak JWT)",
+      "authorization": "Only partner role",
+      "request": {
+        "content_type": "application/json",
+        "body": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 255,
+              "description": "Station name (must be unique per partner)"
+            },
+            "address": {
+              "type": "string",
+              "nullable": true,
+              "description": "Physical address"
+            },
+            "latitude": {
+              "type": "number",
+              "description": "Station latitude (WGS84)",
+              "constraints": {
+                "min": -90.0,
+                "max": 90.0
+              }
+            },
+            "longitude": {
+              "type": "number",
+              "description": "Station longitude (WGS84)",
+              "constraints": {
+                "min": -180.0,
+                "max": 180.0
+              }
+            },
+            "capacity": {
+              "type": "integer",
+              "nullable": true,
+              "minimum": 1,
+              "description": "Total number of chargers"
+            }
+          },
+          "required": ["name", "latitude", "longitude"]
+        }
+      },
+      "success_response": {
+        "status_code": 201,
+        "content_type": "application/json",
+        "body": {
+          "type": "object",
+          "properties": {
+            "station": {
+              "type": "object",
+              "description": "Newly created station (same structure as GET response)"
+            }
+          }
+        }
+      },
+      "error_responses": [
+        {
+          "status_code": 400,
+          "description": "Invalid request (e.g., invalid coordinates, duplicate name)"
+        },
+        {
+          "status_code": 401,
+          "description": "Missing or invalid authentication token"
+        },
+        {
+          "status_code": 403,
+          "description": "User role is not 'partner'"
+        }
+      ]
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "requirement": "SC-006: Partner isolation",
+      "metric": "Partner A cannot see Partner B's stations in ANY API response (403 Forbidden for cross-partner access)"
+    },
+    {
+      "requirement": "SC-005: Concurrent users",
+      "metric": "System handles 1000 concurrent authenticated users without performance degradation"
+    }
+  ],
+  "implementation_notes": [
+    "All endpoints require valid Keycloak JWT with role='partner'",
+    "Partner scope derived from JWT 'partner_id' claim",
+    "Station creation triggers outbox event for GIS sync",
+    "Charger summary counted from inventory.charger records (real-time status)",
+    "Soft-deleted stations included in partner view but not in public discovery",
+    "Station name must be unique per partner (but different partners can have same name)",
+    "Coordinates validated against (-90, 90) and (-180, 180) bounds",
+    "List endpoint supports optional status filter (available/unavailable/unknown)",
+    "Pagination limit: 1-500 items, default 50"
+  ]
+}

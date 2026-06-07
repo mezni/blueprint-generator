@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "name": "bornemap",
+  "workspaces": [
+    "apps/driver-web",
+    "apps/partner-dashboard",
+    "apps/admin-dashboard",
+    "apps/driver-mobile",
+    "packages/shared-types",
+    "packages/api-client",
+    "packages/auth-client",
+    "packages/design-tokens",
+    "packages/event-taxonomy",
+    "packages/api-contracts"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "dev:driver": "npm run dev -w apps/driver-web",
+    "dev:partner": "npm run dev -w apps/partner-dashboard",
+    "dev:admin": "npm run dev -w apps/admin-dashboard",
+    "dev:mobile": "cd apps/driver-mobile && npx expo start"
+  },
+  "dependencies": {
+    "react-router": "^7.17.0"
+  }
+}

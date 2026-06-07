@@ -1,0 +1,109 @@
+{
+  "realm": "bornemap",
+  "enabled": true,
+  "displayName": "Bornemap",
+  "loginTheme": "keycloak",
+  "registrationAllowed": true,
+  "registrationEmailAsUsername": true,
+  "roles": {
+    "realm": [
+      {
+        "name": "registered_driver",
+        "description": "EV driver — can discover stations, manage favorites and reviews",
+        "composite": false,
+        "clientRole": false,
+        "attributes": {}
+      },
+      {
+        "name": "partner",
+        "description": "Station partner — can manage owned stations and chargers",
+        "composite": false,
+        "clientRole": false,
+        "attributes": {}
+      },
+      {
+        "name": "admin",
+        "description": "Platform administrator — full system access",
+        "composite": false,
+        "clientRole": false,
+        "attributes": {}
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "bornemap-api",
+      "enabled": true,
+      "publicClient": false,
+      "secret": "PLACEHOLDER-BORNEMAP-API-SECRET",
+      "redirectUris": ["http://localhost:*", "https://*.example.tn"],
+      "webOrigins": ["http://localhost:5173", "http://localhost:3000"],
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "protocol": "openid-connect",
+      "attributes": {
+        "access.token.lifespan": "900",
+        "post.logout.redirect.uris": "+"
+      },
+      "protocolMappers": [
+        {
+          "name": "bornemap-api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "bornemap-api",
+            "id.token.claim": "false",
+            "access.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "identityProviders": [
+    {
+      "alias": "google",
+      "displayName": "Google",
+      "providerId": "google",
+      "enabled": false,
+      "storeToken": false,
+      "addReadTokenRoleOnCreate": false,
+      "config": {
+        "clientId": "PLACEHOLDER",
+        "clientSecret": "PLACEHOLDER",
+        "hostedDomain": "",
+        "useUserIpParam": "",
+        "syncMode": "IMPORT"
+      }
+    },
+    {
+      "alias": "facebook",
+      "displayName": "Facebook",
+      "providerId": "facebook",
+      "enabled": false,
+      "storeToken": false,
+      "addReadTokenRoleOnCreate": false,
+      "config": {
+        "clientId": "PLACEHOLDER",
+        "clientSecret": "PLACEHOLDER",
+        "syncMode": "IMPORT"
+      }
+    }
+  ],
+  "requiredActions": [
+    {
+      "alias": "VERIFY_EMAIL",
+      "name": "Verify Email",
+      "enabled": false,
+      "defaultAction": false
+    },
+    {
+      "alias": "UPDATE_PROFILE",
+      "name": "Update Profile",
+      "enabled": true,
+      "defaultAction": false
+    }
+  ]
+}

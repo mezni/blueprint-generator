@@ -1,0 +1,94 @@
+version: "3.8"
+
+services:
+  # PostgreSQL database with PostGIS extension
+  platform_db:
+    image: postgis/postgis:15-3.4
+    container_name: ev-platform-db
+    environment:
+      POSTGRES_USER: ${DB_USER:-bornemap_dev}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-dev_password}
+      POSTGRES_DB: ${DB_NAME:-platform_db}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-bornemap_dev}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ev-network
+
+  # Analytics database (separate from platform_db)
+  analytics_db:
+    image: postgres:15-alpine
+    container_name: ev-analytics-db
+    environment:
+      POSTGRES_USER: ${ANALYTICS_DB_USER:-analytics_dev}
+      POSTGRES_PASSWORD: ${ANALYTICS_DB_PASSWORD:-analytics_password}
+      POSTGRES_DB: ${ANALYTICS_DB_NAME:-analytics_db}
+    ports:
+      - "${ANALYTICS_DB_PORT:-5433}:5432"
+    volumes:
+      - analytics_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${ANALYTICS_DB_USER:-analytics_dev}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ev-network
+
+  # Keycloak for authentication
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.0
+    container_name: ev-keycloak
+    environment:
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN_USER:-admin}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:-admin}
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://platform_db:5432/keycloak
+      KC_DB_USERNAME: ${DB_USER:-bornemap_dev}
+      KC_DB_PASSWORD: ${DB_PASSWORD:-dev_password}
+      KC_HOSTNAME: ${KEYCLOAK_HOST:-localhost}
+      KC_HOSTNAME_PORT: ${KEYCLOAK_PORT:-8080}
+      KC_HTTP_ENABLED: "true"
+      KC_PROXY: "edge"
+    ports:
+      - "${KEYCLOAK_PORT:-8080}:8080"
+    depends_on:
+      platform_db:
+        condition: service_healthy
+    networks:
+      - ev-network
+    command:
+      - start-dev
+
+  # PgAdmin for database management (optional)
+  pgadmin:
+    image: dpage/pgadmin4:8.0
+    container_name: ev-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@example.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin}
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    depends_on:
+      - platform_db
+    networks:
+      - ev-network
+    profiles:
+      - debug
+
+volumes:
+  postgres_data:
+    driver: local
+  analytics_data:
+    driver: local
+
+networks:
+  ev-network:
+    driver: bridge

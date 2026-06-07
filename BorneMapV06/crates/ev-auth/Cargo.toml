@@ -1,0 +1,16 @@
+[package]
+name = "ev-auth"
+version.workspace = true
+edition.workspace = true
+description = "Keycloak JWT authentication and authorization"
+license = "MIT"
+
+[dependencies]
+serde.workspace = true
+jsonwebtoken.workspace = true
+uuid.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+
+[dev-dependencies]
+tokio.workspace = true

@@ -1,0 +1,53 @@
+{
+  "realm": "bornemap",
+  "enabled": true,
+  "displayName": "Bornemap",
+  "roles": {
+    "realm": [
+      { "name": "registered_driver" },
+      { "name": "partner" },
+      { "name": "admin" }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "bornemap-api",
+      "enabled": true,
+      "publicClient": true,
+      "redirectUris": ["*"],
+      "webOrigins": ["*"],
+      "directAccessGrantsEnabled": true,
+      "standardFlowEnabled": true,
+      "serviceAccountsEnabled": false
+    }
+  ],
+  "users": [
+    {
+      "username": "admin",
+      "enabled": true,
+      "email": "admin@bornemap.tn",
+      "firstName": "Admin",
+      "lastName": "User",
+      "credentials": [{ "type": "password", "value": "admin" }],
+      "realmRoles": ["admin"]
+    },
+    {
+      "username": "partner",
+      "enabled": true,
+      "email": "partner@bornemap.tn",
+      "firstName": "Partner",
+      "lastName": "User",
+      "credentials": [{ "type": "password", "value": "partner" }],
+      "realmRoles": ["partner"]
+    },
+    {
+      "username": "driver",
+      "enabled": true,
+      "email": "driver@bornemap.tn",
+      "firstName": "Driver",
+      "lastName": "User",
+      "credentials": [{ "type": "password", "value": "driver" }],
+      "realmRoles": ["registered_driver"]
+    }
+  ]
+}

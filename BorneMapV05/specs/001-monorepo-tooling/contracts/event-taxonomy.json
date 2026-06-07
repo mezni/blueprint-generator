@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Event Taxonomy",
+  "description": "Canonical clickstream event schema for Bornemap",
+  "definitions": {
+    "eventEnvelope": {
+      "type": "object",
+      "required": [
+        "event_id", "event_version", "schema_namespace", "event_name",
+        "occurred_at", "ingested_at", "channel", "session_id"
+      ],
+      "properties": {
+        "event_id": { "type": "string", "pattern": "^CLK-" },
+        "event_version": { "const": 1 },
+        "schema_namespace": { "const": "clickstream" },
+        "event_name": { "type": "string", "pattern": "^[a-z]+\\.[a-z_]+$" },
+        "occurred_at": { "type": "string", "format": "date-time" },
+        "ingested_at": { "type": "string", "format": "date-time" },
+        "channel": {
+          "type": "string",
+          "enum": ["driver_web", "driver_mobile", "partner_dashboard", "admin_dashboard"]
+        },
+        "session_id": { "type": "string" },
+        "correlation_id": { "type": "string" },
+        "anonymous_id": { "type": "string" },
+        "user_id": { "type": "string" },
+        "actor_role": {
+          "type": "string",
+          "enum": ["registered_driver", "partner", "admin", "anonymous"]
+        },
+        "path": { "type": "string" },
+        "payload": { "type": "object" },
+        "metadata": { "type": "object" }
+      },
+      "anyOf": [
+        { "required": ["user_id"] },
+        { "required": ["anonymous_id"] }
+      ]
+    },
+    "eventNames": {
+      "type": "string",
+      "enum": [
+        "page.viewed",
+        "map.loaded",
+        "map.viewport_changed",
+        "search.performed",
+        "stations.nearby.viewed",
+        "filter.applied",
+        "station.marker_clicked",
+        "station.opened",
+        "charger.opened",
+        "favorite_station.added",
+        "favorite_station.removed",
+        "review.submitted",
+        "review.updated",
+        "auth.started",
+        "auth.succeeded",
+        "auth.failed",
+        "partner_station.created",
+        "partner_station.updated",
+        "partner_availability.updated",
+        "admin_station.created",
+        "admin_review.moderated",
+        "search.failed",
+        "station.load_failed"
+      ]
+    }
+  }
+}

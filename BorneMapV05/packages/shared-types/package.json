@@ -1,0 +1,10 @@
+{
+  "name": "@bornemap/shared-types",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "echo no-build"
+  },
+  "main": "src/index.ts",
+  "types": "src/index.ts"
+}

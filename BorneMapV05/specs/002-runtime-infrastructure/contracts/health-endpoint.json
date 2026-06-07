@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HealthEndpoint",
+  "description": "Health check response for all Bornemap backend services",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["ok"],
+      "description": "Service health status. Always 'ok' for Sprint 2 stubs."
+    }
+  },
+  "required": ["status"],
+  "additionalProperties": false,
+  "examples": [
+    { "status": "ok" }
+  ]
+}

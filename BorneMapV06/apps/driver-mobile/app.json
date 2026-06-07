@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "BorneMap Driver",
+    "slug": "bornemap-driver",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#F8FAF6"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bornemap.driver"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#F8FAF6"
+      },
+      "package": "com.bornemap.driver"
+    },
+    "plugins": [
+      ["expo-location", { "locationAlwaysAndWhenInUsePermission": "Find nearby charging stations" }]
+    ],
+    "primaryColor": "#007943"
+  }
+}

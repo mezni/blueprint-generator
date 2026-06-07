@@ -1,0 +1,69 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+*.lcov
+
+# Production
+build/
+dist/
+
+# Misc
+.DS_Store
+*.pem
+*.rs.bk
+*.rlib
+*.prof*
+debug/
+release/
+*.tmp
+*.swp
+.vscode/
+.idea/
+*.log
+.eslintcache
+*.cache
+
+# Expo
+.expo/
+expo-env.json
+expo-shared/
+expo-generated-config.json
+*.tgz
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+# Reactotron
+reactotron.config.js
+*.reactotron.js
+
+# Metro
+.metro-health-check.*
+
+# TypeScript
+*.tsbuildinfo
+*.tsbuild
+
+# Testing
+__tests__/
+
+# iOS
+*.ipa
+*.dSYM.zip
+*.nix
+ios/Pods/
+
+# Android
+android/app/build/
+android/.gradle/
+android/local.properties
+android/captures/
+
+# Web
+web-build/

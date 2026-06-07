@@ -1,0 +1,26 @@
+FROM osm2pgsql/osm2pgsql:latest
+
+# Install necessary utilities
+RUN apt-get update && apt-get install -y \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create working directory
+WORKDIR /data
+
+# Copy OSM style configuration
+COPY scripts/osm2pgsql-style.lua /data/osm2pgsql-style.lua
+
+# Set environment variables
+ENV OSM_FILE=${OSM_FILE:-/data/tunisia.osm.pbf}
+ENV DB_NAME=${DB_NAME:-borne_map}
+ENV DB_USER=${DB_USER:-postgres}
+ENV DB_HOST=${DB_HOST:-postgres}
+ENV DB_PORT=${DB_PORT:-5432}
+ENV SCALE=${SCALE:-1}
+
+# Expose port for pgadmin connection (optional)
+EXPOSE 80
+
+# Default command - can be overridden
+CMD ["bash"]

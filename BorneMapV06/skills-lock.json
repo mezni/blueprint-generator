@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "clean-architecture": {
+      "source": "wondelai/skills",
+      "sourceType": "github",
+      "skillPath": "clean-architecture/SKILL.md",
+      "computedHash": "49b99ed12200c0717eb14d8ff9da9cc1a577ac2fe488a4f4e55047cf35767be5"
+    },
+    "webapp-testing": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/webapp-testing/SKILL.md",
+      "computedHash": "ad5b1fc52807e9afa4635e59218a026b164dc58b6c3f41b0f7c644dcd6ccf572"
+    }
+  }
+}

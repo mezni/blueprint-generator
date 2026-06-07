@@ -1,0 +1,20 @@
+# Docker Compose override for local development.
+# Exposes infrastructure ports on localhost for tooling access.
+# Used automatically by `docker compose up` when this file is present alongside docker-compose.yml.
+services:
+  postgres:
+    ports:
+      - "5432:5432"
+    networks:
+      public: {}
+
+  rabbitmq:
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      public: {}
+
+  # NOTE: Keycloak is intentionally NOT exposed here. Per FR-011 it is internal-only
+  # and reachable only through Traefik's `/auth/*` route. Backend services fetch JWKS
+  # via the internal Docker hostname. Do not publish a host port for Keycloak.

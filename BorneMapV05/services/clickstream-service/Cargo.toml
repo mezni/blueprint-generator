@@ -1,0 +1,19 @@
+[package]
+name = "clickstream-service"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+common-types = { path = "../../crates/common-types" }
+common-errors = { path = "../../crates/common-errors" }
+common-auth = { path = "../../crates/common-auth" }
+common-db = { path = "../../crates/common-db" }
+axum = "0.7"
+tokio = { version = "1", features = ["full"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+serde_json = "1.0.150"
+
+[[bin]]
+name = "clickstream-service"
+path = "src/main.rs"
