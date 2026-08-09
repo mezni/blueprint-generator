@@ -1,8 +1,0 @@
-[workspace]
-members = [
-    "api-service",
-    "analytics-service",
-    "core",
-    "infra"
-]
-resolver = "2"
