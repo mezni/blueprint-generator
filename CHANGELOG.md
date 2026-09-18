@@ -7,11 +7,24 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 | Version | Feature Domain | Key Objectives |
 | --- | --- | --- |
+| 0.1.5 | Project Planner | Add `ProjectPlanner` as the application-logic layer that wires `PromptManager` and `LLMClient` together, keeping the LLM client focused solely on provider communication. Milestone M1 (idea in → project name out) is now a real, reusable service |
 | 0.1.4 | Structured Output | Add a `ProjectName` Pydantic model, request JSON from the LLM in the naming prompt, add `LLMClient.structured_output()` that parses and validates responses into the model, and unit test the model without the LLM |
 | 0.1.3 | Prompt Management | Move the naming prompt into a versioned YAML template, add `PromptManager` for loading and rendering, wire `PromptManager` to `LLMClient`, and handle reasoning-model responses that leave `content` null |
 | 0.1.2 | LLM Client | Add `LLMClient` OpenRouter chat wrapper over `httpx`, wire the API key from `.env`, raise clear errors on transport and malformed-response failures |
 | 0.1.1 | Configuration | Add YAML settings and `.env` loading, implement `ConfigLoader`, move code to a `src/` layout |
 | 0.1.0 | Project Setup | Initialize `uv` project, add core dependencies (pydantic, httpx, pyyaml, python-dotenv), configure pytest and ruff, add runnable `blueprint_generator` package skeleton |
+
+## [0.1.5] - 2026-09-17
+
+### Added
+
+- `src/project_planner.py` — `ProjectPlanner` with `generate_project_name(project_idea)`: validates the idea is non-empty, builds the system/user messages from `PromptManager`, and returns a validated `ProjectName` via `LLMClient.structured_output()`
+- Verified end-to-end through the planner service: idea → blueprints-doc search platform → `DocuSearch AI`
+
+### Notes
+
+- `ProjectPlanner` owns application logic; `LLMClient` only communicates with the LLM provider.
+- Milestone M1 (idea in → project name out) of the [Roadmap](docs/ROADMAP.md) is reachable as a service.
 
 ## [0.1.4] - 2026-09-17
 
