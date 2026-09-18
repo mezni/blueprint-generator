@@ -7,7 +7,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 | Version | Feature Domain | Key Objectives |
 | --- | --- | --- |
-| 0.1.8 | Agent Tools | Add a `Tool`/`ToolRegistry` abstraction, register blueprint generation as a tool, and let `AgentRunner` execute the selected action and write the outcome back into `state` so the loop can terminate; harden JSON extraction for reasoning-model output |
+| 0.1.8 | Agent Tools | Add a `Tool`/`ToolRegistry` abstraction with schema-validated tool inputs (`GenerateBlueprintInput`), register blueprint generation as a tool, and let `AgentRunner` execute the selected action and write the outcome back into `state` so the loop can terminate; harden JSON extraction for reasoning-model output |
 | 0.1.7 | Agent Loop | Add agent-state modeling (`AgentAction`), an action-selection prompt, a `ProjectPlannerAgent` that decides the next action, and an `AgentRunner` loop with a max-iteration guard |
 | 0.1.6 | Project Blueprint | Expand the planner from a project name to a full seven-section technical blueprint: add the `ProjectBlueprint`/`Technology` models, a JSON-requesting `project_blueprint` prompt, and `ProjectPlanner.generate_blueprint()` |
 | 0.1.5 | Project Planner | Add `ProjectPlanner` as the application-logic layer that wires `PromptManager` and `LLMClient` together, keeping the LLM client focused solely on provider communication. Milestone M1 (idea in → project name out) is now a real, reusable service |
@@ -16,6 +16,26 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 | 0.1.2 | LLM Client | Add `LLMClient` OpenRouter chat wrapper over `httpx`, wire the API key from `.env`, raise clear errors on transport and malformed-response failures |
 | 0.1.1 | Configuration | Add YAML settings and `.env` loading, implement `ConfigLoader`, move code to a `src/` layout |
 | 0.1.0 | Project Setup | Initialize `uv` project, add core dependencies (pydantic, httpx, pyyaml, python-dotenv), configure pytest and ruff, add runnable `blueprint_generator` package skeleton |
+
+## [0.1.8] - 2026-09-18
+
+### Added
+
+- `src/tools.py` — `Tool` (name, description, callable `function`), `ToolRegistry` with `register`/`get`/`execute` (raises `ValueError` on an unknown tool), and `create_blueprint_tool(planner)` exposing `ProjectPlanner.generate_blueprint` as a `generate_blueprint` tool
+- `src/models.py` — `GenerateBlueprintInput` (a `project_idea` field constrained to 10–5000 characters) as the schema for the blueprint tool's arguments
+- `src/test_agent.py` — temporary end-to-end verification script wiring `ProjectPlanner` + `ProjectPlannerAgent` + `ToolRegistry` into `AgentRunner`
+- `src/test_tools.py` — temporary script verifying `GenerateBlueprintInput` accepts a long idea and rejects a too-short one
+
+### Changed
+
+- `src/tools.py` — `Tool` now carries an `input_model` and `Tool.execute(arguments)` validates the raw arguments dict with Pydantic before calling the wrapped function; `ToolRegistry.execute` takes an `arguments` dict instead of keyword arguments
+- `src/agent_runner.py` — `AgentRunner` now takes a `ToolRegistry`; the `generate_blueprint` action executes the tool with the project idea and writes the outcome (project name) back into `state`, so the agent can observe it and select `finish`
+- `src/llm_client.py` — added `LLMClient._extract_json()`: strips Markdown code fences and falls back to the first `{`…last `}` span before parsing, so reasoning-model responses that wrap the JSON in prose still validate
+
+### Notes
+
+- Phase 8 — Tools of the [Roadmap](docs/ROADMAP.md) started: the loop now executes the selected action and feeds the result back into `state`, closing the Phase 7 gap (the `max_iterations` guard is no longer the only reason the loop stops).
+- Phase 7 — Agent Loop of the [Roadmap](docs/ROADMAP.md) is complete.
 
 ## [0.1.7] - 2026-09-17
 

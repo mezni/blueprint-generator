@@ -34,7 +34,9 @@ class AgentRunner:
             if action.action == "generate_blueprint":
                 blueprint = self.tools.execute(
                     "generate_blueprint",
-                    project_idea=project_idea,
+                    {
+                        "project_idea": project_idea,
+                    },
                 )
 
                 state = (

@@ -38,6 +38,14 @@ class ProjectBlueprint(BaseModel):
     )
 
 
+class GenerateBlueprintInput(BaseModel):
+    project_idea: str = Field(
+        min_length=10,
+        max_length=5000,
+        description="The IT project idea to turn into a technical blueprint.",
+    )
+
+
 class AgentAction(BaseModel):
     action: Literal[
         "generate_blueprint",

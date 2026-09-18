@@ -1,6 +1,9 @@
 from collections.abc import Callable
 from typing import Any
 
+from pydantic import BaseModel
+
+from models import GenerateBlueprintInput
 from project_planner import ProjectPlanner
 
 
@@ -9,14 +12,22 @@ class Tool:
         self,
         name: str,
         description: str,
+        input_model: type[BaseModel],
         function: Callable[..., Any],
     ) -> None:
         self.name = name
         self.description = description
+        self.input_model = input_model
         self.function = function
 
-    def execute(self, **kwargs: Any) -> Any:
-        return self.function(**kwargs)
+    def execute(self, arguments: dict[str, Any]) -> Any:
+        validated_arguments = self.input_model.model_validate(
+            arguments
+        )
+
+        return self.function(
+            **validated_arguments.model_dump()
+        )
 
 
 class ToolRegistry:
@@ -35,10 +46,11 @@ class ToolRegistry:
     def execute(
         self,
         name: str,
-        **kwargs: Any,
+        arguments: dict[str, Any],
     ) -> Any:
         tool = self.get(name)
-        return tool.execute(**kwargs)
+
+        return tool.execute(arguments)
 
 
 def create_blueprint_tool(
@@ -47,5 +59,6 @@ def create_blueprint_tool(
     return Tool(
         name="generate_blueprint",
         description="Generate a technical project blueprint.",
+        input_model=GenerateBlueprintInput,
         function=planner.generate_blueprint,
     )
