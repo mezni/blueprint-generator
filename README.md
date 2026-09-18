@@ -42,6 +42,7 @@ flowchart TD
 
 - [Product Requirements](docs/PRD.md)
 - [Roadmap](docs/ROADMAP.md)
+- [Session Handoff](docs/SESSION_HANDOFF.md)
 
 ## Planned Stack
 
