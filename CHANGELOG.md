@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 | Version | Feature Domain | Key Objectives |
 | --- | --- | --- |
+| 0.1.8 | Agent Tools | Add a `Tool`/`ToolRegistry` abstraction, register blueprint generation as a tool, and let `AgentRunner` execute the selected action and write the outcome back into `state` so the loop can terminate; harden JSON extraction for reasoning-model output |
 | 0.1.7 | Agent Loop | Add agent-state modeling (`AgentAction`), an action-selection prompt, a `ProjectPlannerAgent` that decides the next action, and an `AgentRunner` loop with a max-iteration guard |
 | 0.1.6 | Project Blueprint | Expand the planner from a project name to a full seven-section technical blueprint: add the `ProjectBlueprint`/`Technology` models, a JSON-requesting `project_blueprint` prompt, and `ProjectPlanner.generate_blueprint()` |
 | 0.1.5 | Project Planner | Add `ProjectPlanner` as the application-logic layer that wires `PromptManager` and `LLMClient` together, keeping the LLM client focused solely on provider communication. Milestone M1 (idea in → project name out) is now a real, reusable service |

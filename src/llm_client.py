@@ -74,6 +74,26 @@ class LLMClient:
 
         return content
 
+    @staticmethod
+    def _extract_json(response: str) -> str:
+        response = response.strip()
+
+        if response.startswith("```"):
+            lines = response.splitlines()
+            if lines[0].startswith("```"):
+                lines = lines[1:]
+            if lines and lines[-1].strip() == "```":
+                lines = lines[:-1]
+            response = "\n".join(lines).strip()
+
+        start = response.find("{")
+        end = response.rfind("}")
+
+        if start != -1 and end != -1 and end > start:
+            response = response[start : end + 1]
+
+        return response
+
     def structured_output(
         self,
         messages: list[dict[str, str]],
@@ -82,7 +102,7 @@ class LLMClient:
         response = self.chat(messages)
 
         try:
-            data = json.loads(response)
+            data = json.loads(self._extract_json(response))
         except json.JSONDecodeError as exc:
             raise RuntimeError(
                 "LLM returned invalid JSON."
