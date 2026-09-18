@@ -7,12 +7,30 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 | Version | Feature Domain | Key Objectives |
 | --- | --- | --- |
+| 0.1.6 | Project Blueprint | Expand the planner from a project name to a full seven-section technical blueprint: add the `ProjectBlueprint`/`Technology` models, a JSON-requesting `project_blueprint` prompt, and `ProjectPlanner.generate_blueprint()` |
 | 0.1.5 | Project Planner | Add `ProjectPlanner` as the application-logic layer that wires `PromptManager` and `LLMClient` together, keeping the LLM client focused solely on provider communication. Milestone M1 (idea in → project name out) is now a real, reusable service |
 | 0.1.4 | Structured Output | Add a `ProjectName` Pydantic model, request JSON from the LLM in the naming prompt, add `LLMClient.structured_output()` that parses and validates responses into the model, and unit test the model without the LLM |
 | 0.1.3 | Prompt Management | Move the naming prompt into a versioned YAML template, add `PromptManager` for loading and rendering, wire `PromptManager` to `LLMClient`, and handle reasoning-model responses that leave `content` null |
 | 0.1.2 | LLM Client | Add `LLMClient` OpenRouter chat wrapper over `httpx`, wire the API key from `.env`, raise clear errors on transport and malformed-response failures |
 | 0.1.1 | Configuration | Add YAML settings and `.env` loading, implement `ConfigLoader`, move code to a `src/` layout |
 | 0.1.0 | Project Setup | Initialize `uv` project, add core dependencies (pydantic, httpx, pyyaml, python-dotenv), configure pytest and ruff, add runnable `blueprint_generator` package skeleton |
+
+## [0.1.6] - 2026-09-17
+
+### Added
+
+- `src/models.py` — added `Technology` (name + purpose) and `ProjectBlueprint` with all seven required sections (project_name, description, business_problem, functional_requirements, non_functional_requirements, technology_stack, implementation_plan)
+- `prompts/project_blueprint.yaml` — versioned (`v1`) architect prompt requesting strictly-structured JSON for the full blueprint
+- `ProjectPlanner.generate_blueprint(project_idea)` — validates the idea, renders the blueprint prompt, and returns a validated `ProjectBlueprint`
+
+### Changed
+
+- `ProjectPlanner` now builds complete blueprints; blueprint generation verified end-to-end against the live API (`DocSearch AI Platform` with all seven sections populated)
+
+### Notes
+
+- Phase 6 — Project Planner of the [Roadmap](docs/ROADMAP.md) is complete.
+- Milestone M2 (idea in → full structured blueprint out) is reachable.
 
 ## [0.1.5] - 2026-09-17
 

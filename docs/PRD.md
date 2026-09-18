@@ -163,7 +163,7 @@ We implement the fundamental mechanics ourselves. This is how we will understand
 
 ## 8. Success Criteria
 
-- [ ] Idea in → structured blueprint out, with all seven required sections
+- [x] Idea in → structured blueprint out, with all seven required sections
 - [x] First milestone reachable: idea in → project name out (as a `ProjectPlanner` service)
 - [x] The system validates output structure with Pydantic (`ProjectName`; full `ProjectBlueprint` later)
 - [x] The system is testable with pytest

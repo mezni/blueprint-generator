@@ -1,5 +1,5 @@
 from llm_client import LLMClient
-from models import ProjectName
+from models import ProjectBlueprint
 from prompt_manager import PromptManager
 
 
@@ -12,9 +12,14 @@ class ProjectPlanner:
         self.llm_client = llm_client
         self.prompt_manager = prompt_manager
 
-    def generate_project_name(self, project_idea: str) -> ProjectName:
+    def generate_blueprint(
+        self,
+        project_idea: str,
+    ) -> ProjectBlueprint:
         if not project_idea.strip():
-            raise ValueError("Project idea cannot be empty.")
+            raise ValueError(
+                "Project idea cannot be empty."
+            )
 
         messages = [
             {
@@ -31,5 +36,5 @@ class ProjectPlanner:
 
         return self.llm_client.structured_output(
             messages=messages,
-            response_model=ProjectName,
+            response_model=ProjectBlueprint,
         )

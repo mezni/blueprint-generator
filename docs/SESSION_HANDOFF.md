@@ -7,20 +7,21 @@ Context for the next working session. Update this file at the end of each sessio
 | Field | Value |
 | --- | --- |
 | Date | 2026-09-17 |
-| Version | 0.1.5 |
-| Phase | 5 — Structured Output (complete) |
-| Next phase | 6 — Project Planner (full blueprint) |
-| Milestone | M1 (idea in → project name out) — reachable as a service, not yet covered by an automated test |
+| Version | 0.1.6 |
+| Phase | 6 — Project Planner (complete) |
+| Next phase | 7 — Agent Loop |
+| Milestone | M2 (idea in → full structured blueprint out) — reachable |
 
 ## What is done
 
 - `uv`-managed project with runtime deps (`pydantic`, `httpx`, `pyyaml`, `python-dotenv`) and dev deps (`pytest`, `pytest-asyncio`, `ruff`)
-- Configuration layer: `config/settings.yaml` + `.env`, loaded via `ConfigLoader`
-- `PromptManager` for versioned YAML prompt templates (load, render, system prompt) — `prompts/project_name.yaml` (`v1`, asks the model for JSON)
+- `ConfigLoader` for `config/settings.yaml` + `.env`
+- `PromptManager` for versioned YAML prompt templates (load, render, system prompt) — `prompts/project_name.yaml` (`v1`) and `prompts/project_blueprint.yaml` (`v1`, requests the full seven-section blueprint as JSON)
 - `LLMClient` calling OpenRouter `/chat/completions` with `httpx`, robust error handling (timeouts, HTTP status, connection, malformed responses), plus a `reasoning`-field fallback for reasoning models that return `content: null`
 - `LLMClient.structured_output()` — parses the LLM text response as JSON and validates it into a Pydantic model (`RuntimeError` on bad JSON or schema failure)
-- `ProjectPlanner` service — owns the application logic (validates idea, builds messages, returns a validated `ProjectName`); `LLMClient` stays focused on provider communication
-- Verified end-to-end against the live API: idea → `DocuSearch AI`
+- `ProjectPlanner.generate_blueprint()` — owns the application logic (validates idea, builds messages, returns a validated `ProjectBlueprint`); `LLMClient` stays focused on provider communication
+- `models.py` — `ProjectName`, `Technology`, `ProjectBlueprint` (all seven sections)
+- Verified end-to-end against the live API: full blueprint → `DocSearch AI Platform`
 - `pytest` and `ruff` both green
 
 ## Repo layout
@@ -29,14 +30,15 @@ Context for the next working session. Update this file at the end of each sessio
 blueprint-generator/
 ├── config/settings.yaml        # application + llm settings
 ├── prompts/
-│   └── project_name.yaml       # versioned naming prompt (v1, JSON output)
+│   ├── project_name.yaml       # versioned naming prompt (v1, JSON output)
+│   └── project_blueprint.yaml  # versioned blueprint prompt (v1, JSON output)
 ├── src/
 │   ├── main.py                 # placeholder entry point
 │   ├── config_loader.py        # ConfigLoader
 │   ├── prompt_manager.py       # PromptManager
 │   ├── llm_client.py           # LLMClient (chat + structured_output)
-│   ├── models.py               # ProjectName Pydantic model
-│   └── project_planner.py      # ProjectPlanner (application logic)
+│   ├── models.py               # ProjectName, Technology, ProjectBlueprint
+│   └── project_planner.py      # ProjectPlanner.generate_blueprint()
 ├── tests/
 │   ├── test_main.py
 │   └── test_models.py          # ProjectName validation tests
@@ -63,11 +65,11 @@ There is no CLI yet; services are exercised via short scripts run under `src/` w
 
 ## Open items / next steps
 
-1. Commit the pending changes so `0.1.5` is captured.
-2. Phase 6 — Project Planner: expand the single naming service into `generate_blueprint()` producing all seven blueprint sections (name, description, business problem, functional requirements, non-functional requirements, technology stack, implementation plan). Add the corresponding `ProjectBlueprint` model and prompt template.
-3. Formalize the M1 milestone (idea → project name) as an automated test with a mocked `LLMClient` rather than a manual script.
+1. Commit the pending changes so `0.1.6` is captured.
+2. Phase 7 — Agent Loop: introduce a loop (analyze idea → decide what is needed → call LLM → check result → iterate), moving from a single-shot LLM application to an agent runtime. Failure modes: infinite loops, runaway token spend, no termination criteria.
+3. Retrofit automated tests for `ProjectPlanner`/`ProjectBlueprint` with a mocked `LLMClient` (M1/M2 currently verified via live API scripts).
 
 ## Git state at handoff
 
 - Latest commit: `Add LLM client`
-- Uncommitted at handoff: `src/llm_client.py` (modified), `src/prompt_manager.py` (new), `src/models.py` (new), `src/project_planner.py` (new), `src/test_planner.py` (untracked), `tests/test_models.py` (new), `prompts/project_name.yaml` (new), `CHANGELOG.md`, `docs/SESSION_HANDOFF.md` (modified)
+- Uncommitted at handoff: `src/llm_client.py` (modified), `src/prompt_manager.py` (new), `src/models.py` (new), `src/project_planner.py` (new), `src/test_blueprint.py` (untracked, temporary), `tests/test_models.py` (new), `prompts/project_name.yaml` (new), `prompts/project_blueprint.yaml` (new), `CHANGELOG.md`, `README.md`, `docs/ROADMAP.md`, `docs/PRD.md`, `docs/SESSION_HANDOFF.md` (modified)

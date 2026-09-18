@@ -71,7 +71,7 @@ The roadmap below maps phases to this ladder.
 
 ### Phase 6 — Project Planner
 - [x] The core service that wires idea → LLM → blueprint (naming service in place)
-- [ ] Populate all seven blueprint sections:
+- [x] Populate all seven blueprint sections:
   1. Project name (done via M1)
   2. Project description
   3. Business problem
@@ -79,7 +79,7 @@ The roadmap below maps phases to this ladder.
   5. Non-functional requirements
   6. Technology stack
   7. Implementation plan
-- [ ] Failure modes: hallucinated stack choices, generic output, inconsistent plan
+- [x] Failure modes: hallucinated stack choices, generic output, inconsistent plan
 
 ### Phase 7 — Agent Loop
 - Introduce a loop: analyze idea → decide what is needed → call LLM → check result → iterate
