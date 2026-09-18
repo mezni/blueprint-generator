@@ -36,7 +36,7 @@ flowchart TD
 
 ## Status
 
-**Phase 1 — Product & Requirements** is complete. This is a learning project: at each step we define what we build, why, the code, how to test it, and what failure modes to watch for. The project deliberately starts as a plain LLM application and evolves toward a production agent.
+**Phases 1–5** (Product & Requirements → LLM Client → Prompt Management → Structured Output) are complete, and **Phase 6 — Project Planner** is underway: the M1 milestone (idea in → project name out) works end-to-end as a `ProjectPlanner` service. This is a learning project: at each step we define what we build, why, the code, how to test it, and what failure modes to watch for. The project deliberately starts as a plain LLM application and evolves toward a production agent.
 
 ## Docs
 
@@ -67,3 +67,5 @@ flowchart TD
 | 7–10 | Agent loop, tools, memory, RAG |
 | 11–13 | Guardrails, evaluation, observability |
 | 14–18 | API, UI, Docker, CI/CD, production |
+
+**Progress: phases 1–5 complete; phase 6 (full blueprint) in progress.**

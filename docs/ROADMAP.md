@@ -45,41 +45,41 @@ The roadmap below maps phases to this ladder.
 - [x] Write this PRD and roadmap
 
 ### Phase 2 — Project Setup
-- Initialize Python project with `uv`
-- Set up `pyproject.toml`, packages, tooling
-- Set up YAML + `.env` configuration
-- Configure `pytest`
-- Verify the skeleton runs
+- [x] Initialize Python project with `uv`
+- [x] Set up `pyproject.toml`, packages, tooling
+- [x] Set up YAML + `.env` configuration
+- [x] Configure `pytest`
+- [x] Verify the skeleton runs
 
 ### Phase 3 — LLM Client
-- Minimal OpenRouter client using `httpx`
-- Load an API key from config
-- Single call: prompt in → text out
-- First milestone test: `"Build an AI system for employee knowledge."` → `"KnowledgeHub AI"`
-- Failure modes: missing key, network errors, timeouts, malformed responses
+- [x] Minimal OpenRouter client using `httpx`
+- [x] Load an API key from config
+- [x] Single call: prompt in → text out
+- [x] First milestone test: `"Build an AI system for employee knowledge."` → `"KnowledgeHub AI"`
+- [x] Failure modes: missing key, network errors, timeouts, malformed responses
 
 ### Phase 4 — Prompt Management
-- Move prompts out of code into templates
-- Template loading and interpolation
-- Versioning prompts
-- Failure modes: unrendered variables, whitespace/format drift
+- [x] Move prompts out of code into templates
+- [x] Template loading and interpolation
+- [x] Versioning prompts
+- [x] Failure modes: unrendered variables, whitespace/format drift
 
 ### Phase 5 — Structured Output
-- Define the `ProjectBlueprint` Pydantic model
-- Validate model output, request JSON from OpenRouter
-- Failure modes: missing keys, wrong types, truncated output
+- [x] Define the `ProjectBlueprint` Pydantic model (started with `ProjectName`)
+- [x] Validate model output, request JSON from OpenRouter
+- [x] Failure modes: missing keys, wrong types, truncated output
 
 ### Phase 6 — Project Planner
-- The core service that wires idea → LLM → blueprint
-- Populate all seven blueprint sections:
-  1. Project name
+- [x] The core service that wires idea → LLM → blueprint (naming service in place)
+- [ ] Populate all seven blueprint sections:
+  1. Project name (done via M1)
   2. Project description
   3. Business problem
   4. Functional requirements
   5. Non-functional requirements
   6. Technology stack
   7. Implementation plan
-- Failure modes: hallucinated stack choices, generic output, inconsistent plan
+- [ ] Failure modes: hallucinated stack choices, generic output, inconsistent plan
 
 ### Phase 7 — Agent Loop
 - Introduce a loop: analyze idea → decide what is needed → call LLM → check result → iterate
