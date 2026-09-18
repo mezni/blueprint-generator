@@ -18,7 +18,7 @@ class PromptManager:
             prompt = yaml.safe_load(file)
 
         if not isinstance(prompt, dict):
-            raise ValueError("Prompt configuration must be a YAML mapping.")
+            raise TypeError("Prompt configuration must be a YAML mapping.")
 
         return prompt
 

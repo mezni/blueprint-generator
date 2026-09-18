@@ -1,6 +1,10 @@
-from typing import Any
+import json
+from typing import Any, TypeVar
 
 import httpx
+from pydantic import BaseModel, ValidationError
+
+T = TypeVar("T", bound=BaseModel)
 
 
 class LLMClient:
@@ -69,3 +73,24 @@ class LLMClient:
             raise RuntimeError("Unexpected LLM response format.")
 
         return content
+
+    def structured_output(
+        self,
+        messages: list[dict[str, str]],
+        response_model: type[T],
+    ) -> T:
+        response = self.chat(messages)
+
+        try:
+            data = json.loads(response)
+        except json.JSONDecodeError as exc:
+            raise RuntimeError(
+                "LLM returned invalid JSON."
+            ) from exc
+
+        try:
+            return response_model.model_validate(data)
+        except ValidationError as exc:
+            raise RuntimeError(
+                "LLM response failed schema validation."
+            ) from exc

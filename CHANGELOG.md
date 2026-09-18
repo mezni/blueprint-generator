@@ -7,10 +7,32 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 | Version | Feature Domain | Key Objectives |
 | --- | --- | --- |
+| 0.1.4 | Structured Output | Add a `ProjectName` Pydantic model, request JSON from the LLM in the naming prompt, add `LLMClient.structured_output()` that parses and validates responses into the model, and unit test the model without the LLM |
 | 0.1.3 | Prompt Management | Move the naming prompt into a versioned YAML template, add `PromptManager` for loading and rendering, wire `PromptManager` to `LLMClient`, and handle reasoning-model responses that leave `content` null |
 | 0.1.2 | LLM Client | Add `LLMClient` OpenRouter chat wrapper over `httpx`, wire the API key from `.env`, raise clear errors on transport and malformed-response failures |
 | 0.1.1 | Configuration | Add YAML settings and `.env` loading, implement `ConfigLoader`, move code to a `src/` layout |
 | 0.1.0 | Project Setup | Initialize `uv` project, add core dependencies (pydantic, httpx, pyyaml, python-dotenv), configure pytest and ruff, add runnable `blueprint_generator` package skeleton |
+
+## [0.1.4] - 2026-09-17
+
+### Added
+
+- `src/models.py` — `ProjectName` Pydantic model with a `name` field constrained to 2–100 characters
+- `LLMClient.structured_output(messages, response_model)` — calls `chat()`, parses the response as JSON, and validates it into the given Pydantic model; raises `RuntimeError` on invalid JSON or failed schema validation
+- `tests/test_models.py` — unit tests for `ProjectName` without any LLM call (valid name accepted, empty name rejected)
+
+### Changed
+
+- `prompts/project_name.yaml` now instructs the model to return JSON `{"name": "ProjectName"}`
+- Verified end-to-end: idea → JSON response → validated `ProjectName` (`DocuSearch AI`)
+
+### Changed (cleanup)
+
+- `prompt_manager.py` raises `TypeError` (not `ValueError`) for non-mapping prompt files, matching `config_loader.py`
+
+### Notes
+
+- Phase 5 — Structured Output of the [Roadmap](docs/ROADMAP.md).
 
 ## [0.1.3] - 2026-09-17
 
