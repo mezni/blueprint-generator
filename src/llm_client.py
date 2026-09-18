@@ -57,6 +57,15 @@ class LLMClient:
         data = response.json()
 
         try:
-            return data["choices"][0]["message"]["content"]
+            message = data["choices"][0]["message"]
         except (KeyError, IndexError, TypeError) as exc:
             raise RuntimeError("Unexpected LLM response format.") from exc
+
+        content = message.get("content")
+        if content is None:
+            content = message.get("reasoning")
+
+        if content is None:
+            raise RuntimeError("Unexpected LLM response format.")
+
+        return content
