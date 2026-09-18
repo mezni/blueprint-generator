@@ -85,12 +85,13 @@ The roadmap below maps phases to this ladder.
 - [x] Introduce a loop: analyze idea → decide what is needed → call LLM → check result → iterate
 - [x] Move from single-shot LLM application to an agent runtime
 - [x] Failure modes: infinite loops, runaway token spend, no termination criteria (guarded, but the loop does not yet terminate in `finish`)
-- [ ] Execute the selected action and feed the outcome back into `state` so the agent can complete (`finish`)
+- [x] Execute the selected action and feed the outcome back into `state` so the agent can complete (`finish`)
 
 ### Phase 8 — Tools
-- Give the agent tools (e.g., web search, files)
-- Tool-calling loop and structured tool requests
-- Failure modes: bad tool args, tools returning junk, agent fabricating tool results
+- [x] Give the agent tools (the blueprint generator is now a registered tool)
+- [x] Tool-calling loop and structured tool requests (the agent supplies a validated `arguments` dict per action)
+- [ ] Wire the tool list into the agent prompt and add more tools (e.g., web search, files); build tool-aware orchestration
+- [ ] Failure modes: bad tool args, tools returning junk, agent fabricating tool results
 
 ### Phase 9 — Memory
 - Conversation memory and project-scoped state

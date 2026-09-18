@@ -52,4 +52,10 @@ class AgentAction(BaseModel):
         "finish",
     ]
 
-    reason: str = Field(min_length=1)
+    reason: str = Field(
+        min_length=1,
+    )
+
+    arguments: dict[str, object] = Field(
+        default_factory=dict,
+    )
