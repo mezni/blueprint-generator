@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 | Version | Feature Domain | Key Objectives |
 | --- | --- | --- |
+| 0.1.7 | Agent Loop | Add agent-state modeling (`AgentAction`), an action-selection prompt, a `ProjectPlannerAgent` that decides the next action, and an `AgentRunner` loop with a max-iteration guard |
 | 0.1.6 | Project Blueprint | Expand the planner from a project name to a full seven-section technical blueprint: add the `ProjectBlueprint`/`Technology` models, a JSON-requesting `project_blueprint` prompt, and `ProjectPlanner.generate_blueprint()` |
 | 0.1.5 | Project Planner | Add `ProjectPlanner` as the application-logic layer that wires `PromptManager` and `LLMClient` together, keeping the LLM client focused solely on provider communication. Milestone M1 (idea in → project name out) is now a real, reusable service |
 | 0.1.4 | Structured Output | Add a `ProjectName` Pydantic model, request JSON from the LLM in the naming prompt, add `LLMClient.structured_output()` that parses and validates responses into the model, and unit test the model without the LLM |
@@ -14,6 +15,23 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 | 0.1.2 | LLM Client | Add `LLMClient` OpenRouter chat wrapper over `httpx`, wire the API key from `.env`, raise clear errors on transport and malformed-response failures |
 | 0.1.1 | Configuration | Add YAML settings and `.env` loading, implement `ConfigLoader`, move code to a `src/` layout |
 | 0.1.0 | Project Setup | Initialize `uv` project, add core dependencies (pydantic, httpx, pyyaml, python-dotenv), configure pytest and ruff, add runnable `blueprint_generator` package skeleton |
+
+## [0.1.7] - 2026-09-17
+
+### Added
+
+- `src/models.py` — `AgentAction` with a `Literal`-typed `action` (`generate_blueprint` | `finish`) and a `reason`
+- `prompts/agent.yaml` — versioned (`v1`) agent prompt teaching the model to select the next action from a fixed set, returning JSON `{action, reason}`
+- `src/agent.py` — `ProjectPlannerAgent.decide(project_idea, state)` returns a validated `AgentAction`
+- `src/agent_runner.py` — `AgentRunner.run(project_idea)` loop with a `max_iterations` (default 5) guard; raises `RuntimeError("Agent exceeded maximum iterations.")` on runaway loops
+
+### Changed
+
+- `PromptManager.render_user_prompt` accepts an optional `state` parameter (default `""`), keeping it reusable across single-shot and agent prompts
+
+### Notes
+
+- Phase 7 — Agent Loop of the [Roadmap](docs/ROADMAP.md) started: the loop + action selection + termination guard work, but the loop currently re-selects `generate_blueprint` every iteration because no real blueprint execution updates the state — the `max_iterations` guard catches it (the documented infinite-loop failure mode).
 
 ## [0.1.6] - 2026-09-17
 

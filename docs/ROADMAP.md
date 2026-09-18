@@ -82,9 +82,10 @@ The roadmap below maps phases to this ladder.
 - [x] Failure modes: hallucinated stack choices, generic output, inconsistent plan
 
 ### Phase 7 — Agent Loop
-- Introduce a loop: analyze idea → decide what is needed → call LLM → check result → iterate
-- Move from single-shot LLM application to an agent runtime
-- Failure modes: infinite loops, runaway token spend, no termination criteria
+- [x] Introduce a loop: analyze idea → decide what is needed → call LLM → check result → iterate
+- [x] Move from single-shot LLM application to an agent runtime
+- [x] Failure modes: infinite loops, runaway token spend, no termination criteria (guarded, but the loop does not yet terminate in `finish`)
+- [ ] Execute the selected action and feed the outcome back into `state` so the agent can complete (`finish`)
 
 ### Phase 8 — Tools
 - Give the agent tools (e.g., web search, files)

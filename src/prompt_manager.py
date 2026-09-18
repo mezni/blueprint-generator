@@ -22,12 +22,19 @@ class PromptManager:
 
         return prompt
 
-    def render_user_prompt(self, project_idea: str) -> str:
+    def render_user_prompt(
+        self,
+        project_idea: str,
+        state: str = "",
+    ) -> str:
         prompt = self.load()
 
         template = prompt["user"]
 
-        return template.format(project_idea=project_idea)
+        return template.format(
+            project_idea=project_idea,
+            state=state,
+        )
 
     def get_system_prompt(self) -> str:
         prompt = self.load()
